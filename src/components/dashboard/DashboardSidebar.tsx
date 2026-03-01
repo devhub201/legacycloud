@@ -1,6 +1,6 @@
 import { Server, CreditCard, LifeBuoy, Home, LayoutDashboard } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Sidebar,
   SidebarContent,

@@ -2,16 +2,24 @@ import { motion } from "framer-motion";
 import { Check, ArrowRight, Cpu, MapPin, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import blockDirt from "@/assets/block-dirt.png";
+import blockCobblestone from "@/assets/block-cobblestone.png";
+import blockIron from "@/assets/block-iron.png";
+import blockRedstone from "@/assets/block-redstone.png";
+import blockGold from "@/assets/block-gold.png";
+import blockDiamond from "@/assets/block-diamond.png";
+import blockNetherite from "@/assets/block-netherite.png";
+import blockBeacon from "@/assets/block-beacon.png";
 
 const plans = [
-  { name: "Dirt plan", price: "$1", ram: "1GB RAM", cpu: "1 vCPU", storage: "10GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Cobblestone plan", price: "$2", ram: "2GB RAM", cpu: "1 vCPU", storage: "20GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Iron plan", price: "$4", ram: "4GB RAM", cpu: "2 vCPU", storage: "30GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Redstone plan", price: "$6", ram: "6GB RAM", cpu: "2 vCPU", storage: "40GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Gold plan", price: "$8", ram: "8GB RAM", cpu: "3 vCPU", storage: "50GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Diamond plan", price: "$12", ram: "12GB RAM", cpu: "4 vCPU", storage: "60GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Netherite plan", price: "$16", ram: "16GB RAM", cpu: "4 vCPU", storage: "80GB SSD Storage", uplink: "1000MBPS Uplink" },
-  { name: "Beacon plan", price: "$24", ram: "24GB RAM", cpu: "6 vCPU", storage: "100GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Dirt plan", price: "$1", ram: "1GB RAM", cpu: "1 vCPU", storage: "10GB SSD Storage", uplink: "1000MBPS Uplink", img: blockDirt },
+  { name: "Cobblestone plan", price: "$2", ram: "2GB RAM", cpu: "1 vCPU", storage: "20GB SSD Storage", uplink: "1000MBPS Uplink", img: blockCobblestone },
+  { name: "Iron plan", price: "$4", ram: "4GB RAM", cpu: "2 vCPU", storage: "30GB SSD Storage", uplink: "1000MBPS Uplink", img: blockIron },
+  { name: "Redstone plan", price: "$6", ram: "6GB RAM", cpu: "2 vCPU", storage: "40GB SSD Storage", uplink: "1000MBPS Uplink", img: blockRedstone },
+  { name: "Gold plan", price: "$8", ram: "8GB RAM", cpu: "3 vCPU", storage: "50GB SSD Storage", uplink: "1000MBPS Uplink", img: blockGold },
+  { name: "Diamond plan", price: "$12", ram: "12GB RAM", cpu: "4 vCPU", storage: "60GB SSD Storage", uplink: "1000MBPS Uplink", img: blockDiamond },
+  { name: "Netherite plan", price: "$16", ram: "16GB RAM", cpu: "4 vCPU", storage: "80GB SSD Storage", uplink: "1000MBPS Uplink", img: blockNetherite },
+  { name: "Beacon plan", price: "$24", ram: "24GB RAM", cpu: "6 vCPU", storage: "100GB SSD Storage", uplink: "1000MBPS Uplink", img: blockBeacon },
 ];
 
 const PricingSection = () => {
@@ -34,9 +42,6 @@ const PricingSection = () => {
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
             Minecraft Hosting Plans
           </h2>
-          <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            Choose the perfect plan for your server
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -50,7 +55,12 @@ const PricingSection = () => {
               whileHover={{ y: -6 }}
               className="glass rounded-xl p-6 neon-border transition-shadow hover:box-glow"
             >
-              <h3 className="font-display text-base font-bold mb-2 text-primary">{plan.name}</h3>
+              {/* Block image */}
+              <div className="flex justify-center mb-3">
+                <img src={plan.img} alt={plan.name} className="w-16 h-16 object-contain" />
+              </div>
+
+              <h3 className="font-display text-sm font-bold mb-2 text-center text-primary">{plan.name}</h3>
               <div className="mb-5">
                 <span className="font-display text-4xl font-black text-foreground">{plan.price}</span>
                 <span className="text-muted-foreground text-sm"> /mo</span>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Zap, ArrowRight, Globe, Signal, CheckCircle, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import heroImg from "@/assets/minecraft-hero.png";
 
 const HeroSection = () => {
   return (
@@ -79,24 +80,29 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right side - floating info cards */}
+          {/* Right side - Minecraft character + floating cards */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="hidden lg:block relative"
           >
-            <div className="relative h-[450px]">
-              {/* Main glow circle */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-80 h-80 rounded-full bg-primary/10 border border-primary/20 blur-sm" />
-              </div>
+            <div className="relative h-[500px] flex items-center justify-center">
+              {/* Glow circle behind character */}
+              <div className="absolute w-80 h-80 rounded-full bg-primary/15 border border-primary/10 blur-sm" />
+
+              {/* Minecraft character image */}
+              <img
+                src={heroImg}
+                alt="Minecraft character"
+                className="relative z-10 h-[400px] object-contain drop-shadow-[0_0_30px_hsl(160,85%,45%,0.3)]"
+              />
 
               {/* Global Network card */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-8 right-0 glass-strong rounded-xl px-5 py-4 neon-border"
+                className="absolute top-4 right-0 glass-strong rounded-xl px-5 py-4 neon-border z-20"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <Globe className="h-4 w-4 text-primary" />
@@ -111,7 +117,7 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute top-44 right-4 glass-strong rounded-xl px-5 py-3 neon-border flex items-center gap-3"
+                className="absolute top-48 right-0 glass-strong rounded-xl px-5 py-3 neon-border flex items-center gap-3 z-20"
               >
                 <span className="text-primary font-display text-sm font-bold">⚡ UltimateCloud</span>
                 <span className="font-display text-sm font-bold">16 ms</span>
@@ -122,16 +128,11 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute bottom-16 right-8 glass-strong rounded-xl px-5 py-3 neon-border flex items-center gap-2"
+                className="absolute bottom-8 right-4 glass-strong rounded-xl px-5 py-3 neon-border flex items-center gap-2 z-20"
               >
                 <CheckCircle className="h-4 w-4 text-primary" />
                 <span className="font-display text-sm font-bold">99.9% Server Uptime</span>
               </motion.div>
-
-              {/* Floating blocks */}
-              <div className="absolute top-20 left-16 w-8 h-8 rounded bg-primary/30 border border-primary/20 animate-float" />
-              <div className="absolute bottom-32 left-8 w-6 h-6 rounded bg-secondary/30 border border-secondary/20 animate-float" style={{ animationDelay: "2s" }} />
-              <div className="absolute top-52 left-32 w-10 h-10 rounded bg-accent/20 border border-accent/20 animate-float" style={{ animationDelay: "4s" }} />
             </div>
           </motion.div>
         </div>

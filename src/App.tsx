@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AboutPage from "./pages/AboutPage";
 import TermsPage from "./pages/TermsPage";
+import TeamPage from "./pages/TeamPage";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 import ServersPage from "./pages/dashboard/ServersPage";
 import ServerDetailPage from "./pages/dashboard/ServerDetailPage";
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/terms" element={<TermsPage />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route index element={<ServersPage />} />
             <Route path="server/:id" element={<ServerDetailPage />} />

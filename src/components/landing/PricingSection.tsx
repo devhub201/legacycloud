@@ -1,50 +1,17 @@
 import { motion } from "framer-motion";
-import { Check } from "lucide-react";
+import { Check, ArrowRight, Cpu, MapPin, Timer } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Link } from "react-router-dom";
 
 const plans = [
-  {
-    name: "Starter",
-    price: "$4",
-    ram: "2 GB",
-    cpu: "1 vCPU",
-    storage: "10 GB NVMe",
-    players: "10 Players",
-    features: ["DDoS Protection", "Instant Setup", "Daily Backups"],
-    popular: false,
-  },
-  {
-    name: "Pro",
-    price: "$12",
-    ram: "6 GB",
-    cpu: "2 vCPU",
-    storage: "30 GB NVMe",
-    players: "50 Players",
-    features: ["DDoS Protection", "Instant Setup", "Hourly Backups", "Modpack Support", "Priority Support"],
-    popular: true,
-  },
-  {
-    name: "Ultimate",
-    price: "$24",
-    ram: "12 GB",
-    cpu: "4 vCPU",
-    storage: "60 GB NVMe",
-    players: "100 Players",
-    features: ["DDoS Protection", "Instant Setup", "Real-time Backups", "Modpack Support", "Dedicated IP", "24/7 Priority Support"],
-    popular: false,
-  },
-  {
-    name: "Enterprise",
-    price: "$48",
-    ram: "32 GB",
-    cpu: "8 vCPU",
-    storage: "150 GB NVMe",
-    players: "Unlimited",
-    features: ["DDoS Protection", "Instant Setup", "Real-time Backups", "Custom Modpacks", "Dedicated IP", "Dedicated Manager", "SLA Guarantee"],
-    popular: false,
-  },
+  { name: "Dirt plan", price: "$1", ram: "1GB RAM", cpu: "1 vCPU", storage: "10GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Cobblestone plan", price: "$2", ram: "2GB RAM", cpu: "1 vCPU", storage: "20GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Iron plan", price: "$4", ram: "4GB RAM", cpu: "2 vCPU", storage: "30GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Redstone plan", price: "$6", ram: "6GB RAM", cpu: "2 vCPU", storage: "40GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Gold plan", price: "$8", ram: "8GB RAM", cpu: "3 vCPU", storage: "50GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Diamond plan", price: "$12", ram: "12GB RAM", cpu: "4 vCPU", storage: "60GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Netherite plan", price: "$16", ram: "16GB RAM", cpu: "4 vCPU", storage: "80GB SSD Storage", uplink: "1000MBPS Uplink" },
+  { name: "Beacon plan", price: "$24", ram: "24GB RAM", cpu: "6 vCPU", storage: "100GB SSD Storage", uplink: "1000MBPS Uplink" },
 ];
 
 const PricingSection = () => {
@@ -53,6 +20,10 @@ const PricingSection = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[150px]" />
 
       <div className="container mx-auto px-4 relative z-10">
+        <div className="section-divider mb-12">
+          <span className="text-primary text-xl">⚔</span>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -61,10 +32,10 @@ const PricingSection = () => {
           className="text-center mb-16"
         >
           <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-            <span className="gradient-text">Simple</span> Pricing
+            Minecraft Hosting Plans
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-            No hidden fees. Pick a plan and start playing in minutes.
+            Choose the perfect plan for your server
           </p>
         </motion.div>
 
@@ -75,49 +46,45 @@ const PricingSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className={`glass rounded-xl p-6 relative transition-shadow ${
-                plan.popular ? "box-glow neon-border border-primary/40" : "neon-border"
-              }`}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="glass rounded-xl p-6 neon-border transition-shadow hover:box-glow"
             >
-              {plan.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground animate-glow-pulse">
-                  Most Popular
-                </Badge>
-              )}
-              <h3 className="font-display text-lg font-bold mb-1">{plan.name}</h3>
-              <div className="mb-4">
-                <span className="font-display text-4xl font-black gradient-text">{plan.price}</span>
-                <span className="text-muted-foreground text-sm">/mo</span>
+              <h3 className="font-display text-base font-bold mb-2 text-primary">{plan.name}</h3>
+              <div className="mb-5">
+                <span className="font-display text-4xl font-black text-foreground">{plan.price}</span>
+                <span className="text-muted-foreground text-sm"> /mo</span>
               </div>
-              <div className="space-y-1 text-sm text-muted-foreground mb-4">
-                <p>{plan.ram} RAM</p>
-                <p>{plan.cpu}</p>
-                <p>{plan.storage}</p>
-                <p>{plan.players}</p>
-              </div>
-              <div className="border-t border-border/30 pt-4 mb-6 space-y-2">
-                {plan.features.map((f) => (
+              <div className="space-y-2 mb-5">
+                {[plan.ram, plan.cpu, plan.storage, plan.uplink].map((f) => (
                   <div key={f} className="flex items-center gap-2 text-sm">
-                    <Check className="h-3.5 w-3.5 text-neon-blue shrink-0" />
+                    <Check className="h-3.5 w-3.5 text-primary shrink-0" />
                     <span className="text-muted-foreground">{f}</span>
                   </div>
                 ))}
               </div>
+              <div className="border-t border-border/30 pt-4 mb-5 space-y-1.5 text-xs text-muted-foreground">
+                <div className="flex items-center gap-1.5"><Cpu className="h-3 w-3" /> Ryzen 9 7900x @ 5.6GHz</div>
+                <div className="flex items-center gap-1.5"><MapPin className="h-3 w-3" /> EU, NA, SA, EUW</div>
+                <div className="flex items-center gap-1.5"><Timer className="h-3 w-3" /> Fast Response: 10ms</div>
+              </div>
               <Link to="/dashboard">
-                <Button
-                  className={`w-full font-display ${
-                    plan.popular ? "bg-primary hover:bg-primary/80 box-glow" : "variant-outline neon-border bg-transparent hover:bg-muted/30"
-                  }`}
-                  variant={plan.popular ? "default" : "outline"}
-                >
-                  Get Started
+                <Button className="w-full font-display bg-primary hover:bg-primary/80 box-glow text-primary-foreground">
+                  Deploy Server <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
               </Link>
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="glass rounded-xl p-5 neon-border text-center mt-10"
+        >
+          <p className="text-muted-foreground">Can't find what you need? <Link to="/dashboard/support" className="text-primary hover:underline">Get in touch</Link> for custom packages or services.</p>
+        </motion.div>
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ const DashboardSidebar = () => {
       <SidebarContent className="bg-sidebar">
         <div className="p-4 border-b border-border/30">
           <Link to="/" className="flex items-center gap-2">
-            <LayoutDashboard className="h-5 w-5 text-neon-purple shrink-0" />
+            <LayoutDashboard className="h-5 w-5 text-primary shrink-0" />
             {!collapsed && <span className="font-display text-xs font-bold gradient-text">Ultimate Cloud</span>}
           </Link>
         </div>

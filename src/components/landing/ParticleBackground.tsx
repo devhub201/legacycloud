@@ -38,7 +38,7 @@ const ParticleBackground = () => {
         speedX: (Math.random() - 0.5) * 0.4,
         speedY: (Math.random() - 0.5) * 0.4,
         opacity: Math.random() * 0.5 + 0.1,
-        hue: Math.random() > 0.5 ? 250 : 200,
+        hue: Math.random() > 0.5 ? 160 : 170,
       });
     }
 
@@ -68,7 +68,7 @@ const ParticleBackground = () => {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `hsla(250, 80%, 65%, ${0.08 * (1 - dist / 150)})`;
+            ctx.strokeStyle = `hsla(160, 80%, 45%, ${0.08 * (1 - dist / 150)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

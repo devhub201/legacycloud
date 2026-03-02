@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import { Shield, Zap, Package, Clock, HardDrive, Download, Database, Settings } from "lucide-react";
 
 const features = [
-  { icon: Shield, title: "DDoS Protection", desc: "Enterprise-grade protection keeps your server online 24/7" },
-  { icon: Zap, title: "Instant Setup", desc: "Your server is ready in under 30 seconds, no waiting" },
-  { icon: Package, title: "Modpack Support", desc: "One-click install for Forge, Fabric, Paper, and more" },
-  { icon: Clock, title: "99.9% Uptime", desc: "Guaranteed uptime with automatic failover systems" },
-  { icon: HardDrive, title: "NVMe SSD Storage", desc: "Lightning-fast storage for zero-lag chunk loading" },
-  { icon: Download, title: "One-Click Modpacks", desc: "Install popular modpacks like RLCraft, Pixelmon instantly" },
-  { icon: Database, title: "Auto Backups", desc: "Automatic daily backups with one-click restore" },
-  { icon: Settings, title: "Custom Panel", desc: "Intuitive control panel designed for gamers" },
+  { icon: Zap, title: "Fast Performance", desc: "High-speed servers optimized for smooth, lag-free gameplay." },
+  { icon: Settings, title: "Control Panel", desc: "Easily manage your server with our user-friendly dashboard." },
+  { icon: Shield, title: "DDoS Protection", desc: "Stay safe with built-in protection against online attacks." },
+  { icon: Database, title: "Global Servers", desc: "Choose from worldwide locations for the lowest ping." },
+  { icon: Clock, title: "Unlimited Players", desc: "There is no limit on how many players can join your server." },
+  { icon: Package, title: "Plugin / Mods", desc: "Easily install plugins or mods to customize your server." },
+  { icon: Download, title: "Daily Backups", desc: "Our systems do backups every day to keep your data safe." },
+  { icon: HardDrive, title: "Allocated Ports", desc: "Allocated ports specifically for your Minecraft server." },
 ];
 
 const FeaturesSection = () => {
@@ -43,7 +43,7 @@ const FeaturesSection = () => {
               className="glass rounded-xl p-6 neon-border group cursor-default transition-shadow hover:box-glow"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <f.icon className="h-6 w-6 text-neon-purple" />
+                <f.icon className="h-6 w-6 text-primary" />
               </div>
               <h3 className="font-display text-sm font-semibold mb-2">{f.title}</h3>
               <p className="text-sm text-muted-foreground">{f.desc}</p>

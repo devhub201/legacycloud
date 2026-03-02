@@ -6,8 +6,8 @@ const locations = [
   { city: "London", country: "UK", ping: "18ms", flag: "🇬🇧" },
   { city: "Frankfurt", country: "Germany", ping: "15ms", flag: "🇩🇪" },
   { city: "Singapore", country: "Singapore", ping: "22ms", flag: "🇸🇬" },
-  { city: "Tokyo", country: "Japan", ping: "20ms", flag: "🇯🇵" },
-  { city: "Sydney", country: "Australia", ping: "25ms", flag: "🇦🇺" },
+  { city: "São Paulo", country: "Brazil", ping: "20ms", flag: "🇧🇷" },
+  { city: "Toronto", country: "Canada", ping: "14ms", flag: "🇨🇦" },
 ];
 
 const LocationsSection = () => {
@@ -38,23 +38,23 @@ const LocationsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ scale: 1.03 }}
-              className="glass rounded-xl p-6 neon-border flex items-center gap-4 group hover:box-glow-blue transition-shadow"
+              className="glass rounded-xl p-6 neon-border flex items-center gap-4 group hover:box-glow-teal transition-shadow"
             >
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-2xl">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-2xl">
                   {loc.flag}
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-green-500 pulse-dot" />
+                <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-primary pulse-dot" />
               </div>
               <div className="flex-1">
                 <h3 className="font-display text-sm font-semibold flex items-center gap-1.5">
-                  <MapPin className="h-3.5 w-3.5 text-neon-blue" />
+                  <MapPin className="h-3.5 w-3.5 text-primary" />
                   {loc.city}
                 </h3>
                 <p className="text-xs text-muted-foreground">{loc.country}</p>
               </div>
               <div className="text-right">
-                <span className="font-display text-sm font-bold text-green-400">{loc.ping}</span>
+                <span className="font-display text-sm font-bold text-primary">{loc.ping}</span>
                 <p className="text-xs text-muted-foreground">latency</p>
               </div>
             </motion.div>

@@ -2,28 +2,32 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "react-router-dom";
 
 const posts = [
   {
     tag: "Minecraft Host",
     title: "Choosing the Right Plan for Your Minecraft Server",
     desc: "Choosing the Right Minecraft Server Plan: What You Need to Know",
+    slug: "choosing-the-right-plan",
   },
   {
     tag: "Minecraft Host",
     title: "Speed Up Your Minecraft Server With Us",
     desc: "How to Boost Your Minecraft Server Performance (Without Breaking the Bank)",
+    slug: "speed-up-your-server",
   },
   {
     tag: "Minecraft Host",
     title: "Top 5 Must-Have Plugins For Your Server",
     desc: "5 Plugins Every Minecraft Server Should Have in 2026",
+    slug: "top-5-plugins",
   },
 ];
 
 const BlogSection = () => {
   return (
-    <section className="relative py-24">
+    <section id="blog" className="relative py-24">
       <div className="container mx-auto px-4">
         <div className="section-divider mb-12">
           <span className="text-primary text-xl">⚔</span>
@@ -49,9 +53,11 @@ const BlogSection = () => {
                 <p className="text-primary text-xs font-semibold mb-1">Blog post</p>
                 <h3 className="font-display text-sm font-bold mb-2">{post.title}</h3>
                 <p className="text-xs text-muted-foreground mb-4">{post.desc}</p>
-                <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
-                  Learn More <ArrowRight className="ml-1 h-3 w-3" />
-                </Button>
+                <Link to={`/blog/${post.slug}`}>
+                  <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
+                    Learn More <ArrowRight className="ml-1 h-3 w-3" />
+                  </Button>
+                </Link>
               </div>
             </motion.div>
           ))}

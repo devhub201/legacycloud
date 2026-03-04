@@ -78,11 +78,11 @@ const PricingSection = () => {
                 <div className="flex items-center gap-1.5"><MapPin className="h-3 w-3" /> EU, NA, SA, EUW</div>
                 <div className="flex items-center gap-1.5"><Timer className="h-3 w-3" /> Fast Response: 10ms</div>
               </div>
-              <Link to="/dashboard">
+              <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full font-display bg-primary hover:bg-primary/80 box-glow text-primary-foreground">
                   Deploy Server <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </motion.div>
           ))}
         </div>
@@ -93,7 +93,7 @@ const PricingSection = () => {
           viewport={{ once: true }}
           className="glass rounded-xl p-5 neon-border text-center mt-10"
         >
-          <p className="text-muted-foreground">Can't find what you need? <Link to="/dashboard/support" className="text-primary hover:underline">Get in touch</Link> for custom packages or services.</p>
+          <p className="text-muted-foreground">Can't find what you need? <a href="#faq" className="text-primary hover:underline">Get in touch</a> for custom packages or services.</p>
         </motion.div>
       </div>
     </section>

@@ -12,7 +12,7 @@ const Footer = () => {
               <Link to="/" className="block hover:text-foreground transition-colors">Home</Link>
               <a href="#pricing" className="block hover:text-foreground transition-colors">Services</a>
               <Link to="/about" className="block hover:text-foreground transition-colors">About Us</Link>
-              <Link to="/dashboard/support" className="block hover:text-foreground transition-colors">Support Ticket</Link>
+              <a href="#faq" className="block hover:text-foreground transition-colors">Support</a>
             </div>
           </div>
           <div>

@@ -8,11 +8,7 @@ import NotFound from "./pages/NotFound";
 import AboutPage from "./pages/AboutPage";
 import TermsPage from "./pages/TermsPage";
 import TeamPage from "./pages/TeamPage";
-import DashboardLayout from "./components/dashboard/DashboardLayout";
-import ServersPage from "./pages/dashboard/ServersPage";
-import ServerDetailPage from "./pages/dashboard/ServerDetailPage";
-import BillingPage from "./pages/dashboard/BillingPage";
-import SupportPage from "./pages/dashboard/SupportPage";
+import BlogPostPage from "./pages/BlogPostPage";
 
 const queryClient = new QueryClient();
 
@@ -27,12 +23,7 @@ const App = () => (
           <Route path="/about" element={<AboutPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/team" element={<TeamPage />} />
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<ServersPage />} />
-            <Route path="server/:id" element={<ServerDetailPage />} />
-            <Route path="billing" element={<BillingPage />} />
-            <Route path="support" element={<SupportPage />} />
-          </Route>
+          <Route path="/blog/:slug" element={<BlogPostPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

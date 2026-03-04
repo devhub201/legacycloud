@@ -10,7 +10,7 @@ const Navbar = () => {
     { label: "Home", href: "/", icon: Home },
     { label: "Services", href: "#pricing", icon: ShoppingCart },
     { label: "About Us", href: "/about", icon: Rocket },
-    { label: "Support Ticket", href: "/dashboard/support", icon: LifeBuoy },
+    { label: "Support", href: "#faq", icon: LifeBuoy },
   ];
 
   return (
@@ -46,11 +46,11 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:block">
-          <Link to="/dashboard">
+          <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer">
             <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
               Dashboard <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
-          </Link>
+          </a>
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
@@ -75,11 +75,11 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          <Link to="/dashboard" onClick={() => setOpen(false)}>
+          <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
             <Button size="sm" className="w-full mt-2 bg-primary box-glow text-primary-foreground">
               Dashboard <ArrowRight className="ml-1 h-4 w-4" />
             </Button>
-          </Link>
+          </a>
         </motion.div>
       )}
     </motion.nav>

@@ -8,6 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user, signOut } = useAuth();
+  const links = [
     { label: "Home", href: "/", icon: Home },
     { label: "Services", href: "#pricing", icon: ShoppingCart },
     { label: "About Us", href: "/about", icon: Rocket },

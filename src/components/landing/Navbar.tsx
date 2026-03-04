@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
-import { Server, Menu, X, Home, ShoppingCart, Rocket, LifeBuoy, ArrowRight } from "lucide-react";
+import { Server, Menu, X, Home, ShoppingCart, Rocket, LifeBuoy, ArrowRight, LogIn, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const links = [
+  const { user, signOut } = useAuth();
     { label: "Home", href: "/", icon: Home },
     { label: "Services", href: "#pricing", icon: ShoppingCart },
     { label: "About Us", href: "/about", icon: Rocket },

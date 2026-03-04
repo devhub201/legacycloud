@@ -1,11 +1,13 @@
 import { motion } from "framer-motion";
-import { Server, Menu, X, Home, ShoppingCart, Rocket, LifeBuoy, ArrowRight } from "lucide-react";
+import { Server, Menu, X, Home, ShoppingCart, Rocket, LifeBuoy, ArrowRight, LogIn, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, signOut } = useAuth();
   const links = [
     { label: "Home", href: "/", icon: Home },
     { label: "Services", href: "#pricing", icon: ShoppingCart },
@@ -45,12 +47,25 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="hidden md:block">
-          <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer">
-            <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
-              Dashboard <ArrowRight className="ml-1 h-4 w-4" />
-            </Button>
-          </a>
+        <div className="hidden md:flex items-center gap-3">
+          {user ? (
+            <>
+              <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer">
+                <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
+                  Dashboard <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </a>
+              <Button size="sm" variant="outline" className="neon-border" onClick={signOut}>
+                <LogOut className="mr-1 h-4 w-4" /> Sign Out
+              </Button>
+            </>
+          ) : (
+            <Link to="/auth">
+              <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
+                <LogIn className="mr-1 h-4 w-4" /> Sign In
+              </Button>
+            </Link>
+          )}
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
@@ -75,11 +90,24 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-            <Button size="sm" className="w-full mt-2 bg-primary box-glow text-primary-foreground">
-              Dashboard <ArrowRight className="ml-1 h-4 w-4" />
-            </Button>
-          </a>
+          {user ? (
+            <>
+              <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+                <Button size="sm" className="w-full mt-2 bg-primary box-glow text-primary-foreground">
+                  Dashboard <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </a>
+              <Button size="sm" variant="outline" className="w-full mt-2 neon-border" onClick={() => { signOut(); setOpen(false); }}>
+                <LogOut className="mr-1 h-4 w-4" /> Sign Out
+              </Button>
+            </>
+          ) : (
+            <Link to="/auth" onClick={() => setOpen(false)}>
+              <Button size="sm" className="w-full mt-2 bg-primary box-glow text-primary-foreground">
+                <LogIn className="mr-1 h-4 w-4" /> Sign In
+              </Button>
+            </Link>
+          )}
         </motion.div>
       )}
     </motion.nav>

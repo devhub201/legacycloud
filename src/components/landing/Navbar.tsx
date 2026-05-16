@@ -25,7 +25,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="flex items-center gap-2">
           <Server className="h-6 w-6 text-primary" />
-          <span className="font-display text-lg font-bold gradient-text">Ultimate Cloud</span>
+          <span className="font-display text-lg font-bold gradient-text">Legacy Cloud</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">
@@ -50,7 +50,7 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <>
-              <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://panel.legacycloud.com" target="_blank" rel="noopener noreferrer">
                 <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
                   Dashboard <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
@@ -92,7 +92,7 @@ const Navbar = () => {
           ))}
           {user ? (
             <>
-              <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+              <a href="https://panel.legacycloud.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
                 <Button size="sm" className="w-full mt-2 bg-primary box-glow text-primary-foreground">
                   Dashboard <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>

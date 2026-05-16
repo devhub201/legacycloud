@@ -12,7 +12,7 @@ const posts: Record<string, { tag: string; title: string; desc: string; content:
     title: "Choosing the Right Plan for Your Minecraft Server",
     desc: "Choosing the Right Minecraft Server Plan: What You Need to Know",
     date: "March 1, 2026",
-    author: "Ultimate Cloud Team",
+    author: "Legacy Cloud Team",
     content: `When it comes to hosting a Minecraft server, picking the right plan can make or break your experience. Whether you're running a small survival world with friends or a massive modded server with dozens of players, understanding your needs is the first step.
 
 **RAM Matters Most**
@@ -38,7 +38,7 @@ Pick a server location closest to your player base. We offer locations in EU, NA
     title: "Speed Up Your Minecraft Server With Us",
     desc: "How to Boost Your Minecraft Server Performance (Without Breaking the Bank)",
     date: "February 25, 2026",
-    author: "Ultimate Cloud Team",
+    author: "Legacy Cloud Team",
     content: `Nobody likes lag. Whether it's rubber-banding, slow chunk loading, or TPS drops, server performance issues can ruin the Minecraft experience. Here's how to keep your server running at peak performance.
 
 **Optimize Your Server Software**
@@ -59,7 +59,7 @@ Tweak your server.properties and spigot/paper config files. Key settings include
 **Upgrade When Needed**
 If you've optimized everything and still have issues, it might be time to upgrade your plan. More RAM and CPU cores can handle more players and more complex worlds.
 
-**Why Ultimate Cloud?**
+**Why Legacy Cloud?**
 Our infrastructure is built specifically for Minecraft. With Ryzen 9 7900x processors, NVMe SSDs, and 1000Mbps uplinks, we deliver the raw performance your server needs.`,
   },
   "top-5-plugins": {
@@ -67,7 +67,7 @@ Our infrastructure is built specifically for Minecraft. With Ryzen 9 7900x proce
     title: "Top 5 Must-Have Plugins For Your Server",
     desc: "5 Plugins Every Minecraft Server Should Have in 2026",
     date: "February 18, 2026",
-    author: "Ultimate Cloud Team",
+    author: "Legacy Cloud Team",
     content: `Running a Minecraft server without plugins is like driving a car without a dashboard. These five essential plugins will transform your server from basic to brilliant.
 
 **1. EssentialsX**

@@ -77,7 +77,7 @@ const AuthPage = () => {
               {isLogin ? "Welcome Back" : "Create Account"}
             </h1>
             <p className="text-muted-foreground text-center text-sm mb-6">
-              {isLogin ? "Sign in to manage your servers" : "Join Ultimate Cloud today"}
+              {isLogin ? "Sign in to manage your servers" : "Join Legacy Cloud today"}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">

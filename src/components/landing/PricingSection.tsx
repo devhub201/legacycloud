@@ -78,9 +78,9 @@ const PricingSection = () => {
                 <div className="flex items-center gap-1.5"><MapPin className="h-3 w-3" /> EU, NA, SA, EUW</div>
                 <div className="flex items-center gap-1.5"><Timer className="h-3 w-3" /> Fast Response: 10ms</div>
               </div>
-              <a href="https://panel.ultimatecloud.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://discord.gg/guxyBXut2E" target="_blank" rel="noopener noreferrer">
                 <Button className="w-full font-display bg-primary hover:bg-primary/80 box-glow text-primary-foreground">
-                  Deploy Server <ArrowRight className="ml-1 h-4 w-4" />
+                  Buy Now <ArrowRight className="ml-1 h-4 w-4" />
                 </Button>
               </a>
             </motion.div>

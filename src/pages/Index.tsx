@@ -2,6 +2,7 @@ import ParticleBackground from "@/components/landing/ParticleBackground";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
+import ServicesSection from "@/components/landing/ServicesSection";
 import PricingSection from "@/components/landing/PricingSection";
 import LocationsSection from "@/components/landing/LocationsSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
@@ -17,6 +18,7 @@ const Index = () => {
       <main className="relative z-10">
         <HeroSection />
         <FeaturesSection />
+        <ServicesSection />
         <PricingSection />
         <LocationsSection />
         <TestimonialsSection />

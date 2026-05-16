@@ -20,7 +20,7 @@ const Navbar = () => {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 glass-strong"
+      className="fixed top-10 left-0 right-0 z-50 glass-strong"
     >
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="flex items-center gap-2">
@@ -50,11 +50,11 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <>
-              <a href="https://panel.legacycloud.com" target="_blank" rel="noopener noreferrer">
-                <Button size="sm" className="bg-primary hover:bg-primary/80 box-glow font-display text-primary-foreground">
-                  Dashboard <ArrowRight className="ml-1 h-4 w-4" />
+              <Link to="/profile">
+                <Button size="sm" variant="outline" className="neon-border">
+                  <User className="mr-1 h-4 w-4" /> Profile
                 </Button>
-              </a>
+              </Link>
               <Button size="sm" variant="outline" className="neon-border" onClick={signOut}>
                 <LogOut className="mr-1 h-4 w-4" /> Sign Out
               </Button>
@@ -92,11 +92,11 @@ const Navbar = () => {
           ))}
           {user ? (
             <>
-              <a href="https://panel.legacycloud.com" target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
-                <Button size="sm" className="w-full mt-2 bg-primary box-glow text-primary-foreground">
-                  Dashboard <ArrowRight className="ml-1 h-4 w-4" />
+              <Link to="/profile" onClick={() => setOpen(false)}>
+                <Button size="sm" variant="outline" className="w-full mt-2 neon-border">
+                  <User className="mr-1 h-4 w-4" /> Profile
                 </Button>
-              </a>
+              </Link>
               <Button size="sm" variant="outline" className="w-full mt-2 neon-border" onClick={() => { signOut(); setOpen(false); }}>
                 <LogOut className="mr-1 h-4 w-4" /> Sign Out
               </Button>

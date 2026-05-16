@@ -20,7 +20,7 @@ const AboutPage = () => {
             transition={{ duration: 0.6 }}
             className="glass rounded-xl p-8 md:p-12 neon-border max-w-4xl mx-auto"
           >
-            <h1 className="font-display text-3xl md:text-4xl font-bold mb-8">About Ultimate Cloud</h1>
+            <h1 className="font-display text-3xl md:text-4xl font-bold mb-8">About Legacy Cloud</h1>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
               <div>

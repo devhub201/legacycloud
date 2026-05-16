@@ -36,7 +36,7 @@ const Footer = () => {
           <div>
             <div className="flex items-center gap-2 mb-3">
               <Server className="h-5 w-5 text-primary" />
-              <span className="font-display text-sm font-bold gradient-text">Ultimate Cloud</span>
+              <span className="font-display text-sm font-bold gradient-text">Legacy Cloud</span>
             </div>
             <p className="text-sm text-muted-foreground">
               Power up your Minecraft server with unbeatable performance.
@@ -44,7 +44,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-border/30 pt-6 text-center text-xs text-muted-foreground">
-          © 2026 Copyright - Ultimate Cloud - All rights reserved
+          © 2026 Copyright - Legacy Cloud - All rights reserved
         </div>
       </div>
     </footer>

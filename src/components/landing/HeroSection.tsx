@@ -119,7 +119,7 @@ const HeroSection = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 className="absolute top-48 right-0 glass-strong rounded-xl px-5 py-3 neon-border flex items-center gap-3 z-20"
               >
-                <span className="text-primary font-display text-sm font-bold">⚡ UltimateCloud</span>
+                <span className="text-primary font-display text-sm font-bold">⚡ LegacyCloud</span>
                 <span className="font-display text-sm font-bold">16 ms</span>
                 <Signal className="h-4 w-4 text-primary" />
               </motion.div>

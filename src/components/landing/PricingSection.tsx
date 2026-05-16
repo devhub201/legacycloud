@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
-import { Check, ArrowRight, Cpu, MapPin, Timer } from "lucide-react";
+import { Check, ArrowRight, Cpu, MapPin, Timer, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import blockDirt from "@/assets/block-dirt.png";
 import blockCobblestone from "@/assets/block-cobblestone.png";
 import blockIron from "@/assets/block-iron.png";
@@ -12,14 +11,14 @@ import blockNetherite from "@/assets/block-netherite.png";
 import blockBeacon from "@/assets/block-beacon.png";
 
 const plans = [
-  { name: "Dirt plan", price: "$1", ram: "1GB RAM", cpu: "1 vCPU", storage: "10GB SSD Storage", uplink: "1000MBPS Uplink", img: blockDirt },
-  { name: "Cobblestone plan", price: "$2", ram: "2GB RAM", cpu: "1 vCPU", storage: "20GB SSD Storage", uplink: "1000MBPS Uplink", img: blockCobblestone },
-  { name: "Iron plan", price: "$4", ram: "4GB RAM", cpu: "2 vCPU", storage: "30GB SSD Storage", uplink: "1000MBPS Uplink", img: blockIron },
-  { name: "Redstone plan", price: "$6", ram: "6GB RAM", cpu: "2 vCPU", storage: "40GB SSD Storage", uplink: "1000MBPS Uplink", img: blockRedstone },
-  { name: "Gold plan", price: "$8", ram: "8GB RAM", cpu: "3 vCPU", storage: "50GB SSD Storage", uplink: "1000MBPS Uplink", img: blockGold },
-  { name: "Diamond plan", price: "$12", ram: "12GB RAM", cpu: "4 vCPU", storage: "60GB SSD Storage", uplink: "1000MBPS Uplink", img: blockDiamond },
-  { name: "Netherite plan", price: "$16", ram: "16GB RAM", cpu: "4 vCPU", storage: "80GB SSD Storage", uplink: "1000MBPS Uplink", img: blockNetherite },
-  { name: "Beacon plan", price: "$24", ram: "24GB RAM", cpu: "6 vCPU", storage: "100GB SSD Storage", uplink: "1000MBPS Uplink", img: blockBeacon },
+  { name: "Dirt plan", price: "$1", ram: "1GB RAM", cpu: "1 vCPU", storage: "10GB SSD Storage", uplink: "1000MBPS Uplink", img: blockDirt, rating: 4.6, reviews: 128 },
+  { name: "Cobblestone plan", price: "$2", ram: "2GB RAM", cpu: "1 vCPU", storage: "20GB SSD Storage", uplink: "1000MBPS Uplink", img: blockCobblestone, rating: 4.7, reviews: 204 },
+  { name: "Iron plan", price: "$4", ram: "4GB RAM", cpu: "2 vCPU", storage: "30GB SSD Storage", uplink: "1000MBPS Uplink", img: blockIron, rating: 4.8, reviews: 312 },
+  { name: "Redstone plan", price: "$6", ram: "6GB RAM", cpu: "2 vCPU", storage: "40GB SSD Storage", uplink: "1000MBPS Uplink", img: blockRedstone, rating: 4.8, reviews: 256 },
+  { name: "Gold plan", price: "$8", ram: "8GB RAM", cpu: "3 vCPU", storage: "50GB SSD Storage", uplink: "1000MBPS Uplink", img: blockGold, rating: 4.9, reviews: 489 },
+  { name: "Diamond plan", price: "$12", ram: "12GB RAM", cpu: "4 vCPU", storage: "60GB SSD Storage", uplink: "1000MBPS Uplink", img: blockDiamond, rating: 4.9, reviews: 372 },
+  { name: "Netherite plan", price: "$16", ram: "16GB RAM", cpu: "4 vCPU", storage: "80GB SSD Storage", uplink: "1000MBPS Uplink", img: blockNetherite, rating: 5.0, reviews: 198 },
+  { name: "Beacon plan", price: "$24", ram: "24GB RAM", cpu: "6 vCPU", storage: "100GB SSD Storage", uplink: "1000MBPS Uplink", img: blockBeacon, rating: 5.0, reviews: 142 },
 ];
 
 const PricingSection = () => {
@@ -56,11 +55,18 @@ const PricingSection = () => {
               className="glass rounded-xl p-6 neon-border transition-shadow hover:box-glow"
             >
               {/* Block image */}
-              <div className="flex justify-center mb-3">
-                <img src={plan.img} alt={plan.name} className="w-16 h-16 object-contain" />
+              <div className="flex justify-center mb-3 relative">
+                <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full" />
+                <img src={plan.img} alt={plan.name} className="w-20 h-20 object-contain relative drop-shadow-[0_0_15px_hsl(160,85%,45%,0.6)]" />
               </div>
 
-              <h3 className="font-display text-sm font-bold mb-2 text-center text-primary">{plan.name}</h3>
+              <h3 className="font-display text-sm font-bold mb-1 text-center text-primary">{plan.name}</h3>
+              <div className="flex items-center justify-center gap-1 mb-2">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className={`h-3 w-3 ${i < Math.round(plan.rating) ? "fill-primary text-primary" : "text-muted-foreground/30"}`} />
+                ))}
+                <span className="text-[10px] text-muted-foreground ml-1">{plan.rating} ({plan.reviews})</span>
+              </div>
               <div className="mb-5">
                 <span className="font-display text-4xl font-black text-foreground">{plan.price}</span>
                 <span className="text-muted-foreground text-sm"> /mo</span>

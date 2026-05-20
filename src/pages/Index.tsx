@@ -1,39 +1,25 @@
-import ParticleBackground from "@/components/landing/ParticleBackground";
-import PromoBanner from "@/components/landing/PromoBanner";
-import Navbar from "@/components/landing/Navbar";
-import HeroSection from "@/components/landing/HeroSection";
-import ServerStatusWidget from "@/components/landing/ServerStatusWidget";
-import FeaturesSection from "@/components/landing/FeaturesSection";
-import ServicesSection from "@/components/landing/ServicesSection";
-import PricingSection from "@/components/landing/PricingSection";
-import ComparisonSection from "@/components/landing/ComparisonSection";
-import DiscordCTA from "@/components/landing/DiscordCTA";
-import LocationsSection from "@/components/landing/LocationsSection";
-import TestimonialsSection from "@/components/landing/TestimonialsSection";
-import KnowledgeBaseSection from "@/components/landing/KnowledgeBaseSection";
-import BlogSection from "@/components/landing/BlogSection";
-import FAQSection from "@/components/landing/FAQSection";
-import Footer from "@/components/landing/Footer";
+import Navbar from "@/components/sections/Navbar";
+import Hero from "@/components/sections/Hero";
+import Stats from "@/components/sections/Stats";
+import Services from "@/components/sections/Services";
+import Pricing from "@/components/sections/Pricing";
+import Features from "@/components/sections/Features";
+import DiscordCTA from "@/components/sections/DiscordCTA";
+import FAQ from "@/components/sections/FAQ";
+import Footer from "@/components/sections/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background relative">
-      <ParticleBackground />
-      <PromoBanner />
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      <main className="relative z-10">
-        <HeroSection />
-        <ServerStatusWidget />
-        <FeaturesSection />
-        <ServicesSection />
-        <PricingSection />
-        <ComparisonSection />
+      <main>
+        <Hero />
+        <Stats />
+        <Services />
+        <Pricing />
+        <Features />
         <DiscordCTA />
-        <LocationsSection />
-        <TestimonialsSection />
-        <KnowledgeBaseSection />
-        <BlogSection />
-        <FAQSection />
+        <FAQ />
       </main>
       <Footer />
     </div>

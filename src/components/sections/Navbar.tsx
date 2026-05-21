@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Menu, X, Cloud } from "lucide-react";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { Menu, X, Cloud, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DISCORD_INVITE } from "@/data/plans";
 
 const links = [
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Features", href: "#features" },
-  { label: "Community", href: "#community" },
-  { label: "FAQ", href: "#faq" },
+  { label: "HOME", to: "/" },
+  { label: "SERVICES", to: "/services" },
+  { label: "PLANS", to: "/plans" },
+  { label: "STATUS", to: "/status" },
+  { label: "SUPPORT", to: "/support" },
+  { label: "DISCORD", to: "/discord" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -21,61 +24,77 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => { setOpen(false); }, [location.pathname]);
+
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border" : "bg-transparent"
+        scrolled ? "bg-background/85 backdrop-blur-xl border-b border-border" : "bg-transparent"
       }`}
     >
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2 group">
           <div className="relative">
             <Cloud className="h-7 w-7 text-primary" />
-            <div className="absolute inset-0 blur-lg bg-primary/40 -z-10" />
+            <div className="absolute inset-0 blur-xl bg-primary/50 -z-10 group-hover:bg-primary/70 transition-colors" />
           </div>
-          <span className="font-display font-bold text-lg tracking-tight">Legacy Cloud</span>
+          <span className="font-display font-bold text-lg tracking-tight">
+            <span className="text-primary">LEGACY</span> CLOUD
+          </span>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-7">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            <NavLink
+              key={l.to}
+              to={l.to}
+              className={({ isActive }) =>
+                `text-xs font-semibold tracking-wider transition-colors ${
+                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
+                }`
+              }
+              end={l.to === "/"}
             >
               {l.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
-          <a href="https://discord.gg/guxyBXut2E" target="_blank" rel="noreferrer">
-            <Button size="sm" className="ring-glow">
-              Join Discord
+        <div className="hidden lg:flex items-center gap-3">
+          <Link to="/auth">
+            <Button size="icon" variant="outline" className="rounded-full h-9 w-9">
+              <User className="h-4 w-4" />
             </Button>
-          </a>
+          </Link>
         </div>
 
-        <button className="md:hidden p-2" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+        <button className="lg:hidden p-2" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-xl">
-          <div className="container py-4 flex flex-col gap-3">
+        <div className="lg:hidden border-t border-border bg-background/95 backdrop-blur-xl">
+          <div className="container py-4 flex flex-col gap-1">
             {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                onClick={() => setOpen(false)}
-                className="py-2 text-sm text-muted-foreground hover:text-foreground"
+              <NavLink
+                key={l.to}
+                to={l.to}
+                end={l.to === "/"}
+                className={({ isActive }) =>
+                  `py-2.5 text-sm font-semibold tracking-wider ${
+                    isActive ? "text-primary" : "text-muted-foreground"
+                  }`
+                }
               >
                 {l.label}
-              </a>
+              </NavLink>
             ))}
-            <a href="https://discord.gg/guxyBXut2E" target="_blank" rel="noreferrer">
-              <Button className="w-full">Join Discord</Button>
+            <Link to="/auth" className="py-2.5 text-sm font-semibold tracking-wider text-muted-foreground">
+              ACCOUNT
+            </Link>
+            <a href={DISCORD_INVITE} target="_blank" rel="noreferrer" className="mt-2">
+              <Button className="w-full btn-pink ring-glow">Join Discord</Button>
             </a>
           </div>
         </div>

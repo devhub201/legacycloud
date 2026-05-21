@@ -1,42 +1,30 @@
 import { motion } from "framer-motion";
-import { Cpu, ShieldCheck, Globe2, Rocket, Database, HeadphonesIcon } from "lucide-react";
+import { Zap, Headphones, Tag, Shield } from "lucide-react";
 
 const features = [
-  { icon: Cpu, title: "AMD EPYC Hardware", desc: "Latest-gen CPUs with NVMe SSDs across every node." },
-  { icon: ShieldCheck, title: "Enterprise DDoS", desc: "Always-on Layer 3/4/7 protection at no extra cost." },
-  { icon: Globe2, title: "Global Network", desc: "Deploy in 8 regions spanning NA, EU, and Asia." },
-  { icon: Rocket, title: "Instant Deploy", desc: "Provisioned in under 60 seconds. No waiting." },
-  { icon: Database, title: "Daily Backups", desc: "Automated off-site backups with one-click restore." },
-  { icon: HeadphonesIcon, title: "Real Humans", desc: "Average response under 5 minutes via Discord." },
+  { icon: Zap, title: "Ultra Fast", desc: "Blazing fast NVMe storage for the best performance." },
+  { icon: Headphones, title: "24/7 Support", desc: "Our support team is always here to help you anytime." },
+  { icon: Tag, title: "Cheap Pricing", desc: "Best performance at the most affordable prices." },
+  { icon: Shield, title: "DDoS Protection", desc: "Enterprise level DDoS protection for your peace of mind." },
 ];
 
 const Features = () => (
-  <section id="features" className="py-24 bg-card/30 border-y border-border">
+  <section id="features" className="py-20">
     <div className="container">
-      <div className="text-center max-w-2xl mx-auto mb-16">
-        <div className="text-sm font-medium text-primary mb-3">Why Legacy</div>
-        <h2 className="font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight">
-          Built for the long run.
-        </h2>
-        <p className="text-muted-foreground text-lg">
-          Every layer of our stack is engineered for reliability and speed.
-        </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {features.map((f, i) => (
           <motion.div
             key={f.title}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.4, delay: i * 0.05 }}
-            className="p-6 rounded-2xl glass-card hover:border-primary/40 transition-colors"
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.4, delay: i * 0.06 }}
+            className="glass-card rounded-2xl p-6 hover:border-primary/50 transition-colors text-center"
           >
-            <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-4">
+            <div className="w-12 h-12 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center mx-auto mb-4">
               <f.icon className="h-5 w-5 text-primary" />
             </div>
-            <h3 className="font-display font-semibold mb-2">{f.title}</h3>
+            <h3 className="font-display text-lg font-semibold mb-2">{f.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
           </motion.div>
         ))}

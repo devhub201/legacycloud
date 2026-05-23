@@ -9,8 +9,10 @@ import { toast } from "sonner";
 const AdminInvoices = () => {
   const [invs, setInvs] = useState<any[]>([]);
   const load = async () => {
-    const { data } = await supabase.from("invoices").select("*, profiles!inner(display_name)").order("created_at", { ascending: false });
-    setInvs(data ?? []);
+    const { data } = await supabase.from("invoices").select("*").order("created_at", { ascending: false });
+    const { data: profs } = await supabase.from("profiles").select("user_id, display_name");
+    const map = new Map((profs ?? []).map((p: any) => [p.user_id, p.display_name]));
+    setInvs((data ?? []).map((i: any) => ({ ...i, profiles: { display_name: map.get(i.user_id) } })));
   };
   useEffect(() => { load(); }, []);
 

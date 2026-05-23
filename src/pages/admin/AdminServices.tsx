@@ -12,8 +12,10 @@ const AdminServices = () => {
   const [services, setServices] = useState<any[]>([]);
 
   const load = async () => {
-    const { data } = await supabase.from("services").select("*, profiles!inner(display_name)").order("created_at", { ascending: false });
-    setServices(data ?? []);
+    const { data } = await supabase.from("services").select("*").order("created_at", { ascending: false });
+    const { data: profs } = await supabase.from("profiles").select("user_id, display_name");
+    const map = new Map((profs ?? []).map((p: any) => [p.user_id, p.display_name]));
+    setServices((data ?? []).map((s: any) => ({ ...s, profiles: { display_name: map.get(s.user_id) } })));
   };
   useEffect(() => { load(); }, []);
 

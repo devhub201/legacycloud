@@ -8,8 +8,12 @@ import { supabase } from "@/integrations/supabase/client";
 const AdminTickets = () => {
   const [tickets, setTickets] = useState<any[]>([]);
   useEffect(() => {
-    supabase.from("support_tickets").select("*, profiles!inner(display_name)").order("created_at", { ascending: false })
-      .then(({ data }) => setTickets(data ?? []));
+    (async () => {
+      const { data } = await supabase.from("support_tickets").select("*").order("created_at", { ascending: false });
+      const { data: profs } = await supabase.from("profiles").select("user_id, display_name");
+      const map = new Map((profs ?? []).map((p: any) => [p.user_id, p.display_name]));
+      setTickets((data ?? []).map((t: any) => ({ ...t, profiles: { display_name: map.get(t.user_id) } })));
+    })();
   }, []);
   return (
     <AdminLayout title="All Tickets">

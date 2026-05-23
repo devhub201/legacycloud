@@ -50,7 +50,7 @@ const PlansPage = () => {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {plans.map((p, i) => <PlanCard key={p.name + i} plan={p} index={i} />)}
+            {plans.map((p, i) => <PlanCard key={p.name + i} plan={p} index={i} planType={tab === "vps" ? "vps" : "mc"} />)}
           </div>
         </div>
       </main>

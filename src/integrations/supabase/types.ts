@@ -222,48 +222,69 @@ export type Database = {
       }
       services: {
         Row: {
+          auto_renew: boolean
+          auto_renew_cycle_months: number
           cpu: string | null
           created_at: string
           expires_at: string | null
           id: string
           ip_address: string | null
+          last_auto_renew_at: string | null
+          last_auto_renew_status: string | null
           location: string | null
           plan_name: string
           plan_type: string
           price: number
           ram: string | null
+          reminder_1d_sent_at: string | null
+          reminder_3d_sent_at: string | null
+          reminder_7d_sent_at: string | null
           status: string
           storage: string | null
           updated_at: string
           user_id: string
         }
         Insert: {
+          auto_renew?: boolean
+          auto_renew_cycle_months?: number
           cpu?: string | null
           created_at?: string
           expires_at?: string | null
           id?: string
           ip_address?: string | null
+          last_auto_renew_at?: string | null
+          last_auto_renew_status?: string | null
           location?: string | null
           plan_name: string
           plan_type: string
           price: number
           ram?: string | null
+          reminder_1d_sent_at?: string | null
+          reminder_3d_sent_at?: string | null
+          reminder_7d_sent_at?: string | null
           status?: string
           storage?: string | null
           updated_at?: string
           user_id: string
         }
         Update: {
+          auto_renew?: boolean
+          auto_renew_cycle_months?: number
           cpu?: string | null
           created_at?: string
           expires_at?: string | null
           id?: string
           ip_address?: string | null
+          last_auto_renew_at?: string | null
+          last_auto_renew_status?: string | null
           location?: string | null
           plan_name?: string
           plan_type?: string
           price?: number
           ram?: string | null
+          reminder_1d_sent_at?: string | null
+          reminder_3d_sent_at?: string | null
+          reminder_7d_sent_at?: string | null
           status?: string
           storage?: string | null
           updated_at?: string

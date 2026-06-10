@@ -28,8 +28,8 @@ const Hero = () => {
             transition={{ duration: 0.6 }}
             className="font-display text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6"
           >
-            Welcome to<br />
-            <span className="text-gradient">Legacy Cloud.</span>
+            High Performance<br />
+            Hosting For <span className="text-gradient">Everyone.</span>
           </motion.h1>
 
           <motion.p

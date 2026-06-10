@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-type Promo = { id: string; code: string; description: string | null; discount_type: string; discount_value: number };
+type Promo = { id: string; code: string; description: string | null; discount_percent: number };
 
 const ActiveOffers = () => {
   const [promos, setPromos] = useState<Promo[]>([]);
@@ -14,8 +14,8 @@ const ActiveOffers = () => {
 
   useEffect(() => {
     supabase.from("promo_codes")
-      .select("id, code, description, discount_type, discount_value")
-      .eq("is_active", true)
+      .select("id, code, description, discount_percent")
+      .eq("active", true)
       .order("created_at", { ascending: false })
       .limit(3)
       .then(({ data }) => setPromos((data ?? []) as Promo[]));
@@ -56,7 +56,7 @@ const ActiveOffers = () => {
               <div className="relative">
                 <Tag className="h-6 w-6 text-primary mb-3" />
                 <div className="font-display text-4xl font-bold text-gradient mb-1">
-                  {p.discount_type === "percent" ? `${p.discount_value}%` : `₹${p.discount_value}`} OFF
+                  {p.discount_percent}% OFF
                 </div>
                 <div className="text-sm text-muted-foreground mb-5">{p.description ?? "Use this code at checkout."}</div>
                 <button onClick={() => copy(p.code)} className="w-full flex items-center justify-between rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 px-4 py-3 hover:bg-primary/10 transition-colors">

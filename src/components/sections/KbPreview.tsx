@@ -12,7 +12,7 @@ const KbPreview = () => {
   useEffect(() => {
     supabase.from("kb_articles")
       .select("id, slug, title, category, excerpt")
-      .eq("is_published", true)
+      .eq("published", true)
       .order("created_at", { ascending: false })
       .limit(4)
       .then(({ data }) => setArticles((data ?? []) as Article[]));

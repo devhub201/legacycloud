@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Tag, ArrowRight, Copy, Check } from "lucide-react";
+import { Tag, ArrowRight, Copy, Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
 type Promo = { id: string; code: string; description: string | null; discount_percent: number };
@@ -11,6 +12,8 @@ type Promo = { id: string; code: string; description: string | null; discount_pe
 const ActiveOffers = () => {
   const [promos, setPromos] = useState<Promo[]>([]);
   const [copied, setCopied] = useState<string | null>(null);
+  const { user } = useAuth();
+  const nav = useNavigate();
 
   useEffect(() => {
     supabase.from("promo_codes")
@@ -28,6 +31,21 @@ const ActiveOffers = () => {
     setCopied(code);
     toast.success(`Copied ${code}`);
     setTimeout(() => setCopied(null), 1500);
+  };
+
+  const apply = async (code: string) => {
+    sessionStorage.setItem("pending_promo", code);
+    if (!user) {
+      toast.info(`${code} saved — login to apply at checkout`);
+      return nav("/login");
+    }
+    const { data: cart } = await supabase.from("cart_items").select("id").eq("user_id", user.id).limit(1);
+    if (!cart?.length) {
+      toast.info(`${code} saved — add a plan to your cart first`);
+      return nav("/plans");
+    }
+    toast.success(`${code} will auto-apply at checkout`);
+    nav("/dashboard/checkout");
   };
 
   return (
@@ -59,10 +77,13 @@ const ActiveOffers = () => {
                   {p.discount_percent}% OFF
                 </div>
                 <div className="text-sm text-muted-foreground mb-5">{p.description ?? "Use this code at checkout."}</div>
-                <button onClick={() => copy(p.code)} className="w-full flex items-center justify-between rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 px-4 py-3 hover:bg-primary/10 transition-colors">
+                <button onClick={() => copy(p.code)} className="w-full flex items-center justify-between rounded-xl border-2 border-dashed border-primary/40 bg-primary/5 px-4 py-3 hover:bg-primary/10 transition-colors mb-3">
                   <span className="font-mono font-bold text-primary">{p.code}</span>
                   {copied === p.code ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4 text-primary" />}
                 </button>
+                <Button onClick={() => apply(p.code)} className="w-full btn-pink ring-glow">
+                  <Sparkles className="h-4 w-4 mr-2" /> Apply at Checkout
+                </Button>
               </div>
             </motion.div>
           ))}

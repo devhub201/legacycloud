@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import heroBg from "@/assets/hero-mc.jpg";
+import heroBg from "@/assets/hero-cherry.jpg";
 import { DISCORD_INVITE } from "@/data/plans";
 
 const Hero = () => {
@@ -11,14 +11,29 @@ const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <img
           src={heroBg}
-          alt="Legacy Cloud cherry blossom Minecraft world"
-          width={1792}
-          height={1024}
+          alt="Minecraft cherry blossom biome at sunset"
+          width={1920}
+          height={1080}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-background/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+        {/* floating petals */}
+        {Array.from({ length: 18 }).map((_, i) => (
+          <span
+            key={i}
+            className="absolute w-2 h-2 rounded-full bg-primary/60 blur-[1px] animate-[fall_linear_infinite]"
+            style={{
+              left: `${(i * 53) % 100}%`,
+              top: `-${Math.random() * 20}%`,
+              animationDuration: `${8 + (i % 7)}s`,
+              animationDelay: `${i * 0.4}s`,
+            }}
+          />
+        ))}
       </div>
+
+      <style>{`@keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }`}</style>
 
       <div className="container relative">
         <div className="max-w-2xl">

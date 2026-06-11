@@ -1,34 +1,70 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type Review = { id: string; username: string; rating: number; comment: string; created_at: string };
 
+const PAGE_SIZE = 6;
+type Sort = "newest" | "oldest" | "rating_high" | "rating_low";
+
+const SORT_MAP: Record<Sort, { col: "created_at" | "rating"; asc: boolean }> = {
+  newest: { col: "created_at", asc: false },
+  oldest: { col: "created_at", asc: true },
+  rating_high: { col: "rating", asc: false },
+  rating_low: { col: "rating", asc: true },
+};
+
 const Reviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [count, setCount] = useState(0);
+  const [page, setPage] = useState(0);
+  const [sort, setSort] = useState<Sort>("newest");
 
   useEffect(() => {
+    const { col, asc } = SORT_MAP[sort];
+    const from = page * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1;
     supabase
       .from("reviews")
-      .select("id, username, rating, comment, created_at")
+      .select("id, username, rating, comment, created_at", { count: "exact" })
       .eq("is_approved", true)
-      .order("created_at", { ascending: false })
-      .limit(6)
-      .then(({ data }) => setReviews((data ?? []) as Review[]));
-  }, []);
+      .order(col, { ascending: asc })
+      .range(from, to)
+      .then(({ data, count }) => {
+        setReviews((data ?? []) as Review[]);
+        setCount(count ?? 0);
+      });
+  }, [page, sort]);
 
-  if (reviews.length === 0) return null;
+  if (count === 0 && page === 0) return null;
+  const totalPages = Math.max(1, Math.ceil(count / PAGE_SIZE));
 
   return (
     <section className="py-20 relative">
       <div className="container">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <div className="text-xs font-semibold tracking-[0.18em] text-primary mb-3">CUSTOMER VOUCHES</div>
           <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
             Loved by <span className="text-gradient">our community.</span>
           </h2>
         </div>
+
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="text-sm text-muted-foreground">{count} review{count === 1 ? "" : "s"}</div>
+          <Select value={sort} onValueChange={(v) => { setSort(v as Sort); setPage(0); }}>
+            <SelectTrigger className="w-[180px]"><SelectValue /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="newest">Newest first</SelectItem>
+              <SelectItem value="oldest">Oldest first</SelectItem>
+              <SelectItem value="rating_high">Highest rated</SelectItem>
+              <SelectItem value="rating_low">Lowest rated</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {reviews.map((r, i) => (
             <motion.div
@@ -53,6 +89,18 @@ const Reviews = () => {
             </motion.div>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-3 mt-8">
+            <Button variant="outline" size="sm" disabled={page === 0} onClick={() => setPage((p) => p - 1)}>
+              <ChevronLeft className="h-4 w-4 mr-1" /> Prev
+            </Button>
+            <div className="text-sm text-muted-foreground">Page {page + 1} of {totalPages}</div>
+            <Button variant="outline" size="sm" disabled={page >= totalPages - 1} onClick={() => setPage((p) => p + 1)}>
+              Next <ChevronRight className="h-4 w-4 ml-1" />
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   );

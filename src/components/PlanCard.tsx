@@ -27,8 +27,8 @@ const PlanCard = ({ plan, index = 0, planType = "mc" }: { plan: Plan; index?: nu
     });
     setLoading(false);
     if (error) return toast.error(error.message);
-    toast.success("Added to cart!");
-    nav("/dashboard/cart");
+    toast.success("Added to cart — redirecting to checkout");
+    nav("/dashboard/checkout");
   };
 
   return (

@@ -25,6 +25,15 @@ const CheckoutPage = () => {
       setItems(data ?? []);
       if (!data?.length) nav("/dashboard/cart");
     });
+    const pending = sessionStorage.getItem("pending_promo");
+    if (pending) {
+      setPromo(pending);
+      sessionStorage.removeItem("pending_promo");
+      supabase.from("promo_codes").select("*").eq("code", pending.toUpperCase()).eq("active", true).maybeSingle()
+        .then(({ data }) => {
+          if (data) { setDiscount(data.discount_percent); toast.success(`${data.discount_percent}% off auto-applied!`); }
+        });
+    }
   }, [user, nav]);
 
   const subtotal = items.reduce((s, i) => s + Number(i.price) * i.quantity, 0);

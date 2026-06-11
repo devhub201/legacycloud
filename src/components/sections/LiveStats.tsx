@@ -16,9 +16,13 @@ const LiveStats = () => {
   const [s, setS] = useState<Stats | null>(null);
 
   useEffect(() => {
-    supabase.rpc("get_homepage_stats").then(({ data }) => {
-      if (data) setS(data as unknown as Stats);
-    });
+    const load = () =>
+      supabase.rpc("get_homepage_stats").then(({ data }) => {
+        if (data) setS(data as unknown as Stats);
+      });
+    load();
+    const id = setInterval(load, 5000);
+    return () => clearInterval(id);
   }, []);
 
   const items = [
@@ -36,7 +40,7 @@ const LiveStats = () => {
       <div className="container">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.18em] text-primary mb-3">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" /> LIVE STATS
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" /> LIVE STATS · AUTO-REFRESH 5s
           </div>
           <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight">
             Real numbers, <span className="text-gradient">updated live.</span>
@@ -53,7 +57,15 @@ const LiveStats = () => {
               className="glass-card rounded-2xl p-5 text-center"
             >
               <it.icon className="h-5 w-5 text-primary mx-auto mb-3" />
-              <div className="font-display text-2xl md:text-3xl font-bold text-gradient">{it.value}</div>
+              <motion.div
+                key={String(it.value)}
+                initial={{ scale: 0.9, opacity: 0.6 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="font-display text-2xl md:text-3xl font-bold text-gradient"
+              >
+                {it.value}
+              </motion.div>
               <div className="text-xs text-muted-foreground mt-1">{it.label}</div>
             </motion.div>
           ))}

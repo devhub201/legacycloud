@@ -46,6 +46,7 @@ import AdminPromoCodes from "./pages/admin/AdminPromoCodes";
 import AdminKb from "./pages/admin/AdminKb";
 import AdminTickets from "./pages/admin/AdminTickets";
 import AdminInvoices from "./pages/admin/AdminInvoices";
+import AdminReviews from "./pages/admin/AdminReviews";
 
 const queryClient = new QueryClient();
 
@@ -101,6 +102,7 @@ const App = () => (
             <Route path="/admin/knowledgebase" element={<ProtectedRoute adminOnly><AdminKb /></ProtectedRoute>} />
             <Route path="/admin/tickets" element={<ProtectedRoute adminOnly><AdminTickets /></ProtectedRoute>} />
             <Route path="/admin/invoices" element={<ProtectedRoute adminOnly><AdminInvoices /></ProtectedRoute>} />
+            <Route path="/admin/reviews" element={<ProtectedRoute adminOnly><AdminReviews /></ProtectedRoute>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

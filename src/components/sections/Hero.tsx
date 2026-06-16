@@ -8,16 +8,17 @@ import { DISCORD_INVITE } from "@/data/plans";
 const Hero = () => {
   return (
     <section className="relative min-h-[92vh] flex items-center pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img
           src={heroBg}
           alt="Minecraft cherry blossom biome at sunset"
           width={1920}
           height={1080}
+          fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/85 via-background/55 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
         {/* floating petals */}
         {Array.from({ length: 18 }).map((_, i) => (
           <span

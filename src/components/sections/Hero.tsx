@@ -36,7 +36,7 @@ const Hero = () => {
 
       <style>{`@keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }`}</style>
 
-      <div className="container relative">
+      <div className="container relative z-10">
         <div className="max-w-2xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}

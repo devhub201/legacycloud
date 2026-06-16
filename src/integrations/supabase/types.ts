@@ -56,6 +56,57 @@ export type Database = {
         }
         Relationships: []
       }
+      free_panel_claims: {
+        Row: {
+          cpu_pct: number
+          created_at: string
+          disk_mb: number
+          expires_at: string
+          id: string
+          panel_password: string | null
+          panel_server_id: number | null
+          panel_server_identifier: string | null
+          panel_url: string
+          panel_user_id: number | null
+          panel_username: string | null
+          ram_mb: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          cpu_pct?: number
+          created_at?: string
+          disk_mb?: number
+          expires_at: string
+          id?: string
+          panel_password?: string | null
+          panel_server_id?: number | null
+          panel_server_identifier?: string | null
+          panel_url: string
+          panel_user_id?: number | null
+          panel_username?: string | null
+          ram_mb?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          cpu_pct?: number
+          created_at?: string
+          disk_mb?: number
+          expires_at?: string
+          id?: string
+          panel_password?: string | null
+          panel_server_id?: number | null
+          panel_server_identifier?: string | null
+          panel_url?: string
+          panel_user_id?: number | null
+          panel_username?: string | null
+          ram_mb?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       invoices: {
         Row: {
           amount: number
@@ -295,9 +346,17 @@ export type Database = {
           last_auto_renew_at: string | null
           last_auto_renew_status: string | null
           location: string | null
+          panel_password: string | null
+          panel_server_id: number | null
+          panel_server_identifier: string | null
+          panel_type: string | null
+          panel_url: string | null
+          panel_user_id: number | null
+          panel_username: string | null
           plan_name: string
           plan_type: string
           price: number
+          provisioned_at: string | null
           ram: string | null
           reminder_1d_sent_at: string | null
           reminder_3d_sent_at: string | null
@@ -318,9 +377,17 @@ export type Database = {
           last_auto_renew_at?: string | null
           last_auto_renew_status?: string | null
           location?: string | null
+          panel_password?: string | null
+          panel_server_id?: number | null
+          panel_server_identifier?: string | null
+          panel_type?: string | null
+          panel_url?: string | null
+          panel_user_id?: number | null
+          panel_username?: string | null
           plan_name: string
           plan_type: string
           price: number
+          provisioned_at?: string | null
           ram?: string | null
           reminder_1d_sent_at?: string | null
           reminder_3d_sent_at?: string | null
@@ -341,9 +408,17 @@ export type Database = {
           last_auto_renew_at?: string | null
           last_auto_renew_status?: string | null
           location?: string | null
+          panel_password?: string | null
+          panel_server_id?: number | null
+          panel_server_identifier?: string | null
+          panel_type?: string | null
+          panel_url?: string | null
+          panel_user_id?: number | null
+          panel_username?: string | null
           plan_name?: string
           plan_type?: string
           price?: number
+          provisioned_at?: string | null
           ram?: string | null
           reminder_1d_sent_at?: string | null
           reminder_3d_sent_at?: string | null

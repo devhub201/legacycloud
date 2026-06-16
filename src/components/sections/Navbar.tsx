@@ -8,6 +8,7 @@ import { useAuth } from "@/contexts/AuthContext";
 const links = [
   { label: "HOME", to: "/" },
   { label: "PLANS", to: "/plans" },
+  { label: "FREE", to: "/free-panel" },
   { label: "VPS", to: "/vps" },
   { label: "OFFERS", to: "/offers" },
   { label: "DOCS", to: "/knowledgebase" },

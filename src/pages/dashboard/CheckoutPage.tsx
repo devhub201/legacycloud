@@ -60,14 +60,30 @@ const CheckoutPage = () => {
 
     if (error) { setLoading(false); return toast.error(error.message); }
 
+    const createdIds: string[] = [];
     for (const i of items) {
-      await supabase.from("services").insert({
+      const { data: svc } = await supabase.from("services").insert({
         user_id: user.id, plan_name: i.plan_name, plan_type: i.plan_type,
         ram: i.ram, cpu: i.cpu, storage: i.storage, price: i.price, status: "pending",
-      });
+      }).select("id").single();
+      if (svc) createdIds.push(svc.id);
     }
     await supabase.from("cart_items").delete().eq("user_id", user.id);
-    toast.success("Order placed!");
+
+    // auto-provision Minecraft servers on the paid panel
+    const mcIds = createdIds.filter((_, idx) => items[idx].plan_type === "mc");
+    if (mcIds.length) {
+      const { data: prov, error: pErr } = await supabase.functions.invoke("provision-paid-server", {
+        body: { service_ids: mcIds },
+      });
+      if (pErr || prov?.error) {
+        toast.warning("Order placed. Panel provisioning will retry shortly.");
+      } else {
+        toast.success("Order placed & panel account ready!");
+      }
+    } else {
+      toast.success("Order placed!");
+    }
     nav(`/dashboard/invoices/${inv.id}`);
   };
 

@@ -18,6 +18,7 @@ import TermsPage from "./pages/TermsPage";
 import OffersPage from "./pages/OffersPage";
 import KnowledgebasePage from "./pages/KnowledgebasePage";
 import KbArticlePage from "./pages/KbArticlePage";
+import FreePanelPage from "./pages/FreePanelPage";
 import NotFound from "./pages/NotFound";
 
 import LoginPage from "./pages/auth/LoginPage";
@@ -71,6 +72,7 @@ const App = () => (
             <Route path="/offers" element={<OffersPage />} />
             <Route path="/knowledgebase" element={<KnowledgebasePage />} />
             <Route path="/kb/:slug" element={<KbArticlePage />} />
+            <Route path="/free-panel" element={<FreePanelPage />} />
 
             {/* Auth */}
             <Route path="/login" element={<LoginPage />} />

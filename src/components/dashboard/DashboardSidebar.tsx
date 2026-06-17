@@ -13,6 +13,7 @@ const mainItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
   { title: "My Services", url: "/dashboard/services", icon: Server },
   { title: "My VPS", url: "/dashboard/vps", icon: HardDrive },
+  { title: "Free Server", url: "/dashboard/free-claims", icon: Gift },
   { title: "Cart", url: "/dashboard/cart", icon: ShoppingCart },
 ];
 

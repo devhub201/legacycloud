@@ -40,30 +40,80 @@ const benefits = [
   "Full Pterodactyl Access",
 ];
 
+const STATUS: Record<string, { label: string; cls: string }> = {
+  queued:   { label: "Queued",       cls: "bg-blue-500/20 text-blue-300 border-blue-500/40" },
+  creating: { label: "Provisioning…", cls: "bg-amber-500/20 text-amber-300 border-amber-500/40 animate-pulse" },
+  active:   { label: "Active",        cls: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40" },
+  failed:   { label: "Failed",        cls: "bg-rose-500/20 text-rose-300 border-rose-500/40" },
+  expired:  { label: "Expired",       cls: "bg-zinc-500/20 text-zinc-300 border-zinc-500/40" },
+};
+
 export default function FreePanelPage() {
   const { user } = useAuth();
   const nav = useNavigate();
   const [claim, setClaim] = useState<any>(null);
+  const [settings, setSettings] = useState<any>(null);
+  const [todayCount, setTodayCount] = useState(0);
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(true);
 
+  const refresh = async () => {
+    const [{ data: s }, { count }] = await Promise.all([
+      supabase.from("free_panel_settings").select("*").eq("id", 1).maybeSingle(),
+      supabase.from("free_panel_claims").select("*", { count: "exact", head: true })
+        .gte("created_at", new Date(Date.now() - 86400000).toISOString()),
+    ]);
+    setSettings(s);
+    setTodayCount(count ?? 0);
+    if (user) {
+      const { data } = await supabase.from("free_panel_claims").select("*")
+        .eq("user_id", user.id)
+        .in("status", ["queued", "creating", "active", "failed"])
+        .order("created_at", { ascending: false }).limit(1).maybeSingle();
+      setClaim(data);
+    }
+    setChecking(false);
+  };
+
+  useEffect(() => { refresh(); /* eslint-disable-next-line */ }, [user]);
+
   useEffect(() => {
-    if (!user) { setChecking(false); return; }
-    supabase.from("free_panel_claims").select("*").eq("user_id", user.id).maybeSingle()
-      .then(({ data }) => { setClaim(data); setChecking(false); });
-  }, [user]);
+    if (claim?.status !== "creating" && claim?.status !== "queued") return;
+    const t = setInterval(refresh, 3000);
+    return () => clearInterval(t);
+    // eslint-disable-next-line
+  }, [claim?.status]);
 
   const handleClaim = async () => {
-    if (!user) return nav("/login?next=/free-panel");
+    if (!user) {
+      toast.info("Please sign in to claim your free server.");
+      return nav("/login?next=/free-panel");
+    }
+    if (claim?.status === "active") {
+      toast.success("You already have an active free server below ↓");
+      document.getElementById("claim-status")?.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    if (settings && !settings.enabled) return toast.error("Free server claims are currently paused.");
+    if (settings && todayCount >= settings.daily_quota) return toast.error("Today's free server quota is full. Try again tomorrow!");
+
     setLoading(true);
     const { data, error } = await supabase.functions.invoke("claim-free-server");
     setLoading(false);
-    if (error || data?.error) return toast.error(data?.error || error?.message || "Failed");
+    const errMsg = data?.error || error?.message;
+    if (errMsg) { toast.error(errMsg); refresh(); return; }
     setClaim(data.claim);
-    toast.success(data.alreadyClaimed ? "You already have a free server!" : "Server created! Login below.");
+    if (data.alreadyClaimed) toast.info("You already have a free server!");
+    else if (data.claim?.status === "active") toast.success("🎉 Server created! Login details are below.");
+    else toast.success("Provisioning started — your server will be ready shortly.");
   };
 
   const copy = (t: string) => { navigator.clipboard.writeText(t); toast.success("Copied"); };
+
+  const claimsLeft = settings ? Math.max(0, settings.daily_quota - todayCount) : null;
+  const quotaFull = settings && todayCount >= settings.daily_quota;
+  const claimsDisabled = settings && !settings.enabled;
+  const buttonDisabled = loading || checking || (!claim?.status && (claimsDisabled || quotaFull));
 
   return (
     <div className="min-h-screen bg-background">
@@ -84,9 +134,13 @@ export default function FreePanelPage() {
             Free 2GB RAM Pterodactyl Minecraft server — instant setup, full panel access, no credit card. Built for creators, friends, and small communities.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
-            <Button size="lg" onClick={handleClaim} disabled={loading} className="btn-pink ring-glow h-12 px-8">
+            <Button size="lg" onClick={handleClaim} disabled={buttonDisabled} className="btn-pink ring-glow h-12 px-8">
               {loading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Rocket className="h-4 w-4 mr-2" />}
-              {claim ? "View My Free Server" : "Claim Free Server"}
+              {claimsDisabled ? "Claims Paused"
+                : quotaFull && !claim ? "Quota Full — Try Tomorrow"
+                : claim?.status === "active" ? "View My Free Server"
+                : claim?.status === "creating" ? "Provisioning…"
+                : "Claim Free Server"}
             </Button>
             <Button asChild size="lg" variant="outline" className="h-12 px-8">
               <Link to="/plans">Upgrade to Paid <Sparkles className="h-4 w-4 ml-2" /></Link>
@@ -97,28 +151,67 @@ export default function FreePanelPage() {
             <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Instant activation</span>
             <span className="flex items-center gap-1.5"><CheckCircle2 className="h-4 w-4 text-emerald-400" /> Full Pterodactyl</span>
           </div>
+          {claimsLeft !== null && !claim && (
+            <div className="mt-6 text-xs text-muted-foreground">
+              {claimsDisabled ? "Free claims are paused — check back soon."
+                : quotaFull ? "Today's quota is full — try again tomorrow."
+                : `${claimsLeft} free server${claimsLeft === 1 ? "" : "s"} left today`}
+            </div>
+          )}
         </div>
       </section>
 
       {/* Claim status */}
       {claim && (
-        <section className="container mx-auto px-4 pb-12">
+        <section id="claim-status" className="container mx-auto px-4 pb-12">
           <div className="glass-card rounded-2xl p-6 max-w-3xl mx-auto ring-glow">
-            <div className="flex items-center gap-2 mb-4">
-              <CheckCircle2 className="h-5 w-5 text-emerald-400" />
-              <h3 className="font-display text-xl font-semibold">Your Free Server is Live</h3>
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <div className="flex items-center gap-2">
+                {claim.status === "active" ? <CheckCircle2 className="h-5 w-5 text-emerald-400" />
+                  : claim.status === "failed" ? <Shield className="h-5 w-5 text-rose-400" />
+                  : <Loader2 className="h-5 w-5 text-amber-400 animate-spin" />}
+                <h3 className="font-display text-xl font-semibold">
+                  {claim.status === "active" ? "Your Free Server is Live"
+                   : claim.status === "failed" ? "Provisioning Failed"
+                   : "Provisioning Your Server"}
+                </h3>
+              </div>
+              <Badge variant="outline" className={STATUS[claim.status]?.cls}>
+                {STATUS[claim.status]?.label ?? claim.status}
+              </Badge>
             </div>
-            <div className="grid sm:grid-cols-2 gap-4 text-sm">
-              <Row label="Panel URL" value={claim.panel_url} action={() => window.open(claim.panel_url, "_blank")} icon={ExternalLink} />
-              <Row label="Username" value={claim.panel_username} action={() => copy(claim.panel_username)} icon={Copy} />
-              <Row label="Password" value={claim.panel_password ?? "(set previously)"} action={() => claim.panel_password && copy(claim.panel_password)} icon={Copy} mono />
-              <Row label="Expires" value={new Date(claim.expires_at).toLocaleDateString()} icon={Clock} />
+
+            {(claim.status === "creating" || claim.status === "queued") && (
+              <p className="text-sm text-muted-foreground mb-4">
+                Sit tight — your server is being built. This usually takes under 60 seconds. Status updates automatically.
+              </p>
+            )}
+            {claim.status === "failed" && (
+              <div className="mb-4 p-3 rounded-lg bg-rose-500/10 border border-rose-500/30 text-sm text-rose-200">
+                {claim.error_message || "Something went wrong creating your server."} Please try again or contact support on Discord.
+                <Button onClick={handleClaim} size="sm" className="btn-pink mt-3 w-full sm:w-auto">Retry</Button>
+              </div>
+            )}
+
+            {claim.status === "active" && (
+              <>
+                <div className="grid sm:grid-cols-2 gap-4 text-sm">
+                  <Row label="Panel URL" value={claim.panel_url} action={() => window.open(claim.panel_url, "_blank")} icon={ExternalLink} />
+                  <Row label="Username" value={claim.panel_username} action={() => copy(claim.panel_username)} icon={Copy} />
+                  <Row label="Password" value={claim.panel_password ?? "(set previously)"} action={() => claim.panel_password && copy(claim.panel_password)} icon={Copy} mono />
+                  <Row label="Expires" value={new Date(claim.expires_at).toLocaleDateString()} icon={Clock} />
+                </div>
+                <Button asChild className="btn-pink mt-5 w-full sm:w-auto">
+                  <a href={claim.panel_url} target="_blank" rel="noopener noreferrer">
+                    Open Panel <ExternalLink className="h-4 w-4 ml-2" />
+                  </a>
+                </Button>
+              </>
+            )}
+
+            <div className="mt-4 text-xs text-muted-foreground">
+              <Link to="/dashboard/free-claims" className="hover:text-primary underline-offset-4 hover:underline">View claim history →</Link>
             </div>
-            <Button asChild className="btn-pink mt-5 w-full sm:w-auto">
-              <a href={claim.panel_url} target="_blank" rel="noopener noreferrer">
-                Open Panel <ExternalLink className="h-4 w-4 ml-2" />
-              </a>
-            </Button>
           </div>
         </section>
       )}

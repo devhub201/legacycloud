@@ -39,6 +39,7 @@ import TicketsPage from "./pages/dashboard/TicketsPage";
 import TicketDetailPage from "./pages/dashboard/TicketDetailPage";
 import RewardsPage from "./pages/dashboard/RewardsPage";
 import RenewPage from "./pages/dashboard/RenewPage";
+import FreeClaimsHistoryPage from "./pages/dashboard/FreeClaimsHistoryPage";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
@@ -48,6 +49,8 @@ import AdminKb from "./pages/admin/AdminKb";
 import AdminTickets from "./pages/admin/AdminTickets";
 import AdminInvoices from "./pages/admin/AdminInvoices";
 import AdminReviews from "./pages/admin/AdminReviews";
+import AdminFreePanel from "./pages/admin/AdminFreePanel";
+import AdminLogs from "./pages/admin/AdminLogs";
 
 const queryClient = new QueryClient();
 
@@ -95,6 +98,7 @@ const App = () => (
             <Route path="/dashboard/tickets/:id" element={<ProtectedRoute><TicketDetailPage /></ProtectedRoute>} />
             <Route path="/dashboard/rewards" element={<ProtectedRoute><RewardsPage /></ProtectedRoute>} />
             <Route path="/dashboard/renew/:serviceId" element={<ProtectedRoute><RenewPage /></ProtectedRoute>} />
+            <Route path="/dashboard/free-claims" element={<ProtectedRoute><FreeClaimsHistoryPage /></ProtectedRoute>} />
 
             {/* Admin */}
             <Route path="/admin" element={<ProtectedRoute adminOnly><AdminDashboard /></ProtectedRoute>} />
@@ -105,6 +109,8 @@ const App = () => (
             <Route path="/admin/tickets" element={<ProtectedRoute adminOnly><AdminTickets /></ProtectedRoute>} />
             <Route path="/admin/invoices" element={<ProtectedRoute adminOnly><AdminInvoices /></ProtectedRoute>} />
             <Route path="/admin/reviews" element={<ProtectedRoute adminOnly><AdminReviews /></ProtectedRoute>} />
+            <Route path="/admin/free-panel" element={<ProtectedRoute adminOnly><AdminFreePanel /></ProtectedRoute>} />
+            <Route path="/admin/logs" element={<ProtectedRoute adminOnly><AdminLogs /></ProtectedRoute>} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

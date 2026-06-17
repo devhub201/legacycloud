@@ -63,9 +63,13 @@ export async function ensureUser(cfg: any, email: string, displayName: string) {
 
 // Pick first allocation in location, fallback to any unassigned
 export async function pickAllocation(cfg: any, locationId: number) {
-  // nodes in location
-  const nodes = await api(cfg, `/nodes?filter[location_id]=${locationId}&per_page=50`);
-  for (const n of nodes.data ?? []) {
+  // Fetch all nodes (Ptero doesn't allow location_id filter) and filter client-side.
+  const nodes = await api(cfg, `/nodes?per_page=100`);
+  const nodeList = (nodes.data ?? []).filter(
+    (n: any) => !locationId || n.attributes.location_id === locationId,
+  );
+  if (nodeList.length === 0) throw new Error(`No nodes found in location ${locationId}`);
+  for (const n of nodeList) {
     const nid = n.attributes.id;
     const allocs = await api(cfg, `/nodes/${nid}/allocations?per_page=200`);
     const free = (allocs.data ?? []).find((a: any) => !a.attributes.assigned);

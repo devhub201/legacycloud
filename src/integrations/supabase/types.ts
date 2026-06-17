@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json | null
+          id: string
+          ip: string | null
+          level: string
+          target: string | null
+          user_agent: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          ip?: string | null
+          level?: string
+          target?: string | null
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json | null
+          id?: string
+          ip?: string | null
+          level?: string
+          target?: string | null
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       cart_items: {
         Row: {
           billing_cycle: string
@@ -61,7 +100,8 @@ export type Database = {
           cpu_pct: number
           created_at: string
           disk_mb: number
-          expires_at: string
+          error_message: string | null
+          expires_at: string | null
           id: string
           panel_password: string | null
           panel_server_id: number | null
@@ -70,6 +110,7 @@ export type Database = {
           panel_user_id: number | null
           panel_username: string | null
           ram_mb: number
+          status: string
           updated_at: string
           user_id: string
         }
@@ -77,7 +118,8 @@ export type Database = {
           cpu_pct?: number
           created_at?: string
           disk_mb?: number
-          expires_at: string
+          error_message?: string | null
+          expires_at?: string | null
           id?: string
           panel_password?: string | null
           panel_server_id?: number | null
@@ -86,6 +128,7 @@ export type Database = {
           panel_user_id?: number | null
           panel_username?: string | null
           ram_mb?: number
+          status?: string
           updated_at?: string
           user_id: string
         }
@@ -93,7 +136,8 @@ export type Database = {
           cpu_pct?: number
           created_at?: string
           disk_mb?: number
-          expires_at?: string
+          error_message?: string | null
+          expires_at?: string | null
           id?: string
           panel_password?: string | null
           panel_server_id?: number | null
@@ -102,8 +146,39 @@ export type Database = {
           panel_user_id?: number | null
           panel_username?: string | null
           ram_mb?: number
+          status?: string
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      free_panel_settings: {
+        Row: {
+          daily_quota: number
+          enabled: boolean
+          expiry_days: number
+          id: number
+          min_account_age_hours: number
+          per_user_limit: number
+          updated_at: string
+        }
+        Insert: {
+          daily_quota?: number
+          enabled?: boolean
+          expiry_days?: number
+          id?: number
+          min_account_age_hours?: number
+          per_user_limit?: number
+          updated_at?: string
+        }
+        Update: {
+          daily_quota?: number
+          enabled?: boolean
+          expiry_days?: number
+          id?: number
+          min_account_age_hours?: number
+          per_user_limit?: number
+          updated_at?: string
         }
         Relationships: []
       }

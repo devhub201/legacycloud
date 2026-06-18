@@ -1,19 +1,21 @@
 import { motion } from "framer-motion";
-import { Cpu, MemoryStick, HardDrive, Loader2 } from "lucide-react";
+import { Cpu, MemoryStick, HardDrive, Loader2, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { type Plan } from "@/data/plans";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 import { toast } from "sonner";
 
 const PlanCard = ({ plan, index = 0, planType = "mc" }: { plan: Plan; index?: number; planType?: "mc" | "vps" }) => {
   const { user } = useAuth();
+  const { refresh } = useCart();
   const nav = useNavigate();
   const [loading, setLoading] = useState(false);
 
-  const buy = async () => {
+  const addToCart = async () => {
     if (!user) {
       toast.info("Please login to continue");
       return nav("/login");
@@ -27,8 +29,8 @@ const PlanCard = ({ plan, index = 0, planType = "mc" }: { plan: Plan; index?: nu
     });
     setLoading(false);
     if (error) return toast.error(error.message);
-    toast.success("Added to cart — redirecting to checkout");
-    nav("/dashboard/checkout");
+    await refresh();
+    toast.success(`${plan.name} added to cart`);
   };
 
   return (
@@ -54,8 +56,8 @@ const PlanCard = ({ plan, index = 0, planType = "mc" }: { plan: Plan; index?: nu
           <span className="font-display text-3xl font-bold">{plan.price}</span>
           <span className="text-muted-foreground text-sm">/month</span>
         </div>
-        <Button onClick={buy} disabled={loading} className="w-full btn-pink ring-glow">
-          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Buy Now"}
+        <Button onClick={addToCart} disabled={loading} className="w-full btn-pink ring-glow">
+          {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : (<><ShoppingCart className="h-4 w-4 mr-2" />Add to Cart</>)}
         </Button>
       </div>
     </motion.div>

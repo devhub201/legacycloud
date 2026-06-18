@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Cloud, User, LayoutDashboard } from "lucide-react";
+import { Menu, X, Cloud, LayoutDashboard, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DISCORD_INVITE } from "@/data/plans";
 import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 
 const links = [
   { label: "HOME", to: "/" },
@@ -21,6 +22,18 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { user } = useAuth();
+  const { count } = useCart();
+
+  const CartIcon = ({ className = "" }: { className?: string }) => (
+    <Link to={user ? "/dashboard/cart" : "/login"} aria-label="Cart" className={`relative inline-flex items-center justify-center h-9 w-9 rounded-lg hover:bg-primary/10 transition-colors ${className}`}>
+      <ShoppingCart className="h-5 w-5" />
+      {count > 0 && (
+        <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] font-bold rounded-full min-w-[18px] h-[18px] px-1 flex items-center justify-center ring-2 ring-background">
+          {count > 9 ? "9+" : count}
+        </span>
+      )}
+    </Link>
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -52,6 +65,7 @@ const Navbar = () => {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2">
+          <CartIcon />
           {user ? (
             <Link to="/dashboard"><Button size="sm" className="btn-pink ring-glow"><LayoutDashboard className="h-4 w-4 mr-2" />Dashboard</Button></Link>
           ) : (
@@ -62,9 +76,12 @@ const Navbar = () => {
           )}
         </div>
 
-        <button className="lg:hidden p-2" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex lg:hidden items-center gap-1">
+          <CartIcon />
+          <button className="p-2" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (

@@ -56,11 +56,11 @@ const Experience = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <span className="bg-blue-500/10 text-blue-400 text-sm font-semibold px-4 py-2 rounded-full">
+          <span className="bg-pink-500/10 text-pink-400 text-sm font-semibold px-4 py-2 rounded-full">
             ✦ Our Panel
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mt-4">
-            Experience Our <span className="text-blue-400">Platform</span>
+            Experience Our <span className="text-pink-400">Platform</span>
           </h2>
           <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
             Discover the powerful features that make our platform the perfect choice for your needs
@@ -80,14 +80,14 @@ const Experience = () => {
                   key={index}
                   onClick={() => setActiveIndex(index)}
                   className={`relative w-full text-left p-5 rounded-xl border transition-all duration-300 ${
-                    isActive ? 'bg-blue-500/10 border-blue-500' : 'bg-gray-800/50 border-gray-700 hover:bg-gray-800/80'
+                    isActive ? 'bg-pink-500/10 border-pink-500' : 'bg-gray-800/50 border-gray-700 hover:bg-gray-800/80'
                   }`}
                 >
                   {/* Animasi Loading Bar */}
                   {isActive && (
                     <motion.div
                       key={activeIndex} // Kunci untuk mereset animasi saat index berubah
-                      className="absolute top-0 left-0 h-1 bg-blue-500 rounded-full"
+                      className="absolute top-0 left-0 h-1 bg-pink-500 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
                       transition={{ duration: 5, ease: 'linear' }}
@@ -96,7 +96,7 @@ const Experience = () => {
                   )}
 
                   <div className="flex items-start gap-4">
-                    <div className={`p-2 rounded-md ${isActive ? 'text-blue-400' : 'text-gray-400'}`}>
+                    <div className={`p-2 rounded-md ${isActive ? 'text-pink-400' : 'text-gray-400'}`}>
                       <Icon size={24} />
                     </div>
                     <div>

@@ -56,7 +56,7 @@ const Pricing = () => {
           className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12"
         >
           <div className="text-center md:text-left">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white">Simple Pricing <span className="text-blue-400">Plans</span></h2>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white">Simple Pricing <span className="text-pink-400">Plans</span></h2>
             <p className="text-lg text-gray-400 mt-2 max-w-2xl">Choose the perfect plan for your needs. All plans include our core features with no hidden fees.</p>
           </div>
           <div className="relative inline-block text-left">
@@ -95,9 +95,9 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden group hover:border-blue-500 transition-all duration-300`}
+              className={`relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden group hover:border-pink-500 transition-all duration-300`}
             >
-              {plan.popular && (<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1.5 rounded-full">Most Popular</div>)}
+              {plan.popular && (<div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-pink-500 text-white text-xs font-bold px-4 py-1.5 rounded-full">Most Popular</div>)}
               <div className="h-40 bg-cover bg-center" style={{ backgroundImage: `url(${plan.image})` }}>
                 <div className="h-full w-full bg-black/50 flex items-end p-6">
                     <h3 className="text-2xl font-bold text-white">{plan.title}</h3>
@@ -107,11 +107,11 @@ const Pricing = () => {
                 <p className="text-gray-400">Starting at</p>
                 <p className="text-5xl font-bold text-white my-2">{currentCurrency.symbol}{(plan.priceUSD * currentCurrency.rate).toFixed(2)}<span className="text-lg font-medium text-gray-400">/month</span></p>
                 <ul className="space-y-3 my-8">
-                  {plan.features.map((feature) => (<li key={feature} className="flex items-center text-gray-300"><Check className="w-5 h-5 text-blue-500 mr-3 flex-shrink-0" /><span>{feature}</span></li>))}
+                  {plan.features.map((feature) => (<li key={feature} className="flex items-center text-gray-300"><Check className="w-5 h-5 text-pink-500 mr-3 flex-shrink-0" /><span>{feature}</span></li>))}
                 </ul>
                 {/* PERUBAHAN: Membungkus button dengan Link */}
                 <Link to={plan.link}>
-                    <button className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                    <button className="w-full bg-pink-500 text-white font-semibold py-3 rounded-lg hover:bg-pink-600 transition-colors duration-300">
                         {plan.buttonText}
                     </button>
                 </Link>

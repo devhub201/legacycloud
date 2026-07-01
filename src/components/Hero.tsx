@@ -104,7 +104,7 @@ const Hero = () => {
               <h2 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
                 Host your own
                 <br />
-                <span className="text-blue-400 h-20 block">
+                <span className="text-pink-400 h-20 block">
                   <AnimatePresence mode="wait">
                     <motion.span
                       key={currentIndex}
@@ -126,7 +126,7 @@ const Hero = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-blue-700 transition-colors"
+                  className="bg-pink-500 text-white font-semibold px-6 py-3 rounded-lg flex items-center space-x-2 hover:bg-pink-600 transition-colors"
                 >
                   <span>Get Started</span>
                   <ArrowRight size={20} />
@@ -158,7 +158,7 @@ const Hero = () => {
                   className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-5"
                 >
                   <div className="flex items-start space-x-4">
-                      <card.icon className="text-blue-400 mt-1" size={24} />
+                      <card.icon className="text-pink-400 mt-1" size={24} />
                       <div>
                           <h3 className="font-semibold text-white">{card.title}</h3>
                           <p className="text-sm text-gray-400 mt-1">{card.description}</p>

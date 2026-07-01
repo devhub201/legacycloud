@@ -4,10 +4,10 @@ import { Shield } from 'lucide-react';
 // Component for styling legal content (reusable)
 const LegalContent = ({ children }: { children: React.ReactNode }) => (
     <div className="prose prose-invert prose-lg max-w-none 
-                    prose-h2:text-blue-400 prose-h2:font-bold prose-h2:mb-2 prose-h2:mt-8
+                    prose-h2:text-pink-400 prose-h2:font-bold prose-h2:mb-2 prose-h2:mt-8
                     prose-p:text-gray-300 prose-p:leading-relaxed
                     prose-ul:list-disc prose-ul:ml-6 prose-ul:text-gray-300
-                    prose-a:text-blue-400 hover:prose-a:text-blue-300">
+                    prose-a:text-pink-400 hover:prose-a:text-pink-300">
         {children}
     </div>
 );
@@ -24,7 +24,7 @@ const PrivacyPolicy = () => {
                     transition={{ duration: 0.7 }} 
                     className="text-center mb-12"
                 >
-                    <Shield className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                    <Shield className="w-16 h-16 text-pink-400 mx-auto mb-4" />
                     <h1 className="text-4xl md:text-5xl font-bold">Privacy Policy</h1>
                     <p className="text-gray-400 mt-2">Last Updated: September 29, 2025</p>
                 </motion.div>
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
                     className="max-w-4xl mx-auto bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 md:p-10 border border-gray-700"
                 >
                     <LegalContent>
-                        <p>This Privacy Policy describes how CodeX ("we", "our", or "us") collects, uses, and discloses your information when you use our services. We are committed to protecting your privacy and handling your data in an open and transparent manner.</p>
+                        <p>This Privacy Policy describes how Legacy Cloud ("we", "our", or "us") collects, uses, and discloses your information when you use our services. We are committed to protecting your privacy and handling your data in an open and transparent manner.</p>
                         
                         <h2>1. Information We Collect</h2>
                         <p>We collect information you provide directly to us, such as when you create an account, make a purchase, or contact customer support. This information may include:</p>
@@ -55,7 +55,7 @@ const PrivacyPolicy = () => {
                             <li>Process transactions, send you related information including purchase confirmations and invoices.</li>
                             <li>Communicate with you about products, services, offers, promotions, and events.</li>
                             <li>Monitor and analyze trends, usage, and activities in connection with our Services.</li>
-                            <li>Detect, investigate and prevent fraudulent transactions and other illegal activities and protect the rights and property of CodeX and others.</li>
+                            <li>Detect, investigate and prevent fraudulent transactions and other illegal activities and protect the rights and property of Legacy Cloud and others.</li>
                         </ul>
 
                         <h2>3. Information Sharing and Disclosure</h2>

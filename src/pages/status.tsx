@@ -42,7 +42,7 @@ const incidentHistory = [
 const getStatusProps = (status: Status) => {
     switch (status) {
         case 'Operational':
-            return { color: 'text-green-400', Icon: CheckCircle2, label: 'Operational' };
+            return { color: 'text-pink-400', Icon: CheckCircle2, label: 'Operational' };
         case 'Degraded Performance':
             return { color: 'text-yellow-400', Icon: AlertTriangle, label: 'Degraded Performance' };
         case 'Partial Outage':
@@ -50,7 +50,7 @@ const getStatusProps = (status: Status) => {
         case 'Major Outage':
             return { color: 'text-red-500', Icon: XCircle, label: 'Major Outage' };
         case 'Under Maintenance':
-            return { color: 'text-blue-400', Icon: Wrench, label: 'Under Maintenance' };
+            return { color: 'text-pink-400', Icon: Wrench, label: 'Under Maintenance' };
         default:
             return { color: 'text-gray-400', Icon: CheckCircle2, label: 'Unknown' };
     }
@@ -65,7 +65,7 @@ const StatusPage = () => {
 
                 {/* Header */}
                 <motion.div initial={{ opacity: 0, y: -30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="text-center mb-12">
-                    <BarChartHorizontal className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                    <BarChartHorizontal className="w-16 h-16 text-pink-400 mx-auto mb-4" />
                     <h1 className="text-4xl md:text-5xl font-bold">Service Status</h1>
                     <p className="text-gray-300 mt-2">Real-time updates on the availability of our services.</p>
                 </motion.div>
@@ -73,9 +73,9 @@ const StatusPage = () => {
                 {/* Overall Status */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-                    className={`max-w-4xl mx-auto p-4 rounded-lg mb-12 border ${overallStatus.includes('All') ? 'bg-green-500/10 border-green-400' : 'bg-yellow-500/10 border-yellow-400'}`}
+                    className={`max-w-4xl mx-auto p-4 rounded-lg mb-12 border ${overallStatus.includes('All') ? 'bg-pink-500/10 border-pink-400' : 'bg-yellow-500/10 border-yellow-400'}`}
                 >
-                    <p className={`font-bold text-center ${overallStatus.includes('All') ? 'text-green-300' : 'text-yellow-300'}`}>{overallStatus}</p>
+                    <p className={`font-bold text-center ${overallStatus.includes('All') ? 'text-pink-300' : 'text-yellow-300'}`}>{overallStatus}</p>
                 </motion.div>
 
                 {/* Service Status List */}
@@ -115,10 +115,10 @@ const StatusPage = () => {
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
-                                        <h3 className="font-bold text-xl text-blue-300">{incident.title}</h3>
+                                        <h3 className="font-bold text-xl text-pink-300">{incident.title}</h3>
                                         <p className="text-sm text-gray-400">{incident.date}</p>
                                     </div>
-                                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${incident.status === 'Resolved' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
+                                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${incident.status === 'Resolved' ? 'bg-pink-500/20 text-pink-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
                                         {incident.status}
                                     </span>
                                 </div>

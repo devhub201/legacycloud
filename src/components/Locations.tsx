@@ -31,12 +31,12 @@ const Locations = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <span className="bg-blue-600/20 text-blue-300 text-sm font-semibold px-4 py-1 rounded-full inline-flex items-center gap-2">
+          <span className="bg-pink-500/20 text-pink-300 text-sm font-semibold px-4 py-1 rounded-full inline-flex items-center gap-2">
             <Globe size={14}/>
             Global Infrastructure
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mt-4">
-            Global <span className="text-blue-400">Locations</span>
+            Global <span className="text-pink-400">Locations</span>
           </h2>
           <p className="text-lg text-gray-400 mt-2 max-w-3xl mx-auto">
             Strategically positioned servers worldwide for optimal performance and minimal latency
@@ -86,8 +86,8 @@ const Locations = () => {
               style={{ top: loc.position.top, left: loc.position.left }}
             >
               <div className="relative flex justify-center items-center">
-                <div className="absolute w-4 h-4 rounded-full bg-blue-500 animate-ping opacity-75"></div>
-                <div className="w-2 h-2 rounded-full bg-blue-400"></div>
+                <div className="absolute w-4 h-4 rounded-full bg-pink-500 animate-ping opacity-75"></div>
+                <div className="w-2 h-2 rounded-full bg-pink-400"></div>
               </div>
             </div>
           ))}

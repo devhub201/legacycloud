@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link to="/" className="flex-shrink-0 z-50">
-            <img src="/codex.png" alt="CodeX Logo" className="h-10 w-auto" />
+            <img src="/codex.png" alt="Legacy Cloud Logo" className="h-10 w-auto" />
           </Link>
 
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2">
@@ -91,7 +91,7 @@ const Navbar = () => {
           </div>
           
           <div className="flex items-center z-50">
-            <a href="#" className="hidden md:inline-block bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">Dashboard</a>
+            <a href="#" className="hidden md:inline-block bg-pink-500 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-pink-600 transition-colors">Dashboard</a>
             <div className="md:hidden ml-4">
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-300 hover:text-white">
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

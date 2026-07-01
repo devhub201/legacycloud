@@ -46,7 +46,7 @@ const Footer = () => {
           {/* Di tablet (md), kolom ini akan mengambil lebar penuh (2 kolom) */}
           <div className="md:col-span-2 lg:col-span-1">
             <a href="#" className="mb-4 inline-block">
-              <img src="/codex.png" alt="CodeX Logo" className="h-10 w-auto" />
+              <img src="/codex.png" alt="Legacy Cloud Logo" className="h-10 w-auto" />
             </a>
             <p className="text-gray-400 text-sm max-w-xs">
               High-performance hosting solutions for developers, gamers, and communities worldwide.
@@ -86,7 +86,7 @@ const Footer = () => {
         {/* === Garis Pemisah dan Copyright === */}
         <div className="mt-16 border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} CodeX. All rights reserved.
+            © {new Date().getFullYear()} Legacy Cloud. All rights reserved.
           </p>
         </div>
       </div>

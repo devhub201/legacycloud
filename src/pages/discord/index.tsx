@@ -88,17 +88,17 @@ const discordPlans = [
 
 const AdvancedFeatures = [
     {
-        icon: <Zap size={28} className="text-blue-400" />,
+        icon: <Zap size={28} className="text-pink-400" />,
         title: 'Instant Activation',
         description: 'Your service is activated instantly after payment confirmation.'
     },
     {
-        icon: <ShieldCheck size={28} className="text-blue-400" />,
+        icon: <ShieldCheck size={28} className="text-pink-400" />,
         title: 'DDoS Protection',
         description: 'Advanced protection to keep your bot online during attacks.'
     },
     {
-        icon: <LifeBuoy size={28} className="text-blue-400" />,
+        icon: <LifeBuoy size={28} className="text-pink-400" />,
         title: '24/7 Support',
         description: 'Our expert team is always ready to help you with any issue.'
     },
@@ -124,7 +124,7 @@ const DiscordBotPricing = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">Discord Bot <span className="text-blue-400">Hosting</span></h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 text-white">Discord Bot <span className="text-pink-400">Hosting</span></h1>
           <p className="text-lg text-gray-400 max-w-3xl mx-auto">
             Reliable and affordable Discord bot hosting with 24/7 uptime, Node.js support, and easy management. Perfect for developers and communities.
           </p>
@@ -135,13 +135,13 @@ const DiscordBotPricing = () => {
             <div className="bg-gray-800/70 backdrop-blur-sm p-2 rounded-lg flex items-center gap-2">
                 <button 
                     onClick={() => setActiveTab('standard')}
-                    className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'standard' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'standard' ? 'bg-pink-500 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
                 >
                     Plan Type
                 </button>
                 <button 
                     onClick={() => setActiveTab('premium')}
-                    className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'premium' ? 'bg-blue-600 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
+                    className={`px-6 py-2 rounded-md text-sm font-medium transition-colors ${activeTab === 'premium' ? 'bg-pink-500 text-white' : 'text-gray-300 hover:bg-gray-700'}`}
                 >
                     Premium Plans
                 </button>
@@ -191,10 +191,10 @@ const DiscordBotPricing = () => {
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative bg-gray-800/60 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden group hover:border-blue-500 transition-all duration-300 flex flex-col ${plan.popular ? 'border-blue-500' : ''}`}
+              className={`relative bg-gray-800/60 backdrop-blur-sm border border-gray-700 rounded-2xl overflow-hidden group hover:border-pink-500 transition-all duration-300 flex flex-col ${plan.popular ? 'border-pink-500' : ''}`}
             >
               {plan.popular && (
-                <div className="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                <div className="absolute top-4 right-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">
                   Popular
                 </div>
               )}
@@ -232,7 +232,7 @@ const DiscordBotPricing = () => {
               </div>
               
               <div className="p-6 pt-0 mt-auto">
-                <button className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 group-hover:shadow-lg group-hover:shadow-blue-600/30">
+                <button className="w-full bg-pink-500 text-white font-semibold py-3 rounded-lg hover:bg-pink-600 transition-colors duration-300 group-hover:shadow-lg group-hover:shadow-pink-500/30">
                   Order Now
                 </button>
               </div>
@@ -243,7 +243,7 @@ const DiscordBotPricing = () => {
         {/* === Advanced Features Section === */}
         <div className="mt-24">
             <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-white">Advanced <span className="text-blue-400">Features</span></h2>
+                <h2 className="text-3xl md:text-4xl font-bold text-white">Advanced <span className="text-pink-400">Features</span></h2>
                 <p className="text-gray-400 mt-2 max-w-2xl mx-auto">Everything you need for professional bot hosting.</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

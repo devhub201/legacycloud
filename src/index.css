@@ -2,99 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
-
 @layer base {
-  :root {
-    --background: 270 45% 6%;
-    --foreground: 320 30% 96%;
-
-    --card: 275 40% 10%;
-    --card-foreground: 320 30% 96%;
-
-    --popover: 275 40% 10%;
-    --popover-foreground: 320 30% 96%;
-
-    --primary: 322 90% 58%;
-    --primary-foreground: 0 0% 100%;
-    --primary-glow: 300 100% 70%;
-
-    --secondary: 275 35% 16%;
-    --secondary-foreground: 320 30% 96%;
-
-    --muted: 275 30% 14%;
-    --muted-foreground: 300 15% 70%;
-
-    --accent: 295 85% 65%;
-    --accent-foreground: 270 50% 6%;
-
-    --destructive: 0 75% 58%;
-    --destructive-foreground: 0 0% 100%;
-
-    --success: 142 70% 50%;
-    --warning: 38 92% 55%;
-
-    --border: 280 35% 20%;
-    --input: 280 35% 18%;
-    --ring: 322 90% 58%;
-
-    --radius: 0.875rem;
-
-    --gradient-primary: linear-gradient(135deg, hsl(322 90% 58%) 0%, hsl(290 95% 65%) 100%);
-    --gradient-radial: radial-gradient(ellipse at top, hsl(322 90% 58% / 0.3), transparent 60%);
-    --gradient-card: linear-gradient(180deg, hsl(275 40% 12% / 0.85), hsl(270 45% 7% / 0.85));
-    --gradient-pink: linear-gradient(135deg, hsl(322 95% 60%), hsl(280 90% 60%));
-
-    --shadow-glow: 0 0 60px hsl(322 90% 58% / 0.45);
-    --shadow-soft: 0 20px 60px -20px hsl(280 60% 5% / 0.8);
-    --shadow-card: 0 10px 40px -10px hsl(322 80% 30% / 0.4);
-
-    --sidebar-background: 275 45% 8%;
-    --sidebar-foreground: 320 30% 90%;
-    --sidebar-primary: 322 90% 58%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 275 35% 14%;
-    --sidebar-accent-foreground: 320 30% 96%;
-    --sidebar-border: 280 35% 18%;
-    --sidebar-ring: 322 90% 58%;
-  }
-}
-
-@layer base {
-  * { @apply border-border; }
   body {
-    @apply bg-background text-foreground;
-    font-family: 'DM Sans', sans-serif;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: -0.02em;
-  }
-}
-
-@layer utilities {
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-primary);
-  }
-  .bg-grid {
-    background-image:
-      linear-gradient(hsl(var(--border) / 0.5) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.5) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
-  }
-  .glow-primary { box-shadow: var(--shadow-glow); }
-  .glass-card {
-    background: var(--gradient-card);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(var(--border));
-  }
-  .ring-glow {
-    box-shadow: 0 0 0 1px hsl(var(--primary) / 0.5), 0 0 30px hsl(var(--primary) / 0.35);
-  }
-  .btn-pink {
-    background: var(--gradient-pink);
-    color: white;
+    /* Atur gambar background dari folder public */
+    background-image: url('/background.png');
+    
+    /* Pastikan gambar menutupi seluruh layar */
+    background-size: cover;
+    
+    /* Posisikan gambar di tengah */
+    background-position: center;
+    
+    /* Buat background 'fixed' agar tidak ikut scroll */
+    background-attachment: fixed;
+    
+    /* Hindari gambar berulang */
+    background-repeat: no-repeat;
+    
+    /* Beri warna dasar jika gambar gagal dimuat */
+    background-color: #0c0a18;
   }
 }

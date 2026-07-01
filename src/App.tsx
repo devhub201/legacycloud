@@ -1,128 +1,83 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
-import { ProtectedRoute } from "./components/ProtectedRoute";
-import { CartProvider } from "./contexts/CartContext";
-import CartBar from "./components/CartBar";
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import Index from "./pages/Index";
-import ServicesPage from "./pages/ServicesPage";
-import PlansPage from "./pages/PlansPage";
-import VpsPage from "./pages/VpsPage";
-import StatusPage from "./pages/StatusPage";
-import SupportPage from "./pages/SupportPage";
-import DiscordPage from "./pages/DiscordPage";
-import AboutPage from "./pages/AboutPage";
-import TermsPage from "./pages/TermsPage";
-import OffersPage from "./pages/OffersPage";
-import KnowledgebasePage from "./pages/KnowledgebasePage";
-import KbArticlePage from "./pages/KbArticlePage";
-import FreePanelPage from "./pages/FreePanelPage";
-import NotFound from "./pages/NotFound";
+// Komponen Halaman Utama
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Features from './components/Features';
+import Locations from './components/Locations';
+import Pricing from './components/Pricing';
+import Questions from './components/Questions';
+import Experience from './components/Experience';
+import Reviews from './components/Reviews';
+import Cta from './components/Cta';
+import Footer from './components/Footer';
+import NotFound from './components/NotFound';
 
-import LoginPage from "./pages/auth/LoginPage";
-import RegisterPage from "./pages/auth/RegisterPage";
-import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage";
-import ResetPasswordPage from "./pages/auth/ResetPasswordPage";
+// Import semua halaman baru
+import DiscordPricing from './pages/discord';
+import MinecraftPricing from './pages/minecraft';
+import VpsPricing from './pages/vps';
+import AboutUs from './pages/aboutus';
+import Support from './pages/support';
+import TOS from './pages/tos';
+import PrivacyPolicy from './pages/privacy';
+import StatusPage from './pages/status';
 
-import DashboardHome from "./pages/dashboard/DashboardHome";
-import MyServicesPage from "./pages/dashboard/MyServicesPage";
-import MyVpsPage from "./pages/dashboard/MyVpsPage";
-import CartPage from "./pages/dashboard/CartPage";
-import CheckoutPage from "./pages/dashboard/CheckoutPage";
-import InvoicesPage from "./pages/dashboard/InvoicesPage";
-import InvoiceDetailPage from "./pages/dashboard/InvoiceDetailPage";
-import BillingPage from "./pages/dashboard/BillingPage";
-import ProfilePage from "./pages/dashboard/ProfilePage";
-import TicketsPage from "./pages/dashboard/TicketsPage";
-import TicketDetailPage from "./pages/dashboard/TicketDetailPage";
-import RewardsPage from "./pages/dashboard/RewardsPage";
-import RenewPage from "./pages/dashboard/RenewPage";
-import FreeClaimsHistoryPage from "./pages/dashboard/FreeClaimsHistoryPage";
+// Komponen untuk scroll ke atas saat ganti halaman
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
-import AdminDashboard from "./pages/admin/AdminDashboard";
-import AdminUsers from "./pages/admin/AdminUsers";
-import AdminServices from "./pages/admin/AdminServices";
-import AdminPromoCodes from "./pages/admin/AdminPromoCodes";
-import AdminKb from "./pages/admin/AdminKb";
-import AdminTickets from "./pages/admin/AdminTickets";
-import AdminInvoices from "./pages/admin/AdminInvoices";
-import AdminReviews from "./pages/admin/AdminReviews";
-import AdminFreePanel from "./pages/admin/AdminFreePanel";
-import AdminLogs from "./pages/admin/AdminLogs";
 
-const queryClient = new QueryClient();
+const Home = () => (
+  <>
+    <Hero />
+    <Features />
+    <Locations />
+    <Pricing />
+    <Questions />
+    <Experience />
+    <Reviews />
+    <Cta />
+  </>
+);
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AuthProvider>
-          <CartProvider>
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen">
+        <Navbar />
+        <main>
           <Routes>
-            {/* Public */}
-            <Route path="/" element={<Index />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/plans" element={<PlansPage />} />
-            <Route path="/vps" element={<VpsPage />} />
+            {/* Rute Halaman Utama */}
+            <Route path="/" element={<Home />} />
+
+            {/* Rute Halaman Layanan */}
+            <Route path="/discord" element={<DiscordPricing />} />
+            <Route path="/minecraft" element={<MinecraftPricing />} />
+            <Route path="/vps" element={<VpsPricing />} />
+
+            {/* Rute Halaman More */}
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/tos" element={<TOS />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/status" element={<StatusPage />} />
-            <Route path="/support" element={<SupportPage />} />
-            <Route path="/discord" element={<DiscordPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/terms" element={<TermsPage />} />
-            <Route path="/offers" element={<OffersPage />} />
-            <Route path="/knowledgebase" element={<KnowledgebasePage />} />
-            <Route path="/kb/:slug" element={<KbArticlePage />} />
-            <Route path="/free-panel" element={<FreePanelPage />} />
 
-            {/* Auth */}
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/auth" element={<Navigate to="/login" replace />} />
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-
-            {/* Client Dashboard */}
-            <Route path="/dashboard" element={<ProtectedRoute><DashboardHome /></ProtectedRoute>} />
-            <Route path="/dashboard/services" element={<ProtectedRoute><MyServicesPage /></ProtectedRoute>} />
-            <Route path="/dashboard/vps" element={<ProtectedRoute><MyVpsPage /></ProtectedRoute>} />
-            <Route path="/dashboard/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
-            <Route path="/dashboard/checkout" element={<ProtectedRoute><CheckoutPage /></ProtectedRoute>} />
-            <Route path="/dashboard/invoices" element={<ProtectedRoute><InvoicesPage /></ProtectedRoute>} />
-            <Route path="/dashboard/invoices/:id" element={<ProtectedRoute><InvoiceDetailPage /></ProtectedRoute>} />
-            <Route path="/dashboard/billing" element={<ProtectedRoute><BillingPage /></ProtectedRoute>} />
-            <Route path="/dashboard/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
-            <Route path="/dashboard/tickets" element={<ProtectedRoute><TicketsPage /></ProtectedRoute>} />
-            <Route path="/dashboard/tickets/:id" element={<ProtectedRoute><TicketDetailPage /></ProtectedRoute>} />
-            <Route path="/dashboard/rewards" element={<ProtectedRoute><RewardsPage /></ProtectedRoute>} />
-            <Route path="/dashboard/renew/:serviceId" element={<ProtectedRoute><RenewPage /></ProtectedRoute>} />
-            <Route path="/dashboard/free-claims" element={<ProtectedRoute><FreeClaimsHistoryPage /></ProtectedRoute>} />
-
-            {/* Admin */}
-            <Route path="/admin" element={<ProtectedRoute adminOnly><AdminDashboard /></ProtectedRoute>} />
-            <Route path="/admin/users" element={<ProtectedRoute adminOnly><AdminUsers /></ProtectedRoute>} />
-            <Route path="/admin/services" element={<ProtectedRoute adminOnly><AdminServices /></ProtectedRoute>} />
-            <Route path="/admin/promo-codes" element={<ProtectedRoute adminOnly><AdminPromoCodes /></ProtectedRoute>} />
-            <Route path="/admin/knowledgebase" element={<ProtectedRoute adminOnly><AdminKb /></ProtectedRoute>} />
-            <Route path="/admin/tickets" element={<ProtectedRoute adminOnly><AdminTickets /></ProtectedRoute>} />
-            <Route path="/admin/invoices" element={<ProtectedRoute adminOnly><AdminInvoices /></ProtectedRoute>} />
-            <Route path="/admin/reviews" element={<ProtectedRoute adminOnly><AdminReviews /></ProtectedRoute>} />
-            <Route path="/admin/free-panel" element={<ProtectedRoute adminOnly><AdminFreePanel /></ProtectedRoute>} />
-            <Route path="/admin/logs" element={<ProtectedRoute adminOnly><AdminLogs /></ProtectedRoute>} />
-
+            {/* Rute Not Found */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <CartBar />
-          </CartProvider>
-        </AuthProvider>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
-);
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
 
 export default App;

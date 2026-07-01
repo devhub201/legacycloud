@@ -26,10 +26,10 @@ const Cta = () => {
                   Join Our <span className="font-extrabold">Discord</span>
                 </h2>
               </div>
-              <p className="text-blue-200 text-lg">
+              <p className="text-pink-200 text-lg">
                 Connect with our community of gamers and developers.
               </p>
-              <p className="text-blue-200 mt-2">
+              <p className="text-pink-200 mt-2">
                 Get instant support, share experiences, and stay updated with the latest news.
               </p>
             </div>

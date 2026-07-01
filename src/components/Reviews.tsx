@@ -7,7 +7,7 @@ const reviewsData = [
     name: 'Alex Thompson',
     role: 'Bot Developer',
     content:
-      'CodeX has been incredible for hosting my Discord bots. The uptime is amazing and support is top-notch!',
+      'Legacy Cloud has been incredible for hosting my Discord bots. The uptime is amazing and support is top-notch!',
     rating: 5,
   },
   {
@@ -74,10 +74,10 @@ const Reviews = () => {
           className="text-center mb-12"
         >
           <h2 className="text-4xl sm:text-5xl font-bold text-white">
-            What Our <span className="text-blue-400">Customers Say</span>
+            What Our <span className="text-pink-400">Customers Say</span>
           </h2>
           <p className="text-lg text-gray-400 mt-4 max-w-2xl mx-auto">
-            Join thousands of satisfied developers and communities who trust CodeX.
+            Join thousands of satisfied developers and communities who trust Legacy Cloud.
           </p>
         </motion.div>
 

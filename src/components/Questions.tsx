@@ -66,9 +66,9 @@ const Questions = () => {
               <h2 className="text-4xl sm:text-5xl font-bold text-white">
                 Frequently Asked
                 <br />
-                <span className="text-blue-400 relative inline-block">
+                <span className="text-pink-400 relative inline-block">
                   Questions
-                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-blue-500 rounded-full"></span>
+                  <span className="absolute -bottom-2 left-0 w-full h-1 bg-pink-500 rounded-full"></span>
                 </span>
               </h2>
               <p className="text-lg text-gray-400 mt-4">
@@ -90,13 +90,13 @@ const Questions = () => {
                     className="w-full flex justify-between items-center text-left p-5 focus:outline-none"
                   >
                     <div className="flex items-center">
-                        <span className="text-blue-400 font-bold mr-4 bg-gray-700/50 px-3 py-1 rounded-md">
+                        <span className="text-pink-400 font-bold mr-4 bg-gray-700/50 px-3 py-1 rounded-md">
                             0{index + 1}
                         </span>
                         <span className="font-semibold text-white">{faq.question}</span>
                     </div>
                     <ChevronRight 
-                        className={`transform transition-transform duration-300 text-blue-400 ${activeIndex === index ? 'rotate-90' : 'rotate-0'}`}
+                        className={`transform transition-transform duration-300 text-pink-400 ${activeIndex === index ? 'rotate-90' : 'rotate-0'}`}
                         size={20}
                     />
                   </button>

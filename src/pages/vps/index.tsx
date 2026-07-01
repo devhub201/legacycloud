@@ -96,7 +96,7 @@ const VpsPricing = () => {
                 {/* Header & Currency Converter */}
                 <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
                     <div className="text-center">
-                        <h1 className="text-4xl md:text-5xl font-bold mb-2">VPS Hosting <span className="text-blue-400">Solutions</span></h1>
+                        <h1 className="text-4xl md:text-5xl font-bold mb-2">VPS Hosting <span className="text-pink-400">Solutions</span></h1>
                         <p className="text-lg text-gray-400 max-w-3xl mx-auto">High-performance virtual private servers with full root access, SSD storage, and 24/7 support.</p>
                     </div>
                     {/* Currency Dropdown */}
@@ -126,10 +126,10 @@ const VpsPricing = () => {
                     <div>
                         <h2 className="text-sm font-semibold text-gray-400 mb-3">1. Location</h2>
                         <div className="flex items-center bg-gray-800/70 backdrop-blur-sm rounded-lg p-2 gap-2 max-w-xs">
-                            <button onClick={() => setAndFilterLocation('USA')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'USA' ? 'bg-blue-600' : 'hover:bg-gray-700'}`}>
+                            <button onClick={() => setAndFilterLocation('USA')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'USA' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>
                                 <USFlag className="w-5 h-5 rounded-sm"/> USA
                             </button>
-                            <button onClick={() => setAndFilterLocation('Netherlands')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'Netherlands' ? 'bg-blue-600' : 'hover:bg-gray-700'}`}>
+                            <button onClick={() => setAndFilterLocation('Netherlands')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'Netherlands' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>
                                 <NetherlandsFlag className="w-5 h-5 rounded-sm"/> Netherlands
                             </button>
                         </div>
@@ -139,9 +139,9 @@ const VpsPricing = () => {
                     <div>
                         <h2 className="text-sm font-semibold text-gray-400 mb-3">2. CPU Type</h2>
                         <div className="flex flex-wrap items-center bg-gray-800/70 backdrop-blur-sm rounded-lg p-2 gap-2">
-                            <button onClick={() => setAndFilterCpuType('Ampere')} className={`flex-1 text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${cpuType === 'Ampere' ? 'bg-blue-600' : 'hover:bg-gray-700'}`}>Ampere Altra</button>
-                            <button onClick={() => setAndFilterCpuType('Intel')} className={`flex-1 text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${cpuType === 'Intel' ? 'bg-blue-600' : 'hover:bg-gray-700'}`}>Intel Xeon Gold</button>
-                            <button onClick={() => setAndFilterCpuType('AMD')} className={`flex-1 text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${cpuType === 'AMD' ? 'bg-blue-600' : 'hover:bg-gray-700'}`}>AMD Ryzen 9</button>
+                            <button onClick={() => setAndFilterCpuType('Ampere')} className={`flex-1 text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${cpuType === 'Ampere' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>Ampere Altra</button>
+                            <button onClick={() => setAndFilterCpuType('Intel')} className={`flex-1 text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${cpuType === 'Intel' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>Intel Xeon Gold</button>
+                            <button onClick={() => setAndFilterCpuType('AMD')} className={`flex-1 text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${cpuType === 'AMD' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>AMD Ryzen 9</button>
                         </div>
                     </div>
 
@@ -166,7 +166,7 @@ const VpsPricing = () => {
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <p className="font-bold text-lg whitespace-nowrap">{currentCurrency.symbol}{(plan.priceUSD * currentCurrency.rate).toFixed(2)}<span className="text-sm font-normal text-gray-400">/mo</span></p>
-                                            <button className="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition-colors">Order Now</button>
+                                            <button className="bg-pink-500 text-white font-semibold py-2 px-6 rounded-lg hover:bg-pink-600 transition-colors">Order Now</button>
                                         </div>
                                     </motion.div>
                                 ))
@@ -182,7 +182,7 @@ const VpsPricing = () => {
                     <div className="flex justify-center items-center gap-2 mt-8">
                         <button onClick={() => setCurrentPage(p => Math.max(p - 1, 1))} disabled={currentPage === 1} className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50"><ChevronLeft size={16}/></button>
                         {[...Array(totalPages)].map((_, i) => (
-                            <button key={i} onClick={() => setCurrentPage(i + 1)} className={`${currentPage === i + 1 ? 'bg-blue-600' : 'bg-gray-800 hover:bg-gray-700'} w-8 h-8 rounded-md text-sm font-bold transition-colors`}>{i + 1}</button>
+                            <button key={i} onClick={() => setCurrentPage(i + 1)} className={`${currentPage === i + 1 ? 'bg-pink-500' : 'bg-gray-800 hover:bg-gray-700'} w-8 h-8 rounded-md text-sm font-bold transition-colors`}>{i + 1}</button>
                         ))}
                         <button onClick={() => setCurrentPage(p => Math.min(p + 1, totalPages))} disabled={currentPage === totalPages || totalPages === 0} className="bg-gray-800 p-2 rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50"><ChevronRight size={16}/></button>
                     </div>
@@ -191,12 +191,12 @@ const VpsPricing = () => {
                 {/* Operating Systems */}
                 <div className="mt-24">
                      <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold">Choose your <span className="text-blue-400">OS</span></h2>
+                        <h2 className="text-3xl md:text-4xl font-bold">Choose your <span className="text-pink-400">OS</span></h2>
                         <p className="text-gray-400 mt-2 max-w-2xl mx-auto">Select from a wide range of popular operating systems.</p>
                     </motion.div>
                     <div className="flex justify-center flex-wrap gap-4 md:gap-8 mt-10">
                         {operatingSystems.map((os, index) => (
-                            <motion.div key={os.name} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="flex flex-col items-center gap-3 p-4 bg-gray-800/50 rounded-lg w-28 h-28 justify-center border border-transparent hover:border-blue-500 transition-colors">
+                            <motion.div key={os.name} initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.1 }} className="flex flex-col items-center gap-3 p-4 bg-gray-800/50 rounded-lg w-28 h-28 justify-center border border-transparent hover:border-pink-500 transition-colors">
                                 <img src={os.logo} alt={os.name} className="w-12 h-12 object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement?.insertAdjacentHTML('afterbegin', `<div class="w-12 h-12 bg-gray-700 rounded-md flex items-center justify-center text-xs">${os.name.substring(0,3)}</div>`) }} />
                                 <span className="text-sm font-medium">{os.name}</span>
                             </motion.div>

@@ -10,12 +10,12 @@ const Cta = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="relative bg-blue-600 rounded-2xl p-8 md:p-12 overflow-hidden"
+          className="relative bg-pink-500 rounded-2xl p-8 md:p-12 overflow-hidden"
         >
           {/* === Ikon-ikon dekoratif di background === */}
-          <DiscordLogo className="absolute -top-4 -left-4 w-24 h-24 text-blue-500/30 opacity-50 transform rotate-12" />
-          <DiscordLogo className="absolute -bottom-6 right-1/3 w-16 h-16 text-blue-500/30 opacity-50 transform -rotate-12" />
-          <DiscordLogo className="absolute top-1/2 -translate-y-1/2 left-1/3 w-12 h-12 text-blue-500/30 opacity-50" />
+          <DiscordLogo className="absolute -top-4 -left-4 w-24 h-24 text-pink-500/30 opacity-50 transform rotate-12" />
+          <DiscordLogo className="absolute -bottom-6 right-1/3 w-16 h-16 text-pink-500/30 opacity-50 transform -rotate-12" />
+          <DiscordLogo className="absolute top-1/2 -translate-y-1/2 left-1/3 w-12 h-12 text-pink-500/30 opacity-50" />
           
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* === Kolom Kiri: Teks Ajakan === */}

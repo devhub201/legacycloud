@@ -55,7 +55,7 @@ const MinecraftPricing = () => {
                 <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
                     <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6">
                         <div>
-                            <h1 className="text-4xl md:text-5xl font-bold mb-2">Choose your <span className="text-green-400">Game Server</span></h1>
+                            <h1 className="text-4xl md:text-5xl font-bold mb-2">Choose your <span className="text-pink-400">Game Server</span></h1>
                             <p className="text-lg text-gray-400 max-w-2xl">Select from our wide range of optimized game servers for maximum performance.</p>
                         </div>
                         {/* Currency Dropdown */}
@@ -84,8 +84,8 @@ const MinecraftPricing = () => {
                     <div>
                         <h2 className="text-sm font-semibold text-gray-400 mb-3">1. Plan Type</h2>
                         <div className="flex items-center bg-gray-800/70 backdrop-blur-sm rounded-lg p-2 gap-2 max-w-xs">
-                            <button onClick={() => setPlanType('Ampere')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${planType === 'Ampere' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>Ampere Altra</button>
-                            <button onClick={() => setPlanType('Intel')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${planType === 'Intel' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>Intel Xeon</button>
+                            <button onClick={() => setPlanType('Ampere')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${planType === 'Ampere' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>Ampere Altra</button>
+                            <button onClick={() => setPlanType('Intel')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium ${planType === 'Intel' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>Intel Xeon</button>
                         </div>
                     </div>
 
@@ -93,10 +93,10 @@ const MinecraftPricing = () => {
                     <div>
                         <h2 className="text-sm font-semibold text-gray-400 mb-3">2. Location</h2>
                         <div className="flex items-center bg-gray-800/70 backdrop-blur-sm rounded-lg p-2 gap-2 max-w-xs">
-                            <button onClick={() => setLocation('USA')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'USA' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>
+                            <button onClick={() => setLocation('USA')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'USA' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>
                                 <USFlag className="w-5 h-5 rounded-sm"/> USA
                             </button>
-                            <button onClick={() => setLocation('Netherlands')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'Netherlands' ? 'bg-green-600' : 'hover:bg-gray-700'}`}>
+                            <button onClick={() => setLocation('Netherlands')} className={`w-full text-center px-4 py-2 rounded-md transition-colors text-sm font-medium flex items-center justify-center gap-2 ${location === 'Netherlands' ? 'bg-pink-500' : 'hover:bg-gray-700'}`}>
                                 <NetherlandsFlag className="w-5 h-5 rounded-sm"/> Netherlands
                             </button>
                         </div>
@@ -105,11 +105,11 @@ const MinecraftPricing = () => {
                     {/* 3. Select Software */}
                     <div>
                         <h2 className="text-sm font-semibold text-gray-400 mb-3">3. Select Software</h2>
-                        <div className="bg-green-900/50 backdrop-blur-sm border border-green-700 rounded-lg p-4 flex items-center gap-4 max-w-sm">
+                        <div className="bg-pink-900/50 backdrop-blur-sm border border-pink-600 rounded-lg p-4 flex items-center gap-4 max-w-sm">
                             {/* PERUBAHAN: Icon diganti dengan tag <img> */}
                             <img src={minecraftLogo} alt="Minecraft Logo" className="w-12 h-12" onError={(e) => e.currentTarget.src = 'https://placehold.co/48x48/10B981/FFFFFF?text=MC'}/>
                             <div>
-                                <h3 className="font-bold text-white text-lg">Minecraft <span className="text-xs bg-green-500 text-white font-semibold px-2 py-0.5 rounded-full ml-1">POPULAR</span></h3>
+                                <h3 className="font-bold text-white text-lg">Minecraft <span className="text-xs bg-pink-500 text-white font-semibold px-2 py-0.5 rounded-full ml-1">POPULAR</span></h3>
                                 <p className="text-sm text-gray-300">Deploy and strive in the ultimate sandbox game. Starting at {currentCurrency.symbol}139.00/mo</p>
                             </div>
                         </div>
@@ -132,17 +132,17 @@ const MinecraftPricing = () => {
                                         <h3 className="font-bold text-xl text-white">{plan.name}</h3>
                                     </div>
                                     <ul className="space-y-2 text-gray-300 mb-6 flex-grow">
-                                        <li className="flex items-center gap-3"><MemoryStick size={16} className="text-green-400"/> {plan.ram} GB RAM</li>
-                                        <li className="flex items-center gap-3"><Cpu size={16} className="text-green-400"/> {plan.cpu}% CPU</li>
-                                        <li className="flex items-center gap-3"><HardDrive size={16} className="text-green-400"/> {plan.ssd} GB SSD</li>
-                                        <li className="flex items-center gap-3"><Shield size={16} className="text-green-400"/> DDoS Protection</li>
+                                        <li className="flex items-center gap-3"><MemoryStick size={16} className="text-pink-400"/> {plan.ram} GB RAM</li>
+                                        <li className="flex items-center gap-3"><Cpu size={16} className="text-pink-400"/> {plan.cpu}% CPU</li>
+                                        <li className="flex items-center gap-3"><HardDrive size={16} className="text-pink-400"/> {plan.ssd} GB SSD</li>
+                                        <li className="flex items-center gap-3"><Shield size={16} className="text-pink-400"/> DDoS Protection</li>
                                     </ul>
                                     <div className="text-center">
                                         <p className="text-3xl font-bold text-white mb-4">
                                             {currentCurrency.symbol}{(plan.priceUSD * currentCurrency.rate).toFixed(2)}
                                             <span className="text-base font-normal text-gray-400">/mo</span>
                                         </p>
-                                        <button className="w-full bg-green-600 text-white font-semibold py-3 rounded-lg hover:bg-green-700 transition-colors">Order Now</button>
+                                        <button className="w-full bg-pink-500 text-white font-semibold py-3 rounded-lg hover:bg-pink-600 transition-colors">Order Now</button>
                                     </div>
                                 </motion.div>
                             ))}

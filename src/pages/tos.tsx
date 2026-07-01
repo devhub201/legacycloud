@@ -4,10 +4,10 @@ import { FileText } from 'lucide-react';
 // Component for styling legal content
 const LegalContent = ({ children }: { children: React.ReactNode }) => (
     <div className="prose prose-invert prose-lg max-w-none 
-                    prose-h2:text-blue-400 prose-h2:font-bold prose-h2:mb-2 prose-h2:mt-8
+                    prose-h2:text-pink-400 prose-h2:font-bold prose-h2:mb-2 prose-h2:mt-8
                     prose-p:text-gray-300 prose-p:leading-relaxed
                     prose-ul:list-disc prose-ul:ml-6 prose-ul:text-gray-300
-                    prose-a:text-blue-400 hover:prose-a:text-blue-300">
+                    prose-a:text-pink-400 hover:prose-a:text-pink-300">
         {children}
     </div>
 );
@@ -24,7 +24,7 @@ const TOS = () => {
                     transition={{ duration: 0.7 }} 
                     className="text-center mb-12"
                 >
-                    <FileText className="w-16 h-16 text-blue-400 mx-auto mb-4" />
+                    <FileText className="w-16 h-16 text-pink-400 mx-auto mb-4" />
                     <h1 className="text-4xl md:text-5xl font-bold">Terms of Service</h1>
                     <p className="text-gray-400 mt-2">Last Updated: September 29, 2025</p>
                 </motion.div>
@@ -37,7 +37,7 @@ const TOS = () => {
                     className="max-w-4xl mx-auto bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 md:p-10 border border-gray-700"
                 >
                     <LegalContent>
-                        <p>Welcome to CodeX! These Terms of Service ("Terms") govern your use of our hosting services ("Services"). By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy.</p>
+                        <p>Welcome to Legacy Cloud! These Terms of Service ("Terms") govern your use of our hosting services ("Services"). By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy.</p>
                         
                         <h2>1. Your Account</h2>
                         <p>To use our Services, you must register for an account. You are responsible for safeguarding the confidentiality of your account and password. You agree to accept responsibility for all activities that occur under your account. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.</p>
@@ -62,7 +62,7 @@ const TOS = () => {
                         <p>We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms. Upon termination, your right to use the Service will cease immediately. If you wish to terminate your account, you may do so by submitting a cancellation request through our client portal.</p>
 
                         <h2>6. Limitation of Liability</h2>
-                        <p>Our Service is provided "as is" and "as available". In no event shall CodeX, nor its directors, employees, or partners, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to use the Service.</p>
+                        <p>Our Service is provided "as is" and "as available". In no event shall Legacy Cloud, nor its directors, employees, or partners, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to use the Service.</p>
 
                         <h2>7. Changes to Terms</h2>
                         <p>We reserve the right, at our sole discretion, to modify or replace these terms at any time. We will provide at least 30 days' notice prior to any new terms taking effect. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms.</p>

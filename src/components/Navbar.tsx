@@ -141,7 +141,7 @@ const Navbar = () => {
                       </div>
                     )}
                  </div>
-                 <a href="#" onClick={closeAllMenus} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Dashboard</a>
+                 <a href="https://discord.gg/YFNWrZ68Dv" target="_blank" rel="noopener noreferrer" onClick={closeAllMenus} className="text-white bg-gradient-to-r from-indigo-500 to-violet-600 p-3 rounded-lg text-center font-semibold">Join Discord</a>
                </div>
             </motion.div>
           </motion.div>

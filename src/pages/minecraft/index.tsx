@@ -19,7 +19,7 @@ const MinecraftPricing = () => {
           className="text-center max-w-3xl mx-auto"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Minecraft <span className="text-pink-400">Hosting</span>
+            Minecraft <span className="text-indigo-400">Hosting</span>
           </h1>
           <p className="text-lg text-gray-300">
             Cherry-blossom powered Minecraft servers. Instant deploy, DDoS protection, and full mod support.
@@ -28,14 +28,14 @@ const MinecraftPricing = () => {
 
         {/* Tier switch */}
         <div className="flex justify-center mt-10">
-          <div className="inline-flex bg-gray-900/70 backdrop-blur-md border border-pink-500/30 rounded-full p-1">
+          <div className="inline-flex bg-gray-900/70 backdrop-blur-md border border-indigo-500/30 rounded-full p-1">
             {(['budget', 'premium'] as Tier[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTier(t)}
                 className={`px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider transition-all ${
                   tier === t
-                    ? 'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-lg shadow-pink-500/40'
+                    ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-500/40'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >

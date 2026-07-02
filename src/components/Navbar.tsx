@@ -91,7 +91,7 @@ const Navbar = () => {
           </div>
           
           <div className="flex items-center z-50">
-            <a href="#" className="hidden md:inline-block bg-pink-500 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-pink-600 transition-colors">Dashboard</a>
+            <a href="https://discord.gg/YFNWrZ68Dv" target="_blank" rel="noopener noreferrer" className="hidden md:inline-block bg-gradient-to-r from-indigo-500 to-violet-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:from-indigo-400 hover:to-violet-500 shadow-lg shadow-indigo-600/40 transition-all">Join Discord</a>
             <div className="md:hidden ml-4">
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-300 hover:text-white">
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -141,7 +141,7 @@ const Navbar = () => {
                       </div>
                     )}
                  </div>
-                 <a href="#" onClick={closeAllMenus} className="text-gray-300 hover:bg-gray-800 p-3 rounded-lg transition-colors">Dashboard</a>
+                 <a href="https://discord.gg/YFNWrZ68Dv" target="_blank" rel="noopener noreferrer" onClick={closeAllMenus} className="text-white bg-gradient-to-r from-indigo-500 to-violet-600 p-3 rounded-lg text-center font-semibold">Join Discord</a>
                </div>
             </motion.div>
           </motion.div>

@@ -20,6 +20,20 @@
     background-repeat: no-repeat;
     
     /* Beri warna dasar jika gambar gagal dimuat */
-    background-color: #0c0a18;
+    background-color: #06060f;
   }
 }
+
+@layer utilities {
+  .text-gradient-indigo {
+    @apply bg-gradient-to-r from-indigo-300 via-violet-300 to-indigo-400 bg-clip-text text-transparent;
+  }
+  .ring-glow-indigo {
+    box-shadow: 0 0 0 1px rgba(99,102,241,0.4), 0 0 40px -8px rgba(79,70,229,0.6);
+  }
+  @keyframes float-slow { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(4deg); } }
+  .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  .animate-shimmer { background-size: 200% 100%; animation: shimmer 3s linear infinite; }
+}
+

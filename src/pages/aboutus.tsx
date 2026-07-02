@@ -29,7 +29,7 @@ const AboutUs = () => {
                     transition={{ duration: 0.7 }} 
                     className="text-center mb-20"
                 >
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4">About <span className="text-pink-400">Legacy Cloud</span></h1>
+                    <h1 className="text-4xl md:text-6xl font-bold mb-4">About <span className="text-indigo-400">Legacy Cloud</span></h1>
                     <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                         Providing high-performance hosting solutions with leading technology for developers, gamers, and businesses worldwide.
                     </p>
@@ -66,7 +66,7 @@ const AboutUs = () => {
                         transition={{ duration: 0.5 }}
                         className="text-3xl md:text-4xl font-bold text-center mb-10"
                     >
-                        Our <span className="text-pink-400">Team</span>
+                        Our <span className="text-indigo-400">Team</span>
                     </motion.h2>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
                         {teamMembers.map((member, index) => (
@@ -80,7 +80,7 @@ const AboutUs = () => {
                             >
                                 <img src={member.image} alt={member.name} className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full object-cover border-4 border-gray-700 mb-4" />
                                 <h3 className="font-bold text-lg">{member.name}</h3>
-                                <p className="text-pink-400 text-sm">{member.role}</p>
+                                <p className="text-indigo-400 text-sm">{member.role}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -107,7 +107,7 @@ const AboutUs = () => {
                                 transition={{ duration: 0.5, delay: index * 0.15 }}
                                 className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg text-center border border-gray-700"
                             >
-                                <value.icon className="w-12 h-12 text-pink-400 mx-auto mb-4" />
+                                <value.icon className="w-12 h-12 text-indigo-400 mx-auto mb-4" />
                                 <h3 className="font-bold text-xl mb-2">{value.title}</h3>
                                 <p className="text-gray-400 text-sm">{value.description}</p>
                             </motion.div>

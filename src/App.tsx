@@ -12,6 +12,9 @@ import Experience from './components/Experience';
 import Reviews from './components/Reviews';
 import Cta from './components/Cta';
 import Footer from './components/Footer';
+import Stats from './components/Stats';
+import LiveStatus from './components/LiveStatus';
+
 import NotFound from './components/NotFound';
 
 // Import semua halaman baru
@@ -38,14 +41,17 @@ const Home = () => (
   <>
     <Hero />
     <Features />
+    <Stats />
     <Locations />
     <Pricing />
+    <LiveStatus />
     <Questions />
     <Experience />
     <Reviews />
     <Cta />
   </>
 );
+
 
 function App() {
   return (

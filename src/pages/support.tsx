@@ -52,8 +52,8 @@ const Support = () => {
                     transition={{ duration: 0.7 }} 
                     className="text-center mb-16"
                 >
-                    <LifeBuoy className="w-16 h-16 text-pink-400 mx-auto mb-4" />
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4">Help <span className="text-pink-400">Center</span></h1>
+                    <LifeBuoy className="w-16 h-16 text-indigo-400 mx-auto mb-4" />
+                    <h1 className="text-4xl md:text-6xl font-bold mb-4">Help <span className="text-indigo-400">Center</span></h1>
                     <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
                         We're here to help. Find answers or contact our support team.
                     </p>
@@ -66,9 +66,9 @@ const Support = () => {
                         initial={{ opacity: 0, x: -50 }} 
                         animate={{ opacity: 1, x: 0 }} 
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg flex flex-col items-center text-center border border-gray-700 hover:border-pink-500 hover:bg-gray-800 transition-all"
+                        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg flex flex-col items-center text-center border border-gray-700 hover:border-indigo-500 hover:bg-gray-800 transition-all"
                     >
-                        <MessageSquare className="w-12 h-12 text-pink-400 mb-4" />
+                        <MessageSquare className="w-12 h-12 text-indigo-400 mb-4" />
                         <h2 className="text-2xl font-bold mb-2">Open a Ticket</h2>
                         <p className="text-gray-400">Get personalized help from our expert team for your technical issues.</p>
                     </motion.a>
@@ -77,9 +77,9 @@ const Support = () => {
                         initial={{ opacity: 0, x: 50 }} 
                         animate={{ opacity: 1, x: 0 }} 
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg flex flex-col items-center text-center border border-gray-700 hover:border-pink-500 hover:bg-gray-800 transition-all"
+                        className="bg-gray-800/50 backdrop-blur-sm p-8 rounded-lg flex flex-col items-center text-center border border-gray-700 hover:border-indigo-500 hover:bg-gray-800 transition-all"
                     >
-                        <BookOpen className="w-12 h-12 text-pink-400 mb-4" />
+                        <BookOpen className="w-12 h-12 text-indigo-400 mb-4" />
                         <h2 className="text-2xl font-bold mb-2">Knowledge Base</h2>
                         <p className="text-gray-400">Explore our comprehensive guides, tutorials, and documentation.</p>
                     </motion.a>

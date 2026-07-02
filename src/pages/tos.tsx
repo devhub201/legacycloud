@@ -4,10 +4,10 @@ import { FileText } from 'lucide-react';
 // Component for styling legal content
 const LegalContent = ({ children }: { children: React.ReactNode }) => (
     <div className="prose prose-invert prose-lg max-w-none 
-                    prose-h2:text-pink-400 prose-h2:font-bold prose-h2:mb-2 prose-h2:mt-8
+                    prose-h2:text-indigo-400 prose-h2:font-bold prose-h2:mb-2 prose-h2:mt-8
                     prose-p:text-gray-300 prose-p:leading-relaxed
                     prose-ul:list-disc prose-ul:ml-6 prose-ul:text-gray-300
-                    prose-a:text-pink-400 hover:prose-a:text-pink-300">
+                    prose-a:text-indigo-400 hover:prose-a:text-indigo-300">
         {children}
     </div>
 );
@@ -24,7 +24,7 @@ const TOS = () => {
                     transition={{ duration: 0.7 }} 
                     className="text-center mb-12"
                 >
-                    <FileText className="w-16 h-16 text-pink-400 mx-auto mb-4" />
+                    <FileText className="w-16 h-16 text-indigo-400 mx-auto mb-4" />
                     <h1 className="text-4xl md:text-5xl font-bold">Terms of Service</h1>
                     <p className="text-gray-400 mt-2">Last Updated: September 29, 2025</p>
                 </motion.div>

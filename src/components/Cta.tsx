@@ -10,12 +10,12 @@ const Cta = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="relative bg-pink-500 rounded-2xl p-8 md:p-12 overflow-hidden"
+          className="relative bg-indigo-500 rounded-2xl p-8 md:p-12 overflow-hidden"
         >
           {/* === Ikon-ikon dekoratif di background === */}
-          <DiscordLogo className="absolute -top-4 -left-4 w-24 h-24 text-pink-500/30 opacity-50 transform rotate-12" />
-          <DiscordLogo className="absolute -bottom-6 right-1/3 w-16 h-16 text-pink-500/30 opacity-50 transform -rotate-12" />
-          <DiscordLogo className="absolute top-1/2 -translate-y-1/2 left-1/3 w-12 h-12 text-pink-500/30 opacity-50" />
+          <DiscordLogo className="absolute -top-4 -left-4 w-24 h-24 text-indigo-500/30 opacity-50 transform rotate-12" />
+          <DiscordLogo className="absolute -bottom-6 right-1/3 w-16 h-16 text-indigo-500/30 opacity-50 transform -rotate-12" />
+          <DiscordLogo className="absolute top-1/2 -translate-y-1/2 left-1/3 w-12 h-12 text-indigo-500/30 opacity-50" />
           
           <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             {/* === Kolom Kiri: Teks Ajakan === */}
@@ -26,10 +26,10 @@ const Cta = () => {
                   Join Our <span className="font-extrabold">Discord</span>
                 </h2>
               </div>
-              <p className="text-pink-200 text-lg">
+              <p className="text-indigo-200 text-lg">
                 Connect with our community of gamers and developers.
               </p>
-              <p className="text-pink-200 mt-2">
+              <p className="text-indigo-200 mt-2">
                 Get instant support, share experiences, and stay updated with the latest news.
               </p>
             </div>
@@ -37,7 +37,7 @@ const Cta = () => {
             {/* === Kolom Kanan: Gambar/Tombol === */}
             <div className="flex justify-center md:justify-end">
                 {/* Kita gunakan <a> tag agar bisa diklik dan mengarah ke link Discord */}
-              <a href="https://discord.gg/FnEe7xcYZQ" target="_blank" rel="noopener noreferrer">
+              <a href="https://discord.gg/YFNWrZ68Dv" target="_blank" rel="noopener noreferrer">
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: 'spring', stiffness: 300 }}

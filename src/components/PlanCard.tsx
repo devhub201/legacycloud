@@ -28,7 +28,7 @@ const PlanCard = ({ plan, index = 0, accentLabel }: Props) => {
           loading="lazy"
         />
         {accentLabel && (
-          <span className="absolute top-3 right-3 text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-full bg-pink-500/90 text-white">
+          <span className="absolute top-3 right-3 text-[10px] uppercase tracking-widest font-bold px-2 py-1 rounded-full bg-indigo-500/90 text-white">
             {accentLabel}
           </span>
         )}
@@ -37,10 +37,10 @@ const PlanCard = ({ plan, index = 0, accentLabel }: Props) => {
       <div className="p-6">
         <h3 className="text-2xl font-bold text-white tracking-wide">{meta.name} Plan</h3>
         <ul className="space-y-2 mt-4 text-gray-300 text-sm">
-          <li className="flex items-center gap-3"><MemoryStick size={16} className="text-pink-400" /> {plan.ram} GB RAM</li>
-          <li className="flex items-center gap-3"><Cpu size={16} className="text-pink-400" /> {plan.cpu}% CPU</li>
-          <li className="flex items-center gap-3"><HardDrive size={16} className="text-pink-400" /> {plan.storage} GB SSD</li>
-          <li className="flex items-center gap-3"><Shield size={16} className="text-pink-400" /> DDoS Protection</li>
+          <li className="flex items-center gap-3"><MemoryStick size={16} className="text-indigo-400" /> {plan.ram} GB RAM</li>
+          <li className="flex items-center gap-3"><Cpu size={16} className="text-indigo-400" /> {plan.cpu}% CPU</li>
+          <li className="flex items-center gap-3"><HardDrive size={16} className="text-indigo-400" /> {plan.storage} GB SSD</li>
+          <li className="flex items-center gap-3"><Shield size={16} className="text-indigo-400" /> DDoS Protection</li>
         </ul>
         <div className="mt-6 flex items-baseline justify-between">
           <p className="text-3xl font-extrabold text-white">
@@ -52,7 +52,7 @@ const PlanCard = ({ plan, index = 0, accentLabel }: Props) => {
           href={DISCORD_INVITE}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-5 block text-center w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-3 rounded-lg hover:from-pink-400 hover:to-pink-500 transition-colors"
+          className="mt-5 block text-center w-full bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-semibold py-3 rounded-lg hover:from-indigo-400 hover:to-indigo-500 transition-colors"
         >
           Order Now
         </a>

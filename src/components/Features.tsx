@@ -68,11 +68,11 @@ const Features = () => {
           transition={{ duration: 0.8 }}
           className="text-left mb-12"
         >
-          <span className="bg-pink-500/20 text-pink-300 text-sm font-semibold px-4 py-1 rounded-full">
+          <span className="bg-indigo-500/20 text-indigo-300 text-sm font-semibold px-4 py-1 rounded-full">
             We Won't Disappoint
           </span>
           <h2 className="text-4xl sm:text-5xl font-bold text-white mt-4">
-            Advanced <span className="text-pink-400">Features</span>
+            Advanced <span className="text-indigo-400">Features</span>
           </h2>
           <p className="text-lg text-gray-400 mt-2 max-w-3xl">
             Everything you need for professional game server hosting
@@ -93,7 +93,7 @@ const Features = () => {
             >
               <div className="flex justify-between items-start">
                   <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
-                  <feature.icon className="text-pink-400" size={24} />
+                  <feature.icon className="text-indigo-400" size={24} />
               </div>
               <p className="text-gray-400 mt-2">
                 {feature.description}

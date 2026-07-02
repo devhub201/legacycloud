@@ -32,7 +32,7 @@ const VpsPricing = () => {
           className="text-center max-w-3xl mx-auto"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            VPS <span className="text-pink-400">Hosting</span>
+            VPS <span className="text-indigo-400">Hosting</span>
           </h1>
           <p className="text-lg text-gray-300">
             High-performance virtual private servers with full root access, NVMe SSD storage, and 24/7 support.
@@ -40,14 +40,14 @@ const VpsPricing = () => {
         </motion.div>
 
         <div className="flex justify-center mt-10">
-          <div className="inline-flex bg-gray-900/70 backdrop-blur-md border border-pink-500/30 rounded-full p-1">
+          <div className="inline-flex bg-gray-900/70 backdrop-blur-md border border-indigo-500/30 rounded-full p-1">
             {(['budget', 'premium'] as Tier[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTier(t)}
                 className={`px-6 py-2 rounded-full text-sm font-semibold uppercase tracking-wider transition-all ${
                   tier === t
-                    ? 'bg-gradient-to-r from-pink-500 to-pink-600 text-white shadow-lg shadow-pink-500/40'
+                    ? 'bg-gradient-to-r from-indigo-500 to-indigo-600 text-white shadow-lg shadow-indigo-500/40'
                     : 'text-gray-300 hover:text-white'
                 }`}
               >
@@ -78,7 +78,7 @@ const VpsPricing = () => {
             className="text-center"
           >
             <h2 className="text-3xl md:text-4xl font-bold">
-              Choose your <span className="text-pink-400">OS</span>
+              Choose your <span className="text-indigo-400">OS</span>
             </h2>
             <p className="text-gray-400 mt-2 max-w-2xl mx-auto">
               Select from a wide range of popular operating systems.
@@ -92,7 +92,7 @@ const VpsPricing = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col items-center gap-3 p-4 bg-gray-900/60 backdrop-blur-sm rounded-lg w-28 h-28 justify-center border border-pink-500/20 hover:border-pink-400 transition-colors"
+                className="flex flex-col items-center gap-3 p-4 bg-gray-900/60 backdrop-blur-sm rounded-lg w-28 h-28 justify-center border border-indigo-500/20 hover:border-indigo-400 transition-colors"
               >
                 <img src={os.logo} alt={os.name} className="w-12 h-12 object-contain" />
                 <span className="text-sm font-medium">{os.name}</span>

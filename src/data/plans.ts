@@ -70,4 +70,4 @@ export const VPS_PREMIUM: Plan[] = [
   { block: 'netherite', ram: 64, cpu: 1200, storage: 960, price: 4160 },
 ];
 
-export const DISCORD_INVITE = 'https://discord.gg/guxyBXut2E';
+export const DISCORD_INVITE = 'https://discord.gg/YFNWrZ68Dv';

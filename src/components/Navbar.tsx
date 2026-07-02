@@ -91,7 +91,7 @@ const Navbar = () => {
           </div>
           
           <div className="flex items-center z-50">
-            <a href="#" className="hidden md:inline-block bg-pink-500 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-pink-600 transition-colors">Dashboard</a>
+            <a href="#" className="hidden md:inline-block bg-indigo-500 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-600 transition-colors">Dashboard</a>
             <div className="md:hidden ml-4">
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-gray-300 hover:text-white">
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

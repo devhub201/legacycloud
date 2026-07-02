@@ -41,14 +41,17 @@ const Home = () => (
   <>
     <Hero />
     <Features />
+    <Stats />
     <Locations />
     <Pricing />
+    <LiveStatus />
     <Questions />
     <Experience />
     <Reviews />
     <Cta />
   </>
 );
+
 
 function App() {
   return (

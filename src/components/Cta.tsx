@@ -10,7 +10,7 @@ const Cta = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="relative bg-indigo-500 rounded-2xl p-8 md:p-12 overflow-hidden"
+          className="relative rounded-2xl p-8 md:p-12 overflow-hidden bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-800 shadow-2xl shadow-indigo-900/50 border border-indigo-400/30"
         >
           {/* === Ikon-ikon dekoratif di background === */}
           <DiscordLogo className="absolute -top-4 -left-4 w-24 h-24 text-indigo-500/30 opacity-50 transform rotate-12" />

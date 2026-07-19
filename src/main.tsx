@@ -1,6 +1,25 @@
-// Legacy Cloud uses the static template served at /site/.
-// Redirect the SPA entry to it.
-const path = window.location.pathname;
-if (!path.startsWith("/site/")) {
-  window.location.replace("/site/index.html" + window.location.search + window.location.hash);
-}
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "sonner";
+import App from "./App";
+import { AuthProvider } from "./lib/auth";
+import "./index.css";
+
+const qc = new QueryClient({
+  defaultOptions: { queries: { retry: 1, refetchOnWindowFocus: false } },
+});
+
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <QueryClientProvider client={qc}>
+      <BrowserRouter>
+        <AuthProvider>
+          <App />
+          <Toaster theme="dark" richColors position="top-right" />
+        </AuthProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
+  </StrictMode>,
+);

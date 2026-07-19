@@ -1,63 +1,43 @@
-# Welcome to Best Hosting Website source code in the world 
+# Legacy Panel
 
-## Project info
+Self-hosted Minecraft control plane. Docker-isolated servers, live console, file manager, backups — one-command install on any Ubuntu VPS.
 
-## How can I edit this code?
+## Install
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Legacy Cloud](https://github.com/devhub201/legacycloud.git) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```bash
+curl -fsSL https://legacycloud.lovable.app/install.sh | sudo bash
 ```
 
-**Edit a file directly in GitHub**
+Or with flags:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+sudo bash install.sh --domain panel.example.com --email you@example.com
+```
 
-**Use GitHub Codespaces**
+## Requirements
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Ubuntu 22.04 or 24.04 (Debian 12 also supported)
+- 2+ vCPU, 4+ GB RAM
+- Root / sudo
+- (Optional) A domain pointed to the VPS for SSL
 
-## What technologies are used for this project?
+## What the script does
 
-This project is built with:
+1. Installs Docker Engine, Nginx, Certbot, UFW
+2. Generates secrets (JWT, DB, admin password, node token)
+3. Writes `/opt/legacy-panel/{.env, docker-compose.yml}`
+4. Starts Postgres + API + Daemon containers
+5. Configures Nginx reverse proxy (`/api`, `/ws`, static UI)
+6. Issues Let's Encrypt SSL if `--domain` and `--email` provided
+7. Opens ports 22/80/443 on UFW
+8. Installs `legacy-panel` CLI helper
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Managing
 
-## How can I deploy this project?
-
-Simply open [Hosting](https://github.com/devhub201/legacycloud.git) and click on Share -> Publish.
+```bash
+legacy-panel up        # start
+legacy-panel down      # stop
+legacy-panel logs api  # tail logs
+legacy-panel update    # pull latest images
+legacy-panel creds     # show admin credentials
+```

@@ -4,6 +4,8 @@ import {
   Boxes, Zap, Shield, Cpu, HardDrive, Globe, Terminal, Clock,
   Check, Sparkles, HeadphonesIcon, Server, ChevronDown, Rocket,
 } from "lucide-react";
+import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
+
 
 const DISCORD = "https://discord.gg/YFNWrZ68Dv";
 
@@ -189,12 +191,15 @@ export default function App() {
     <div className="min-h-screen">
       {/* Nav */}
       <header className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-lg grad-btn flex items-center justify-center">
-            <Boxes className="w-5 h-5 text-primary-foreground" />
-          </div>
-          <span className="font-bold text-lg">Legacy Cloud</span>
+        <div className="flex items-center gap-3">
+          <img
+            src={logoAsset.url}
+            alt="Legacy Cloud logo"
+            className="w-10 h-10 rounded-lg object-cover ring-1 ring-primary/40"
+          />
+          <span className="font-bold text-lg tracking-wide">Legacy <span className="grad-text">Cloud</span></span>
         </div>
+
         <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="#features" className="hover:text-foreground transition">Features</a>
           <a href="#pricing" className="hover:text-foreground transition">Pricing</a>

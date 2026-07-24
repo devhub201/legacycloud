@@ -4,6 +4,8 @@ import {
   Boxes, Zap, Shield, Cpu, HardDrive, Globe, Terminal, Clock,
   Check, Sparkles, HeadphonesIcon, Server, ChevronDown, Rocket,
 } from "lucide-react";
+import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
+
 
 const DISCORD = "https://discord.gg/YFNWrZ68Dv";
 

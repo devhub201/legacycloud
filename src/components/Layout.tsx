@@ -1,17 +1,26 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Boxes, MessageCircle } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt } from "lucide-react";
 import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
 import { DISCORD } from "@/data/plans";
+import { useCart } from "@/lib/cart";
+import { useCurrency } from "@/lib/currency";
 
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/minecraft", label: "Minecraft" },
   { to: "/vps", label: "VPS" },
+  { to: "/dashboard", label: "Dashboard" },
   { to: "/status", label: "Status" },
   { to: "/support", label: "Support" },
   { to: "/about", label: "About" },
+];
+
+const SIDEBAR_EXTRA = [
+  { to: "/cart", label: "Cart", icon: ShoppingCart },
+  { to: "/billing", label: "Billing", icon: Receipt },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
 ];
 
 function Petals() {
@@ -34,16 +43,38 @@ function Petals() {
   );
 }
 
+function CurrencyToggle() {
+  const { currency, setCurrency } = useCurrency();
+  return (
+    <div className="glass rounded-full p-0.5 flex text-xs font-medium">
+      {(["INR", "USD"] as const).map((c) => (
+        <button
+          key={c}
+          onClick={() => setCurrency(c)}
+          className={`px-2.5 py-1 rounded-full transition ${
+            currency === c ? "grad-btn text-primary-foreground" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {c === "INR" ? "₹ INR" : "$ USD"}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
+  const { count } = useCart();
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="relative min-h-screen">
       <div
         aria-hidden
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-40"
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-60"
         style={{ backgroundImage: 'url("/background.png")' }}
       />
-      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/55 via-background/80 to-background" />
       <Petals />
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
@@ -55,7 +86,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
+          <nav className="hidden lg:flex items-center gap-6 text-sm text-muted-foreground">
             {NAV.map((n) => (
               <NavLink
                 key={n.to}
@@ -69,25 +100,93 @@ export default function Layout({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <a
-            href={DISCORD}
-            target="_blank"
-            rel="noreferrer"
-            className="grad-btn text-primary-foreground text-sm font-medium px-4 py-2 rounded-xl flex items-center gap-2"
-          >
-            <MessageCircle className="w-4 h-4" /> Discord
-          </a>
-        </div>
-        <div className="lg:hidden border-t border-border/50 overflow-x-auto">
-          <div className="flex gap-5 px-6 py-2.5 text-sm text-muted-foreground whitespace-nowrap">
-            {NAV.map((n) => (
-              <NavLink key={n.to} to={n.to} className={({ isActive }) => (isActive ? "text-foreground" : "")}>
-                {n.label}
-              </NavLink>
-            ))}
+          <div className="flex items-center gap-2">
+            <div className="hidden sm:block"><CurrencyToggle /></div>
+            <Link to="/cart" className="relative glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-secondary transition" aria-label="Cart">
+              <ShoppingCart className="w-4 h-4" />
+              {count > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 grad-btn text-primary-foreground text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                  {count}
+                </span>
+              )}
+            </Link>
+            <button
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
+              className="glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-secondary transition"
+            >
+              <Menu className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Right sidebar drawer */}
+      <AnimatePresence>
+        {open && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+              className="fixed inset-0 z-50 bg-background/70 backdrop-blur-sm"
+            />
+            <motion.aside
+              initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 320, damping: 32 }}
+              className="fixed right-0 top-0 z-50 h-full w-[86%] max-w-sm glass border-l border-border p-6 overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-8">
+                <span className="font-display font-bold text-lg">Menu</span>
+                <button onClick={() => setOpen(false)} aria-label="Close menu" className="glass w-9 h-9 rounded-lg flex items-center justify-center">
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <nav className="space-y-1.5">
+                {NAV.map((n) => (
+                  <NavLink
+                    key={n.to}
+                    to={n.to}
+                    onClick={() => setOpen(false)}
+                    className={({ isActive }) =>
+                      `block px-4 py-3 rounded-xl transition ${
+                        isActive ? "grad-btn text-primary-foreground font-medium" : "hover:bg-secondary text-muted-foreground"
+                      }`
+                    }
+                  >
+                    {n.label}
+                  </NavLink>
+                ))}
+              </nav>
+
+              <div className="mt-6 pt-6 border-t border-border/60 space-y-1.5">
+                {SIDEBAR_EXTRA.map((n) => (
+                  <Link
+                    key={n.label}
+                    to={n.to}
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-secondary transition"
+                  >
+                    <n.icon className="w-4 h-4 text-primary" /> {n.label}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-border/60 space-y-4">
+                <CurrencyToggle />
+                <a
+                  href={DISCORD}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="grad-btn text-primary-foreground text-sm font-medium px-4 py-3 rounded-xl flex items-center justify-center gap-2"
+                >
+                  <MessageCircle className="w-4 h-4" /> Join Discord
+                </a>
+              </div>
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
 
       <motion.main
         key={pathname}
@@ -121,16 +220,17 @@ export default function Layout({ children }: { children: ReactNode }) {
             </ul>
           </div>
           <div>
-            <h3 className="font-medium mb-3">Company</h3>
+            <h3 className="font-medium mb-3">Account</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><Link to="/about" className="hover:text-foreground transition">About Us</Link></li>
-              <li><Link to="/support" className="hover:text-foreground transition">Support</Link></li>
-              <li><a href={DISCORD} target="_blank" rel="noreferrer" className="hover:text-foreground transition">Discord</a></li>
+              <li><Link to="/dashboard" className="hover:text-foreground transition">Dashboard</Link></li>
+              <li><Link to="/cart" className="hover:text-foreground transition">Cart</Link></li>
+              <li><Link to="/billing" className="hover:text-foreground transition">Billing</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="font-medium mb-3">Legal</h3>
             <ul className="space-y-2 text-muted-foreground">
+              <li><Link to="/about" className="hover:text-foreground transition">About Us</Link></li>
               <li><Link to="/tos" className="hover:text-foreground transition">Terms of Service</Link></li>
               <li><Link to="/privacy" className="hover:text-foreground transition">Privacy Policy</Link></li>
             </ul>

@@ -1,10 +1,10 @@
-import PlanSection from "@/components/PlanSection";
+import PlanSwitcher from "@/components/PlanSwitcher";
 import { VPS_GROUPS } from "@/data/plans";
 
 export default function Vps() {
   return (
     <>
-      <section className="max-w-6xl mx-auto px-6 pt-16 pb-14 text-center">
+      <section className="max-w-6xl mx-auto px-6 pt-16 pb-10 text-center">
         <h1 className="font-display text-4xl md:text-6xl font-bold mb-5">
           VPS <span className="text-gradient-blossom">Hosting</span>
         </h1>
@@ -13,7 +13,7 @@ export default function Vps() {
           Ubuntu, Debian, AlmaLinux or Windows — your choice.
         </p>
       </section>
-      {VPS_GROUPS.map((g) => <PlanSection key={g.id} group={g} />)}
+      <PlanSwitcher groups={VPS_GROUPS} labels={["Budget", "Premium"]} />
     </>
   );
 }

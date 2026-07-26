@@ -8,6 +8,9 @@ import Support from "@/pages/Support";
 import About from "@/pages/About";
 import Tos from "@/pages/Tos";
 import Privacy from "@/pages/Privacy";
+import Cart from "@/pages/Cart";
+import Billing from "@/pages/Billing";
+import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -17,6 +20,9 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/minecraft" element={<Minecraft />} />
         <Route path="/vps" element={<Vps />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/billing" element={<Billing />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/status" element={<Status />} />
         <Route path="/support" element={<Support />} />
         <Route path="/about" element={<About />} />

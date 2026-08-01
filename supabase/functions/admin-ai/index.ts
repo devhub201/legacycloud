@@ -1,5 +1,5 @@
 import { createLovableAiGatewayProvider } from "../_shared/ai-gateway.ts";
-import { streamText, convertToModelMessages, type UIMessage } from "npm:ai@5";
+import { streamText } from "npm:ai@5";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -14,6 +14,8 @@ Help the admin with: diagnosing lag/TPS issues, node capacity planning, refund &
 ticket reply drafts, plan upgrade advice, incident status messages, and marketing copy.
 Be concise and practical. Use short markdown bullets. Amounts in ₹ unless asked otherwise.`;
 
+type Msg = { role: "user" | "assistant"; content: string };
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
@@ -26,16 +28,16 @@ Deno.serve(async (req) => {
       });
     }
 
-    const { messages, context } = (await req.json()) as { messages: UIMessage[]; context?: string };
+    const { messages, context } = (await req.json()) as { messages: Msg[]; context?: string };
     const gateway = createLovableAiGatewayProvider(key);
 
     const result = streamText({
       model: gateway("google/gemini-3.6-flash"),
       system: context ? `${SYSTEM}\n\nLive panel snapshot:\n${context}` : SYSTEM,
-      messages: convertToModelMessages(messages),
+      messages: (messages ?? []).slice(-16),
     });
 
-    return result.toUIMessageStreamResponse({ headers: corsHeaders });
+    return result.toTextStreamResponse({ headers: corsHeaders });
   } catch (e) {
     return new Response(JSON.stringify({ error: String(e) }), {
       status: 500,

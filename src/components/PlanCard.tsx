@@ -1,12 +1,33 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Check, Cpu, HardDrive, MemoryStick, ShoppingCart } from "lucide-react";
+import {
+  Check, Cpu, HardDrive, MemoryStick, ShoppingCart, Boxes, Mountain, Shield,
+  Crown, Gem, Flame, Server, Zap,
+} from "lucide-react";
 import { Plan } from "@/data/plans";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
+import cardMc from "@/assets/card-mc.jpg";
+import cardVps from "@/assets/card-vps.jpg";
+
+const TIER_ICON: Record<string, typeof Boxes> = {
+  Dirt: Boxes,
+  Stone: Mountain,
+  Iron: Shield,
+  Gold: Crown,
+  Diamond: Gem,
+  Netherite: Flame,
+};
+
+function iconFor(name: string) {
+  return TIER_ICON[name] ?? (name.toLowerCase().startsWith("pro") ? Zap : Server);
+}
 
 export default function PlanCard({ plan, index = 0, group = "Plan" }: { plan: Plan; index?: number; group?: string }) {
   const { add } = useCart();
   const { format } = useCurrency();
+  const isVps = group.toLowerCase().includes("vps");
+  const art = isVps ? cardVps : cardMc;
+  const TierIcon = iconFor(plan.name);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -34,14 +55,21 @@ export default function PlanCard({ plan, index = 0, group = "Plan" }: { plan: Pl
           plan.popular ? "ring-2 ring-primary/60 ring-glow-blossom" : ""
         }`}
       >
+        <span aria-hidden className="card-art" style={{ backgroundImage: `url(${art})` }} />
+        <span aria-hidden className="card-art-veil" />
         <span aria-hidden className="card-sheen" />
         {plan.popular && (
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 grad-btn text-primary-foreground text-[11px] font-semibold px-3 py-1 rounded-full">
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 grad-btn text-primary-foreground text-[11px] font-semibold px-3 py-1 rounded-full z-10">
             Most Popular
           </span>
         )}
-        <div style={{ transform: "translateZ(38px)" }} className="flex flex-col flex-1">
-          <h3 className="font-display text-xl font-bold">{plan.name}</h3>
+        <div style={{ transform: "translateZ(38px)" }} className="relative flex flex-col flex-1">
+          <div className="flex items-center gap-3">
+            <span className="icon-tile w-10 h-10 shrink-0">
+              <TierIcon className="w-5 h-5 text-primary" />
+            </span>
+            <h3 className="font-display text-xl font-bold">{plan.name}</h3>
+          </div>
           <div className="mt-3 mb-5">
             <span className="text-3xl font-bold text-gradient-blossom">{format(plan.price)}</span>
             <span className="text-sm text-muted-foreground">/month</span>
@@ -54,14 +82,16 @@ export default function PlanCard({ plan, index = 0, group = "Plan" }: { plan: Pl
               <li key={e} className="flex items-center gap-2"><Check className="w-4 h-4 text-primary shrink-0" /> {e}</li>
             ))}
           </ul>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             onClick={() =>
               add({ name: plan.name, group, ram: plan.ram, cpu: plan.cpu, storage: plan.storage, price: plan.price })
             }
             className="mt-auto text-sm font-medium py-2.5 rounded-xl grad-btn text-primary-foreground flex items-center justify-center gap-2 hover:brightness-110 transition"
           >
             <ShoppingCart className="w-4 h-4" /> Add to Cart
-          </button>
+          </motion.button>
         </div>
       </motion.div>
     </div>

@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt } from "lucide-react";
+import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck } from "lucide-react";
 import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
 import { DISCORD } from "@/data/plans";
 import { useCart } from "@/lib/cart";
@@ -21,6 +21,7 @@ const SIDEBAR_EXTRA = [
   { to: "/cart", label: "Cart", icon: ShoppingCart },
   { to: "/billing", label: "Billing", icon: Receipt },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/admin", label: "Admin Panel", icon: ShieldCheck },
 ];
 
 function Petals() {
@@ -102,6 +103,12 @@ export default function Layout({ children }: { children: ReactNode }) {
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block"><CurrencyToggle /></div>
+            <Link
+              to="/minecraft"
+              className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 hover:brightness-110 transition"
+            >
+              <Rocket className="w-4 h-4" /> Get Started
+            </Link>
             <Link to="/cart" className="relative glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-secondary transition" aria-label="Cart">
               <ShoppingCart className="w-4 h-4" />
               {count > 0 && (

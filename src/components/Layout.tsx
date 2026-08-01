@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt } from "lucide-react";
+import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck } from "lucide-react";
 import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
 import { DISCORD } from "@/data/plans";
 import { useCart } from "@/lib/cart";
@@ -21,6 +21,7 @@ const SIDEBAR_EXTRA = [
   { to: "/cart", label: "Cart", icon: ShoppingCart },
   { to: "/billing", label: "Billing", icon: Receipt },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/admin", label: "Admin Panel", icon: ShieldCheck },
 ];
 
 function Petals() {

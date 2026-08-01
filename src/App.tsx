@@ -11,6 +11,7 @@ import Privacy from "@/pages/Privacy";
 import Cart from "@/pages/Cart";
 import Billing from "@/pages/Billing";
 import Dashboard from "@/pages/Dashboard";
+import Admin from "@/pages/Admin";
 import NotFound from "@/pages/NotFound";
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/status" element={<Status />} />
         <Route path="/support" element={<Support />} />
         <Route path="/about" element={<About />} />

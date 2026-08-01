@@ -103,6 +103,12 @@ export default function Layout({ children }: { children: ReactNode }) {
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block"><CurrencyToggle /></div>
+            <Link
+              to="/minecraft"
+              className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 hover:brightness-110 transition"
+            >
+              <Rocket className="w-4 h-4" /> Get Started
+            </Link>
             <Link to="/cart" className="relative glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-secondary transition" aria-label="Cart">
               <ShoppingCart className="w-4 h-4" />
               {count > 0 && (

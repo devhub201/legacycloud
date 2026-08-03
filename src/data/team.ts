@@ -1,38 +1,41 @@
-import { Crown, Code2, Server, HeadphonesIcon, ShieldCheck, Users, Rocket, Heart, Sparkles } from "lucide-react";
+import { Crown, Code2, Shield, HeadphonesIcon, Terminal, Sparkles } from "lucide-react";
 
 export type Leader = { name: string; role: string; icon: typeof Crown; bio: string; tags: string[] };
 export type Staff = { name: string; role: string; icon: typeof Crown; detail: string };
 
-/** Replace these with the real names — structure stays the same. */
 export const LEADERS: Leader[] = [
   {
-    name: "Aryan Mehta",
-    role: "Founder & CEO",
+    name: "Cube",
+    role: "Founder & Owner",
     icon: Crown,
-    bio: "Started Legacy Cloud from one laggy SMP box. Handles hardware sourcing, pricing and long nights.",
+    bio: "Started Legacy Cloud and runs hardware sourcing, pricing and the long nights behind every node.",
     tags: ["Strategy", "Hardware", "Pricing"],
   },
   {
-    name: "Ishita Rao",
-    role: "Co-Founder & CTO",
+    name: "Lord Daiblo",
+    role: "Founder & Owner",
+    icon: Sparkles,
+    bio: "Co-founded Legacy Cloud — community, partnerships and keeping the blossom vibe alive.",
+    tags: ["Community", "Partners", "Brand"],
+  },
+  {
+    name: "Scarl",
+    role: "CEO & Owner",
+    icon: Crown,
+    bio: "Leads operations, growth and support standards across Minecraft and VPS hosting.",
+    tags: ["Operations", "Growth", "Support"],
+  },
+  {
+    name: "Aryan",
+    role: "Owner & Developer",
     icon: Code2,
     bio: "Builds the panel, provisioning automation and the anti-lag tuning stack that keeps TPS at 20.",
     tags: ["Panel", "Automation", "Performance"],
   },
-  {
-    name: "Kabir Singh",
-    role: "Head of Infrastructure",
-    icon: Server,
-    bio: "Runs our Ryzen 9 + DDR5 nodes across Mumbai, Singapore, Frankfurt and New York.",
-    tags: ["Nodes", "Networking", "DDoS"],
-  },
 ];
 
 export const STAFF: Staff[] = [
-  { name: "Riya", role: "Support Lead", icon: HeadphonesIcon, detail: "First reply under 5 min on Discord" },
-  { name: "Dev", role: "Security Engineer", icon: ShieldCheck, detail: "Edge filtering & abuse handling" },
-  { name: "Nikhil", role: "Community Manager", icon: Users, detail: "Events, giveaways & partner SMPs" },
-  { name: "Sana", role: "Billing Specialist", icon: Rocket, detail: "Invoices, upgrades & refunds" },
-  { name: "Omkar", role: "Modpack Specialist", icon: Sparkles, detail: "Forge, Fabric & Quilt tuning" },
-  { name: "Tanvi", role: "Design & Brand", icon: Heart, detail: "Everything blossom-shaped" },
+  { name: "Dark Protocol", role: "Developer & Moderator", icon: Terminal, detail: "Panel features, bots and moderation" },
+  { name: "NotLegoMc", role: "Staff", icon: HeadphonesIcon, detail: "Player support on Discord" },
+  { name: "Legacy Crew", role: "Support & Security", icon: Shield, detail: "Tickets, abuse handling and billing help" },
 ];

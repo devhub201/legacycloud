@@ -4,29 +4,33 @@
 
 @layer base {
   :root {
-    --background: 280 40% 5%;
+    --background: 262 45% 6%;
     --foreground: 340 25% 96%;
-    --card: 285 35% 8%;
+    --card: 260 38% 9%;
     --card-foreground: 340 25% 96%;
-    --popover: 285 35% 8%;
+    --popover: 260 38% 9%;
     --popover-foreground: 340 25% 96%;
     --primary: 340 82% 58%;
     --primary-foreground: 340 25% 99%;
     --primary-glow: 330 90% 68%;
-    --secondary: 285 25% 14%;
+    --secondary: 258 28% 15%;
     --secondary-foreground: 340 25% 96%;
-    --muted: 285 22% 15%;
-    --muted-foreground: 330 15% 72%;
-    --accent: 320 75% 65%;
+    --muted: 258 24% 16%;
+    --muted-foreground: 265 18% 76%;
+    --accent: 275 85% 70%;
     --accent-foreground: 340 25% 99%;
     --destructive: 0 72% 55%;
     --destructive-foreground: 340 25% 99%;
-    --border: 325 30% 22%;
-    --input: 285 25% 14%;
+    --border: 268 28% 24%;
+    --input: 258 28% 15%;
     --ring: 340 82% 58%;
     --radius: 1rem;
     --success: 152 65% 48%;
     --warning: 38 92% 58%;
+    --info: 192 92% 55%;
+    --info-foreground: 200 40% 8%;
+    --mint: 160 78% 48%;
+    --violet: 268 88% 68%;
   }
 }
 
@@ -37,8 +41,9 @@ body {
   font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   color: hsl(var(--foreground));
   background:
-    radial-gradient(1100px 600px at 12% -10%, hsl(340 82% 40% / 0.28), transparent 62%),
-    radial-gradient(900px 520px at 108% 6%, hsl(320 75% 45% / 0.22), transparent 60%),
+    radial-gradient(1100px 620px at 10% -12%, hsl(340 82% 45% / 0.22), transparent 62%),
+    radial-gradient(950px 560px at 105% 4%, hsl(268 85% 52% / 0.24), transparent 62%),
+    radial-gradient(800px 520px at 50% 108%, hsl(192 90% 45% / 0.14), transparent 62%),
     hsl(var(--background));
   background-attachment: fixed;
 }
@@ -56,7 +61,7 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
   box-shadow: 0 10px 34px -12px hsl(340 90% 55% / 0.7);
 }
 .glass {
-  background: hsl(285 35% 8% / 0.66);
+  background: hsl(260 40% 9% / 0.64);
   backdrop-filter: blur(12px);
   border: 1px solid hsl(var(--border));
 }
@@ -129,7 +134,7 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
 .card-art-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, hsl(285 40% 7% / 0.55), hsl(285 40% 6% / 0.92));
+  background: linear-gradient(180deg, hsl(262 45% 8% / 0.52), hsl(262 48% 6% / 0.9));
 }
 
 /* ── Motion utilities ────────────────────────────── */
@@ -171,3 +176,45 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
 }
 .icon-tile svg { color: hsl(var(--primary-foreground)); stroke-width: 2.2; }
 
+
+/* ── Icon tile tones (variety, not everything pink) ─── */
+.icon-tile.tone-cyan {
+  background: linear-gradient(140deg, hsl(192 92% 52%), hsl(210 90% 48%));
+  border-color: hsl(192 95% 72% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(192 92% 50% / 0.8);
+}
+.icon-tile.tone-violet {
+  background: linear-gradient(140deg, hsl(268 88% 66%), hsl(288 80% 56%));
+  border-color: hsl(272 92% 80% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(270 88% 60% / 0.8);
+}
+.icon-tile.tone-mint {
+  background: linear-gradient(140deg, hsl(160 78% 46%), hsl(180 78% 42%));
+  border-color: hsl(160 85% 70% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(165 80% 45% / 0.8);
+}
+.icon-tile.tone-amber {
+  background: linear-gradient(140deg, hsl(38 95% 58%), hsl(20 90% 54%));
+  border-color: hsl(40 95% 74% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(32 92% 55% / 0.8);
+}
+.icon-tile { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, filter .35s ease; }
+
+/* ── Hover interactions ─────────────────────────────── */
+.hover-lift { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease; }
+.hover-lift:hover { border-color: hsl(var(--primary) / 0.45); }
+.hover-lift:hover .icon-hover,
+.icon-hover:hover {
+  transform: translateY(-3px) rotate(-6deg) scale(1.08);
+  filter: brightness(1.08);
+}
+
+.text-info { color: hsl(var(--info)); }
+.text-mint { color: hsl(var(--mint)); }
+.bg-info { background-color: hsl(var(--info)); }
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise-in { animation: rise-in .5s cubic-bezier(.2,.8,.2,1) both; }

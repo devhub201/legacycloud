@@ -1,13 +1,21 @@
 import { motion } from "framer-motion";
-import { ShieldCheck, Heart, Globe, MessageCircle, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ShieldCheck, Heart, Globe, MessageCircle, Sparkles, Users, Server, Rocket } from "lucide-react";
 import { DISCORD } from "@/data/plans";
 import { LEADERS, STAFF } from "@/data/team";
-
+import TeamCard from "@/components/TeamCard";
 
 const VALUES = [
-  { icon: Heart, title: "Players first", desc: "We host what we play. Every decision starts with the server owner." },
-  { icon: ShieldCheck, title: "Honest pricing", desc: "₹15/GB is the real price — no promo tricks, no renewal surprises." },
-  { icon: Globe, title: "Global, low ping", desc: "Four regions so your community connects close to home." },
+  { icon: Heart, tone: "", title: "Players first", desc: "We host what we play. Every decision starts with the server owner." },
+  { icon: ShieldCheck, tone: "tone-cyan", title: "Honest pricing", desc: "₹15/GB is the real price — no promo tricks, no renewal surprises." },
+  { icon: Globe, tone: "tone-mint", title: "Global, low ping", desc: "Four regions so your community connects close to home." },
+];
+
+const STATS = [
+  { n: "2021", l: "Founded", icon: Sparkles, tone: "tone-amber" },
+  { n: "2,800+", l: "Servers hosted", icon: Server, tone: "tone-cyan" },
+  { n: "30+", l: "Countries served", icon: Globe, tone: "tone-mint" },
+  { n: "12", l: "Team members", icon: Users, tone: "tone-violet" },
 ];
 
 export default function About() {
@@ -27,77 +35,32 @@ export default function About() {
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-4 gap-4 my-12">
-        {[
-          { n: "2021", l: "Founded" },
-          { n: "2,800+", l: "Servers hosted" },
-          { n: "30+", l: "Countries served" },
-          { n: "12", l: "Team members" },
-        ].map((s, i) => (
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 my-12">
+        {STATS.map((s, i) => (
           <motion.div
             key={s.l}
             initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ delay: i * 0.06 }}
             whileHover={{ y: -5, rotateX: 7 }} style={{ transformStyle: "preserve-3d" }}
-            className="glass rounded-2xl p-5 text-center card-3d"
+            className="glass rounded-2xl p-5 text-center card-3d hover-lift"
           >
+            <span className={`icon-tile ${s.tone} w-10 h-10 mx-auto mb-3 icon-hover`}><s.icon className="w-5 h-5" /></span>
             <div className="text-2xl font-bold text-gradient-blossom">{s.n}</div>
             <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
           </motion.div>
         ))}
       </div>
 
-      <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Leadership</h2>
+      <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Owners &amp; leadership</h2>
       <p className="text-muted-foreground text-sm mb-8">The people who answer for every node we run.</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
-        {LEADERS.map((p, i) => (
-          <div key={p.name} className="[perspective:1000px]">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: i * 0.07 }}
-              whileHover={{ y: -6, rotateX: 6, rotateY: -5 }} style={{ transformStyle: "preserve-3d" }}
-              className="glass rounded-2xl p-6 card-3d h-full"
-            >
-              <span aria-hidden className="card-sheen" />
-              <div className="flex items-center gap-4 mb-4">
-                <span className="icon-tile w-14 h-14 animate-glow-pulse">
-                  <p.icon className="w-6 h-6 text-primary" />
-                </span>
-                <div>
-                  <h3 className="font-display font-bold text-lg leading-tight">{p.name}</h3>
-                  <div className="text-xs text-gradient-blossom font-semibold">{p.role}</div>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{p.bio}</p>
-              <div className="flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-secondary text-muted-foreground">{t}</span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        ))}
+        {LEADERS.map((p, i) => <TeamCard key={p.name} member={p} index={i} />)}
       </div>
 
       <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Staff &amp; crew</h2>
       <p className="text-muted-foreground text-sm mb-8">Real humans on Discord, not a ticket robot.</p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
-        {STAFF.map((s, i) => (
-          <motion.div
-            key={s.name}
-            initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            whileHover={{ y: -4 }}
-            className="glass rounded-2xl p-5 flex items-start gap-4 card-3d"
-          >
-            <span className="icon-tile w-11 h-11 shrink-0"><s.icon className="w-5 h-5 text-primary" /></span>
-            <div>
-              <div className="font-medium">{s.name}</div>
-              <div className="text-xs text-gradient-blossom font-semibold mb-1">{s.role}</div>
-              <div className="text-xs text-muted-foreground">{s.detail}</div>
-            </div>
-          </motion.div>
-        ))}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-16">
+        {STAFF.map((s, i) => <TeamCard key={s.name} member={s} index={i} compact />)}
       </div>
 
       <h2 className="font-display text-2xl md:text-3xl font-bold mb-8">What we stand for</h2>
@@ -107,19 +70,26 @@ export default function About() {
             key={v.title}
             initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ delay: i * 0.06 }}
-            className="glass rounded-2xl p-6 card-3d"
+            whileHover={{ y: -6 }}
+            className="glass rounded-2xl p-6 card-3d hover-lift"
           >
-            <span className="icon-tile w-11 h-11 mb-4"><v.icon className="w-5 h-5 text-primary" /></span>
+            <span aria-hidden className="card-sheen" />
+            <span className={`icon-tile ${v.tone} w-12 h-12 mb-4 icon-hover`}><v.icon className="w-5 h-5" /></span>
             <h3 className="font-display font-semibold text-lg mb-2">{v.title}</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
           </motion.div>
         ))}
       </div>
 
-      <a href={DISCORD} target="_blank" rel="noreferrer"
-        className="inline-flex items-center gap-2 grad-btn text-primary-foreground font-medium px-6 py-3 rounded-xl">
-        <MessageCircle className="w-4 h-4" /> Join our community
-      </a>
+      <div className="flex flex-wrap gap-3">
+        <a href={DISCORD} target="_blank" rel="noreferrer"
+          className="inline-flex items-center gap-2 grad-btn text-primary-foreground font-medium px-6 py-3 rounded-xl hover:brightness-110 transition">
+          <MessageCircle className="w-4 h-4" /> Join our community
+        </a>
+        <Link to="/careers" className="inline-flex items-center gap-2 glass px-6 py-3 rounded-xl font-medium hover:bg-secondary transition">
+          <Rocket className="w-4 h-4 text-info" /> We're hiring
+        </Link>
+      </div>
     </div>
   );
 }

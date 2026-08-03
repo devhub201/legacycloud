@@ -12,6 +12,11 @@ import Cart from "@/pages/Cart";
 import Billing from "@/pages/Billing";
 import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/NotFound";
+import Features from "@/pages/Features";
+import Faq from "@/pages/Faq";
+import Careers from "@/pages/Careers";
+import AuthPage from "@/pages/Auth";
+import RequireAdmin from "@/components/RequireAdmin";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminOverview from "@/pages/admin/Overview";
 import AdminOrders from "@/pages/admin/Orders";
@@ -33,7 +38,11 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin" element={<AdminShell />}>
+        <Route path="/features" element={<Features />} />
+        <Route path="/faq" element={<Faq />} />
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/admin" element={<RequireAdmin><AdminShell /></RequireAdmin>}>
           <Route index element={<AdminOverview />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="services" element={<AdminServices />} />

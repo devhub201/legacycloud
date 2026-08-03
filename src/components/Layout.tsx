@@ -1,27 +1,31 @@
 import { ReactNode, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck } from "lucide-react";
+import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck, LogIn, LogOut, User, Sparkles, HelpCircle } from "lucide-react";
 import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
 import { DISCORD } from "@/data/plans";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
+import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/minecraft", label: "Minecraft" },
   { to: "/vps", label: "VPS" },
+  { to: "/features", label: "Features" },
   { to: "/dashboard", label: "Dashboard" },
   { to: "/status", label: "Status" },
   { to: "/support", label: "Support" },
   { to: "/about", label: "About" },
+  { to: "/faq", label: "FAQ" },
 ];
 
 const SIDEBAR_EXTRA = [
-  { to: "/cart", label: "Cart", icon: ShoppingCart },
-  { to: "/billing", label: "Billing", icon: Receipt },
-  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/admin", label: "Admin Panel", icon: ShieldCheck },
+  { to: "/cart", label: "Cart", icon: ShoppingCart, tone: "" },
+  { to: "/billing", label: "Billing", icon: Receipt, tone: "tone-cyan" },
+  { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard, tone: "tone-violet" },
+  { to: "/careers", label: "Careers", icon: Sparkles, tone: "tone-mint" },
+  { to: "/faq", label: "Help & FAQ", icon: HelpCircle, tone: "tone-amber" },
 ];
 
 function Petals() {
@@ -66,6 +70,7 @@ function CurrencyToggle() {
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const { count } = useCart();
+  const { user, isAdmin, signOut } = useAuth();
   const [open, setOpen] = useState(false);
 
   return (
@@ -108,6 +113,13 @@ export default function Layout({ children }: { children: ReactNode }) {
               className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 hover:brightness-110 transition"
             >
               <Rocket className="w-4 h-4" /> Get Started
+            </Link>
+            <Link
+              to={user ? "/dashboard" : "/auth"}
+              aria-label={user ? "Account" : "Log in"}
+              className="glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-secondary transition"
+            >
+              {user ? <User className="w-4 h-4 text-info" /> : <LogIn className="w-4 h-4" />}
             </Link>
             <Link to="/cart" className="relative glass w-10 h-10 rounded-xl flex items-center justify-center hover:bg-secondary transition" aria-label="Cart">
               <ShoppingCart className="w-4 h-4" />
@@ -174,9 +186,37 @@ export default function Layout({ children }: { children: ReactNode }) {
                     onClick={() => setOpen(false)}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-secondary transition"
                   >
-                    <n.icon className="w-4 h-4 text-primary" /> {n.label}
+                    <span className={`icon-tile ${n.tone} w-8 h-8 shrink-0 icon-hover`}><n.icon className="w-4 h-4" /></span> {n.label}
                   </Link>
                 ))}
+              </div>
+
+              <div className="mt-6 pt-6 border-t border-border/60 space-y-1.5">
+                {isAdmin && (
+                  <Link
+                    to="/admin"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-secondary transition"
+                  >
+                    <span className="icon-tile tone-amber w-8 h-8 shrink-0 icon-hover"><ShieldCheck className="w-4 h-4" /></span> Admin Panel
+                  </Link>
+                )}
+                {user ? (
+                  <button
+                    onClick={() => { signOut(); setOpen(false); }}
+                    className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-secondary transition"
+                  >
+                    <span className="icon-tile tone-violet w-8 h-8 shrink-0 icon-hover"><LogOut className="w-4 h-4" /></span> Log out
+                  </button>
+                ) : (
+                  <Link
+                    to="/auth"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-muted-foreground hover:bg-secondary transition"
+                  >
+                    <span className="icon-tile tone-cyan w-8 h-8 shrink-0 icon-hover"><LogIn className="w-4 h-4" /></span> Log in / Sign up
+                  </Link>
+                )}
               </div>
 
               <div className="mt-6 pt-6 border-t border-border/60 space-y-4">
@@ -224,6 +264,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               <li><Link to="/minecraft" className="hover:text-foreground transition">Minecraft Hosting</Link></li>
               <li><Link to="/vps" className="hover:text-foreground transition">VPS Hosting</Link></li>
               <li><Link to="/status" className="hover:text-foreground transition">Network Status</Link></li>
+              <li><Link to="/features" className="hover:text-foreground transition">Why Legacy Cloud</Link></li>
             </ul>
           </div>
           <div>
@@ -232,12 +273,15 @@ export default function Layout({ children }: { children: ReactNode }) {
               <li><Link to="/dashboard" className="hover:text-foreground transition">Dashboard</Link></li>
               <li><Link to="/cart" className="hover:text-foreground transition">Cart</Link></li>
               <li><Link to="/billing" className="hover:text-foreground transition">Billing</Link></li>
+              <li><Link to="/auth" className="hover:text-foreground transition">Log in / Sign up</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="font-medium mb-3">Legal</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li><Link to="/about" className="hover:text-foreground transition">About Us</Link></li>
+              <li><Link to="/careers" className="hover:text-foreground transition">Careers</Link></li>
+              <li><Link to="/faq" className="hover:text-foreground transition">FAQ</Link></li>
               <li><Link to="/tos" className="hover:text-foreground transition">Terms of Service</Link></li>
               <li><Link to="/privacy" className="hover:text-foreground transition">Privacy Policy</Link></li>
             </ul>

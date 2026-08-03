@@ -6,17 +6,17 @@ import PlanCard from "@/components/PlanCard";
 import hero3d from "@/assets/hero-3d.png";
 
 const FEATURES = [
-  { icon: Cpu, title: "Ryzen 9 + DDR5", desc: "NVMe storage and high clocks keep TPS locked at 20." },
-  { icon: Rocket, title: "Live in 60 seconds", desc: "One-click Paper, Purpur, Forge, Fabric and modpacks." },
-  { icon: Shield, title: "DDoS protected", desc: "Always-on filtering on every Minecraft and VPS plan." },
-  { icon: Terminal, title: "Full panel access", desc: "Console, SFTP, backups, schedules and databases." },
+  { icon: Cpu, tone: "", title: "Ryzen 9 + DDR5", desc: "NVMe storage and high clocks keep TPS locked at 20." },
+  { icon: Rocket, tone: "tone-cyan", title: "Live in 60 seconds", desc: "One-click Paper, Purpur, Forge, Fabric and modpacks." },
+  { icon: Shield, tone: "tone-violet", title: "DDoS protected", desc: "Always-on filtering on every Minecraft and VPS plan." },
+  { icon: Terminal, tone: "tone-mint", title: "Full panel access", desc: "Console, SFTP, backups, schedules and databases." },
 ];
 
 const STATS = [
-  { n: "2,800+", l: "Servers hosted", icon: Server },
-  { n: "12,400+", l: "Players online", icon: Boxes },
-  { n: "99.9%", l: "Uptime", icon: Gauge },
-  { n: "4", l: "Regions", icon: Globe },
+  { n: "2,800+", l: "Servers hosted", icon: Server, tone: "" },
+  { n: "12,400+", l: "Players online", icon: Boxes, tone: "tone-cyan" },
+  { n: "99.9%", l: "Uptime", icon: Gauge, tone: "tone-mint" },
+  { n: "4", l: "Regions", icon: Globe, tone: "tone-violet" },
 ];
 
 function Hero3D() {
@@ -84,9 +84,9 @@ export default function Home() {
               key={s.l}
               initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="glass rounded-2xl p-5 text-center card-3d"
+              className="glass rounded-2xl p-5 text-center card-3d hover-lift"
             >
-              <span className="icon-tile w-10 h-10 mx-auto mb-3"><s.icon className="w-5 h-5" /></span>
+              <span className={`icon-tile ${s.tone} w-10 h-10 mx-auto mb-3 icon-hover`}><s.icon className="w-5 h-5" /></span>
               <div className="text-2xl md:text-3xl font-bold text-gradient-blossom">{s.n}</div>
               <div className="text-xs text-muted-foreground mt-1">{s.l}</div>
             </motion.div>
@@ -106,7 +106,7 @@ export default function Home() {
               className="glass rounded-2xl p-6 card-3d"
             >
               <span aria-hidden className="card-sheen" />
-              <span className="icon-tile w-12 h-12 mb-4"><f.icon className="w-5 h-5" /></span>
+              <span className={`icon-tile ${f.tone} w-12 h-12 mb-4 icon-hover`}><f.icon className="w-5 h-5" /></span>
               <h3 className="font-display font-semibold text-lg mb-2">{f.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
             </motion.div>
@@ -136,7 +136,7 @@ export default function Home() {
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {LOCATIONS.map((l) => (
-            <div key={l.city} className="glass rounded-2xl p-5 flex items-center justify-between">
+            <div key={l.city} className="glass rounded-2xl p-5 flex items-center justify-between hover-lift">
               <div>
                 <div className="font-medium">{l.flag} {l.city}</div>
                 <div className="text-xs text-muted-foreground">{l.country}</div>

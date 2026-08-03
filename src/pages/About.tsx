@@ -49,7 +49,7 @@ export default function About() {
 
       <h2 className="font-display text-2xl md:text-3xl font-bold mb-2">Leadership</h2>
       <p className="text-muted-foreground text-sm mb-8">The people who answer for every node we run.</p>
-      <div className="grid md:grid-cols-3 gap-5 mb-16">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
         {LEADERS.map((p, i) => (
           <div key={p.name} className="[perspective:1000px]">
             <motion.div

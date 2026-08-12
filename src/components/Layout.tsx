@@ -10,8 +10,7 @@ import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/minecraft", label: "Minecraft" },
-  { to: "/vps", label: "VPS" },
+  { to: "/pricing", label: "Pricing" },
   { to: "/features", label: "Features" },
   { to: "/dashboard", label: "Dashboard" },
   { to: "/status", label: "Status" },
@@ -109,7 +108,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-2">
             <div className="hidden sm:block"><CurrencyToggle /></div>
             <Link
-              to="/minecraft"
+              to="/pricing"
               className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 hover:brightness-110 transition"
             >
               <Rocket className="w-4 h-4" /> Get Started
@@ -261,7 +260,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <div>
             <h3 className="font-medium mb-3">Hosting</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><Link to="/minecraft" className="hover:text-foreground transition">Minecraft Hosting</Link></li>
+              <li><Link to="/pricing" className="hover:text-foreground transition">Minecraft Hosting</Link></li>
               <li><Link to="/vps" className="hover:text-foreground transition">VPS Hosting</Link></li>
               <li><Link to="/status" className="hover:text-foreground transition">Network Status</Link></li>
               <li><Link to="/features" className="hover:text-foreground transition">Why Legacy Cloud</Link></li>

@@ -2,18 +2,21 @@ import { useEffect, useRef, useState } from "react";
 import { Bot, Loader2, Send, Sparkles, Trash2 } from "lucide-react";
 import { useCurrency } from "@/lib/currency";
 import { NODES, useAdminData } from "@/lib/adminData";
+import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
 const SUGGESTIONS = [
-  "Draft a reply for a customer whose server keeps hitting 12 TPS.",
-  "How much RAM headroom do I need to add 40 more Budget servers?",
-  "Write an incident status update for Frankfurt packet loss.",
+  "Add a new 'Dedicated Servers' category with 3 plans.",
+  "Switch the site theme to a lighter medium blue.",
+  "Make the homepage hero headline punchier and update the CTA.",
   "Suggest an upgrade path from MC Budget 4GB for a 60-player SMP.",
 ];
 
 export default function AdminAi() {
   const { format } = useCurrency();
+  const qc = useQueryClient();
   const { orders, revenue, mcCount, vpsCount } = useAdminData();
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
@@ -43,11 +46,14 @@ export default function AdminAi() {
     ].join("\n");
 
     try {
+      const { data: sess } = await supabase.auth.getSession();
+      const token = sess.session?.access_token ?? import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
       const res = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/admin-ai`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${token}`,
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string,
         },
         body: JSON.stringify({ messages: next, context: snapshot }),
       });
@@ -71,6 +77,9 @@ export default function AdminAi() {
     } catch {
       setError("Network error — AI se connect nahi ho paya.");
     } finally {
+      qc.invalidateQueries({ queryKey: ["catalog"] });
+      qc.invalidateQueries({ queryKey: ["page-sections"] });
+      qc.invalidateQueries({ queryKey: ["site-settings"] });
       setBusy(false);
     }
   }
@@ -82,7 +91,7 @@ export default function AdminAi() {
           <span className="icon-tile w-10 h-10"><Bot className="w-5 h-5" /></span>
           <div>
             <div className="font-display font-bold leading-tight">Blossom AI</div>
-            <div className="text-xs text-muted-foreground">Ops assistant · sees live panel stats</div>
+            <div className="text-xs text-muted-foreground">Site manager · edits plans, pages & theme live</div>
           </div>
           {messages.length > 0 && (
             <button onClick={() => setMessages([])} className="ml-auto glass w-9 h-9 rounded-lg flex items-center justify-center" aria-label="Clear chat">

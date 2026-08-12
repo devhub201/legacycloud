@@ -1,18 +1,21 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  LayoutDashboard, Receipt, Server, Users, Activity, Bot, LifeBuoy, UserCog, Settings, ShieldCheck,
+  LayoutDashboard, Receipt, Server, Users, Activity, Bot, LifeBuoy, UserCog, Settings, ShieldCheck, Layers, FileText, Palette,
 } from "lucide-react";
 
 const LINKS = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, end: true },
+  { to: "/admin/catalog", label: "Catalog", icon: Layers },
+  { to: "/admin/content", label: "Content", icon: FileText },
+  { to: "/admin/appearance", label: "Appearance", icon: Palette },
   { to: "/admin/orders", label: "Orders", icon: Receipt },
   { to: "/admin/services", label: "Services", icon: Server },
   { to: "/admin/customers", label: "Customers", icon: Users },
   { to: "/admin/nodes", label: "Nodes", icon: Activity },
   { to: "/admin/tickets", label: "Tickets", icon: LifeBuoy },
   { to: "/admin/staff", label: "Staff", icon: UserCog },
-  { to: "/admin/ai", label: "Blossom AI", icon: Bot },
+  { to: "/admin/ai", label: "AI Manager", icon: Bot },
   { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 

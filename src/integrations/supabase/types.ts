@@ -277,6 +277,179 @@ export type Database = {
         }
         Relationships: []
       }
+      page_sections: {
+        Row: {
+          body: string | null
+          created_at: string
+          cta_href: string | null
+          cta_label: string | null
+          eyebrow: string | null
+          heading: string | null
+          id: string
+          image_url: string | null
+          is_visible: boolean
+          items: Json
+          page: string
+          sort_order: number
+          subheading: string | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          cta_href?: string | null
+          cta_label?: string | null
+          eyebrow?: string | null
+          heading?: string | null
+          id?: string
+          image_url?: string | null
+          is_visible?: boolean
+          items?: Json
+          page?: string
+          sort_order?: number
+          subheading?: string | null
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          cta_href?: string | null
+          cta_label?: string | null
+          eyebrow?: string | null
+          heading?: string | null
+          id?: string
+          image_url?: string | null
+          is_visible?: boolean
+          items?: Json
+          page?: string
+          sort_order?: number
+          subheading?: string | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string
+          id: string
+          image_url: string | null
+          is_active: boolean
+          kind: string
+          name: string
+          rate_label: string | null
+          slug: string
+          sort_order: number
+          tagline: string | null
+          tone: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          kind?: string
+          name: string
+          rate_label?: string | null
+          slug: string
+          sort_order?: number
+          tagline?: string | null
+          tone?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          kind?: string
+          name?: string
+          rate_label?: string | null
+          slug?: string
+          sort_order?: number
+          tagline?: string | null
+          tone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      product_plans: {
+        Row: {
+          bandwidth: string | null
+          billing_cycle: string
+          category_id: string
+          cpu: string | null
+          created_at: string
+          currency: string
+          features: Json
+          icon: string
+          id: string
+          is_active: boolean
+          is_popular: boolean
+          name: string
+          price: number
+          ram: string | null
+          sort_order: number
+          storage: string | null
+          updated_at: string
+        }
+        Insert: {
+          bandwidth?: string | null
+          billing_cycle?: string
+          category_id: string
+          cpu?: string | null
+          created_at?: string
+          currency?: string
+          features?: Json
+          icon?: string
+          id?: string
+          is_active?: boolean
+          is_popular?: boolean
+          name: string
+          price?: number
+          ram?: string | null
+          sort_order?: number
+          storage?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bandwidth?: string | null
+          billing_cycle?: string
+          category_id?: string
+          cpu?: string | null
+          created_at?: string
+          currency?: string
+          features?: Json
+          icon?: string
+          id?: string
+          is_active?: boolean
+          is_popular?: boolean
+          name?: string
+          price?: number
+          ram?: string | null
+          sort_order?: number
+          storage?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_plans_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "product_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -502,6 +675,24 @@ export type Database = {
           storage?: string | null
           updated_at?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
         }
         Relationships: []
       }

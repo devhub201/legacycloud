@@ -7,6 +7,7 @@ import App from "./App";
 import { AuthProvider } from "./lib/auth";
 import { CartProvider } from "./lib/cart";
 import { CurrencyProvider } from "./lib/currency";
+import { SiteProvider } from "./lib/site";
 import "./index.css";
 
 const qc = new QueryClient({
@@ -18,12 +19,14 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={qc}>
       <BrowserRouter>
         <AuthProvider>
-          <CurrencyProvider>
+          <SiteProvider>
+            <CurrencyProvider>
             <CartProvider>
               <App />
               <Toaster theme="dark" richColors position="top-right" />
             </CartProvider>
           </CurrencyProvider>
+          </SiteProvider>
         </AuthProvider>
       </BrowserRouter>
     </QueryClientProvider>

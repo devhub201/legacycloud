@@ -1,38 +1,31 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import {
-  Check, Cpu, HardDrive, MemoryStick, ShoppingCart, Boxes, Mountain, Shield,
-  Crown, Gem, Flame, Server, Zap,
-} from "lucide-react";
-import { Plan } from "@/data/plans";
+import { Check, Cpu, HardDrive, MemoryStick, ShoppingCart, Network } from "lucide-react";
+import { iconByName } from "@/lib/icons";
+import type { DbPlan } from "@/lib/catalog";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
-import cardMc from "@/assets/card-mc.jpg";
-import cardVps from "@/assets/card-vps.jpg";
 
-const TIER_ICON: Record<string, typeof Boxes> = {
-  Dirt: Boxes,
-  Stone: Mountain,
-  Iron: Shield,
-  Gold: Crown,
-  Diamond: Gem,
-  Netherite: Flame,
-};
-
-function iconFor(name: string) {
-  return TIER_ICON[name] ?? (name.toLowerCase().startsWith("pro") ? Zap : Server);
-}
-
-export default function PlanCard({ plan, index = 0, group = "Plan" }: { plan: Plan; index?: number; group?: string }) {
+export default function PlanCard({
+  plan,
+  index = 0,
+  group = "Plan",
+  art,
+  tone = "",
+}: {
+  plan: DbPlan;
+  index?: number;
+  group?: string;
+  art?: string | null;
+  tone?: string;
+}) {
   const { add } = useCart();
   const { format } = useCurrency();
-  const isVps = group.toLowerCase().includes("vps");
-  const art = isVps ? cardVps : cardMc;
-  const TierIcon = iconFor(plan.name);
+  const TierIcon = iconByName(plan.icon);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const rx = useSpring(useTransform(my, [-0.5, 0.5], [10, -10]), { stiffness: 200, damping: 18 });
-  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-12, 12]), { stiffness: 200, damping: 18 });
+  const rx = useSpring(useTransform(my, [-0.5, 0.5], [9, -9]), { stiffness: 200, damping: 18 });
+  const ry = useSpring(useTransform(mx, [-0.5, 0.5], [-11, 11]), { stiffness: 200, damping: 18 });
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect();
@@ -51,42 +44,53 @@ export default function PlanCard({ plan, index = 0, group = "Plan" }: { plan: Pl
         onMouseMove={onMove}
         onMouseLeave={onLeave}
         style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
-        className={`relative glass rounded-2xl p-6 flex flex-col card-3d ${
-          plan.popular ? "ring-2 ring-primary/60 ring-glow-blossom" : ""
+        className={`relative glass rounded-2xl p-6 flex flex-col card-3d hover-lift ${
+          plan.is_popular ? "ring-2 ring-primary/60 ring-glow-blossom" : ""
         }`}
       >
-        <span aria-hidden className="card-art" style={{ backgroundImage: `url(${art})` }} />
+        {art && <span aria-hidden className="card-art" style={{ backgroundImage: `url(${art})` }} />}
         <span aria-hidden className="card-art-veil" />
         <span aria-hidden className="card-sheen" />
-        {plan.popular && (
+        {plan.is_popular && (
           <span className="absolute -top-3 left-1/2 -translate-x-1/2 grad-btn text-primary-foreground text-[11px] font-semibold px-3 py-1 rounded-full z-10">
             Most Popular
           </span>
         )}
         <div style={{ transform: "translateZ(38px)" }} className="relative flex flex-col flex-1">
           <div className="flex items-center gap-3">
-            <span className="icon-tile w-10 h-10 shrink-0">
-              <TierIcon className="w-5 h-5 text-primary" />
+            <span className={`icon-tile ${tone} w-10 h-10 shrink-0 icon-hover`}>
+              <TierIcon className="w-5 h-5" />
             </span>
             <h3 className="font-display text-xl font-bold">{plan.name}</h3>
           </div>
           <div className="mt-3 mb-5">
             <span className="text-3xl font-bold text-gradient-blossom">{format(plan.price)}</span>
-            <span className="text-sm text-muted-foreground">/month</span>
+            <span className="text-sm text-muted-foreground">
+              /{plan.billing_cycle === "yearly" ? "year" : "month"}
+            </span>
           </div>
           <ul className="space-y-2.5 text-sm mb-6">
-            <li className="flex items-center gap-2"><MemoryStick className="w-4 h-4 text-primary shrink-0" /> {plan.ram} RAM</li>
-            <li className="flex items-center gap-2"><Cpu className="w-4 h-4 text-primary shrink-0" /> {plan.cpu}</li>
-            <li className="flex items-center gap-2"><HardDrive className="w-4 h-4 text-primary shrink-0" /> {plan.storage}</li>
-            {plan.extras.map((e) => (
-              <li key={e} className="flex items-center gap-2"><Check className="w-4 h-4 text-primary shrink-0" /> {e}</li>
+            {plan.ram && <li className="flex items-center gap-2"><MemoryStick className="w-4 h-4 text-primary shrink-0" /> {plan.ram} RAM</li>}
+            {plan.cpu && <li className="flex items-center gap-2"><Cpu className="w-4 h-4 text-primary shrink-0" /> {plan.cpu}</li>}
+            {plan.storage && <li className="flex items-center gap-2"><HardDrive className="w-4 h-4 text-primary shrink-0" /> {plan.storage}</li>}
+            {plan.bandwidth && <li className="flex items-center gap-2"><Network className="w-4 h-4 text-primary shrink-0" /> {plan.bandwidth}</li>}
+            {plan.features.map((e) => (
+              <li key={String(e)} className="flex items-center gap-2"><Check className="w-4 h-4 text-primary shrink-0" /> {String(e)}</li>
             ))}
           </ul>
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             onClick={() =>
-              add({ name: plan.name, group, ram: plan.ram, cpu: plan.cpu, storage: plan.storage, price: plan.price })
+              add({
+                id: plan.id,
+                name: plan.name,
+                group,
+                ram: plan.ram ?? "",
+                cpu: plan.cpu ?? "",
+                storage: plan.storage ?? "",
+                price: plan.price,
+              })
             }
             className="mt-auto text-sm font-medium py-2.5 rounded-xl grad-btn text-primary-foreground flex items-center justify-center gap-2 hover:brightness-110 transition"
           >

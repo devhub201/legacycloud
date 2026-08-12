@@ -4,33 +4,34 @@
 
 @layer base {
   :root {
-    --background: 262 45% 6%;
-    --foreground: 340 25% 96%;
-    --card: 260 38% 9%;
-    --card-foreground: 340 25% 96%;
-    --popover: 260 38% 9%;
-    --popover-foreground: 340 25% 96%;
-    --primary: 340 82% 58%;
-    --primary-foreground: 340 25% 99%;
-    --primary-glow: 330 90% 68%;
-    --secondary: 258 28% 15%;
-    --secondary-foreground: 340 25% 96%;
-    --muted: 258 24% 16%;
-    --muted-foreground: 265 18% 76%;
-    --accent: 275 85% 70%;
-    --accent-foreground: 340 25% 99%;
+    /* Azure Deep — light + medium blue SaaS cloud */
+    --background: 215 65% 6%;
+    --foreground: 210 40% 97%;
+    --card: 216 52% 10%;
+    --card-foreground: 210 40% 97%;
+    --popover: 216 52% 10%;
+    --popover-foreground: 210 40% 97%;
+    --primary: 217 100% 59%;
+    --primary-foreground: 215 80% 8%;
+    --primary-glow: 203 100% 74%;
+    --secondary: 216 42% 15%;
+    --secondary-foreground: 210 40% 97%;
+    --muted: 216 38% 16%;
+    --muted-foreground: 212 26% 76%;
+    --accent: 197 92% 62%;
+    --accent-foreground: 215 80% 8%;
     --destructive: 0 72% 55%;
-    --destructive-foreground: 340 25% 99%;
-    --border: 268 28% 24%;
-    --input: 258 28% 15%;
-    --ring: 340 82% 58%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 40% 24%;
+    --input: 216 42% 15%;
+    --ring: 217 100% 59%;
     --radius: 1rem;
-    --success: 152 65% 48%;
+    --success: 158 66% 46%;
     --warning: 38 92% 58%;
-    --info: 192 92% 55%;
+    --info: 197 92% 62%;
     --info-foreground: 200 40% 8%;
-    --mint: 160 78% 48%;
-    --violet: 268 88% 68%;
+    --mint: 168 76% 48%;
+    --violet: 250 88% 70%;
   }
 }
 
@@ -41,9 +42,9 @@ body {
   font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   color: hsl(var(--foreground));
   background:
-    radial-gradient(1100px 620px at 10% -12%, hsl(340 82% 45% / 0.22), transparent 62%),
-    radial-gradient(950px 560px at 105% 4%, hsl(268 85% 52% / 0.24), transparent 62%),
-    radial-gradient(800px 520px at 50% 108%, hsl(192 90% 45% / 0.14), transparent 62%),
+    radial-gradient(1100px 620px at 8% -12%, hsl(217 100% 52% / 0.28), transparent 62%),
+    radial-gradient(950px 560px at 104% 2%, hsl(197 95% 55% / 0.22), transparent 62%),
+    radial-gradient(820px 520px at 50% 108%, hsl(250 85% 60% / 0.16), transparent 62%),
     hsl(var(--background));
   background-attachment: fixed;
 }
@@ -51,22 +52,22 @@ body {
 h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-serif; }
 
 .text-gradient-blossom {
-  background: linear-gradient(90deg, hsl(340 95% 72%), hsl(320 85% 62%), hsl(350 95% 75%));
+  background: linear-gradient(90deg, hsl(203 100% 78%), hsl(217 100% 64%), hsl(190 95% 70%));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 .grad-btn {
-  background: linear-gradient(135deg, hsl(340 85% 58%), hsl(318 78% 50%));
-  box-shadow: 0 10px 34px -12px hsl(340 90% 55% / 0.7);
+  background: linear-gradient(135deg, hsl(217 100% 60%), hsl(199 95% 52%));
+  box-shadow: 0 10px 34px -12px hsl(212 100% 58% / 0.7);
 }
 .glass {
-  background: hsl(260 40% 9% / 0.64);
+  background: hsl(216 52% 11% / 0.66);
   backdrop-filter: blur(12px);
   border: 1px solid hsl(var(--border));
 }
 .ring-glow-blossom {
-  box-shadow: 0 0 0 1px hsl(var(--border)), 0 24px 70px -26px hsl(340 90% 55% / 0.45);
+  box-shadow: 0 0 0 1px hsl(var(--border)), 0 24px 70px -26px hsl(212 100% 58% / 0.5);
 }
 
 @keyframes float-slow {
@@ -75,18 +76,20 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
 }
 .animate-float-slow { animation: float-slow 5s ease-in-out infinite; }
 
+/* Floating cloud motes (blue particles) */
 @keyframes petal-fall {
-  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
-  10% { opacity: 0.9; }
-  100% { transform: translate3d(6vw, 110vh, 0) rotate(420deg); opacity: 0; }
+  0% { transform: translate3d(0, -10vh, 0) scale(0.7); opacity: 0; }
+  10% { opacity: 0.85; }
+  100% { transform: translate3d(5vw, 110vh, 0) scale(1.1); opacity: 0; }
 }
 .petal {
   position: fixed;
   top: -5vh;
-  width: 10px;
-  height: 10px;
-  border-radius: 10px 0 10px 0;
-  background: linear-gradient(135deg, hsl(340 95% 80%), hsl(325 85% 68%));
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, hsl(200 100% 88%), hsl(214 100% 62%));
+  box-shadow: 0 0 14px hsl(205 100% 70% / 0.75);
   pointer-events: none;
   z-index: 0;
   animation: petal-fall linear infinite;
@@ -97,7 +100,7 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
   100% { background-position: 200% 0; }
 }
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, hsl(340 90% 70% / 0.25), transparent);
+  background: linear-gradient(90deg, transparent, hsl(205 100% 72% / 0.28), transparent);
   background-size: 200% 100%;
   animation: shimmer 2.4s linear infinite;
 }
@@ -107,14 +110,14 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
   position: relative;
   overflow: hidden;
   transition: box-shadow 0.3s ease;
-  box-shadow: 0 18px 45px -22px hsl(340 90% 40% / 0.5);
+  box-shadow: 0 18px 45px -22px hsl(214 100% 40% / 0.55);
 }
-.card-3d:hover { box-shadow: 0 34px 80px -26px hsl(340 90% 55% / 0.55); }
+.card-3d:hover { box-shadow: 0 34px 80px -26px hsl(210 100% 58% / 0.55); }
 .card-sheen {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(120deg, hsl(0 0% 100% / 0.09), transparent 45%);
+  background: linear-gradient(120deg, hsl(0 0% 100% / 0.1), transparent 45%);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -126,15 +129,15 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
   inset: 0;
   background-size: cover;
   background-position: center;
-  opacity: 0.18;
+  opacity: 0.16;
   transition: opacity .45s ease, transform .6s ease;
   transform: scale(1.02);
 }
-.card-3d:hover .card-art { opacity: 0.32; transform: scale(1.08); }
+.card-3d:hover .card-art { opacity: 0.3; transform: scale(1.08); }
 .card-art-veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, hsl(262 45% 8% / 0.52), hsl(262 48% 6% / 0.9));
+  background: linear-gradient(180deg, hsl(216 55% 9% / 0.55), hsl(215 62% 6% / 0.92));
 }
 
 /* ── Motion utilities ────────────────────────────── */
@@ -145,8 +148,8 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
 .animate-marquee { animation: marquee 26s linear infinite; }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 hsl(340 90% 60% / 0.45); }
-  50% { box-shadow: 0 0 42px 6px hsl(340 90% 60% / 0.28); }
+  0%, 100% { box-shadow: 0 0 0 0 hsl(212 100% 60% / 0.45); }
+  50% { box-shadow: 0 0 42px 6px hsl(205 100% 65% / 0.3); }
 }
 .animate-glow-pulse { animation: glow-pulse 3.2s ease-in-out infinite; }
 
@@ -155,7 +158,7 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
   50% { background-position: 100% 50%; }
 }
 .text-gradient-anim {
-  background: linear-gradient(90deg, hsl(340 95% 74%), hsl(315 88% 62%), hsl(355 96% 76%), hsl(340 95% 74%));
+  background: linear-gradient(90deg, hsl(203 100% 78%), hsl(217 100% 64%), hsl(188 95% 72%), hsl(203 100% 78%));
   background-size: 300% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -169,29 +172,28 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
 .icon-tile {
   display: flex; align-items: center; justify-content: center;
   border-radius: 0.9rem;
-  background: linear-gradient(140deg, hsl(340 90% 58%), hsl(315 82% 48%));
-  border: 1px solid hsl(340 85% 72% / 0.45);
-  color: hsl(var(--primary-foreground));
-  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(340 90% 55% / 0.8);
+  background: linear-gradient(140deg, hsl(217 100% 60%), hsl(224 90% 50%));
+  border: 1px solid hsl(205 100% 78% / 0.45);
+  color: hsl(210 40% 99%);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(214 100% 58% / 0.85);
 }
-.icon-tile svg { color: hsl(var(--primary-foreground)); stroke-width: 2.2; }
+.icon-tile svg { color: hsl(210 40% 99%); stroke-width: 2.2; }
 
-
-/* ── Icon tile tones (variety, not everything pink) ─── */
+/* ── Icon tile tones (variety within the blue family) ─── */
 .icon-tile.tone-cyan {
-  background: linear-gradient(140deg, hsl(192 92% 52%), hsl(210 90% 48%));
-  border-color: hsl(192 95% 72% / 0.45);
-  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(192 92% 50% / 0.8);
+  background: linear-gradient(140deg, hsl(192 95% 55%), hsl(205 95% 48%));
+  border-color: hsl(192 95% 78% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(196 95% 52% / 0.85);
 }
 .icon-tile.tone-violet {
-  background: linear-gradient(140deg, hsl(268 88% 66%), hsl(288 80% 56%));
-  border-color: hsl(272 92% 80% / 0.45);
-  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(270 88% 60% / 0.8);
+  background: linear-gradient(140deg, hsl(250 90% 68%), hsl(228 90% 58%));
+  border-color: hsl(248 95% 84% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(242 90% 62% / 0.85);
 }
 .icon-tile.tone-mint {
-  background: linear-gradient(140deg, hsl(160 78% 46%), hsl(180 78% 42%));
-  border-color: hsl(160 85% 70% / 0.45);
-  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(165 80% 45% / 0.8);
+  background: linear-gradient(140deg, hsl(168 78% 46%), hsl(186 82% 44%));
+  border-color: hsl(168 85% 74% / 0.45);
+  box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.22), 0 12px 26px -14px hsl(175 80% 45% / 0.85);
 }
 .icon-tile.tone-amber {
   background: linear-gradient(140deg, hsl(38 95% 58%), hsl(20 90% 54%));
@@ -202,7 +204,7 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
 
 /* ── Hover interactions ─────────────────────────────── */
 .hover-lift { transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease; }
-.hover-lift:hover { border-color: hsl(var(--primary) / 0.45); }
+.hover-lift:hover { border-color: hsl(var(--primary) / 0.5); }
 .hover-lift:hover .icon-hover,
 .icon-hover:hover {
   transform: translateY(-3px) rotate(-6deg) scale(1.08);
@@ -218,3 +220,12 @@ h1, h2, h3, .font-display { font-family: 'Space Grotesk', ui-sans-serif, sans-se
   to { opacity: 1; transform: translateY(0); }
 }
 .animate-rise-in { animation: rise-in .5s cubic-bezier(.2,.8,.2,1) both; }
+
+/* subtle grid backdrop for SaaS feel */
+.grid-backdrop {
+  background-image:
+    linear-gradient(hsl(210 100% 70% / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(210 100% 70% / 0.07) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(70% 60% at 50% 0%, black, transparent);
+}

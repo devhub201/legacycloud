@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
-import Minecraft from "@/pages/Minecraft";
-import Vps from "@/pages/Vps";
+import Pricing from "@/pages/Pricing";
+import CategoryPage from "@/pages/Category";
 import Status from "@/pages/Status";
 import Support from "@/pages/Support";
 import About from "@/pages/About";
@@ -27,14 +27,19 @@ import AdminTickets from "@/pages/admin/Tickets";
 import AdminStaff from "@/pages/admin/Staff";
 import AdminSettings from "@/pages/admin/Settings";
 import AdminAi from "@/pages/admin/Ai";
+import AdminCatalog from "@/pages/admin/Catalog";
+import AdminContent from "@/pages/admin/Content";
+import AdminAppearance from "@/pages/admin/Appearance";
 
 export default function App() {
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/minecraft" element={<Minecraft />} />
-        <Route path="/vps" element={<Vps />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/hosting/:slug" element={<CategoryPage />} />
+        <Route path="/minecraft" element={<Navigate to="/hosting/minecraft-budget" replace />} />
+        <Route path="/vps" element={<Navigate to="/hosting/vps-budget" replace />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/dashboard" element={<Dashboard />} />
@@ -44,6 +49,9 @@ export default function App() {
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/admin" element={<RequireAdmin><AdminShell /></RequireAdmin>}>
           <Route index element={<AdminOverview />} />
+          <Route path="catalog" element={<AdminCatalog />} />
+          <Route path="content" element={<AdminContent />} />
+          <Route path="appearance" element={<AdminAppearance />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="services" element={<AdminServices />} />
           <Route path="customers" element={<AdminCustomers />} />

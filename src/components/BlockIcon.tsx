@@ -70,7 +70,7 @@ export default function BlockIcon({
   const k = kind ?? blockForName(name);
   const f = BLOCKS[k];
   const s = size;
-  const h = s * 0.56; // face height
+  const f2 = s * 0.7; // face size
 
   return (
     <motion.span
@@ -81,10 +81,10 @@ export default function BlockIcon({
       transition={float ? { duration: 3.4, repeat: Infinity, ease: "easeInOut" } : undefined}
       whileHover={{ scale: 1.12, rotate: -4 }}
     >
-      <span className="voxel" style={{ width: s, height: s }}>
-        <span className="voxel-face voxel-top" style={{ width: s * 0.72, height: s * 0.72, background: f.top }} />
-        <span className="voxel-face voxel-left" style={{ width: s * 0.72, height: h, background: f.left }} />
-        <span className="voxel-face voxel-right" style={{ width: s * 0.72, height: h, background: f.right }} />
+      <span className="voxel" style={{ width: f2, height: f2, ["--vx" as string]: `${f2 / 2}px` }}>
+        <span className="voxel-face voxel-top" style={{ width: f2, height: f2, background: f.top }} />
+        <span className="voxel-face voxel-left" style={{ width: f2, height: f2, background: f.left }} />
+        <span className="voxel-face voxel-right" style={{ width: f2, height: f2, background: f.right }} />
       </span>
     </motion.span>
   );

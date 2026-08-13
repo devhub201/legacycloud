@@ -48,6 +48,7 @@ export default function App() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/free-panel" element={<FreePanel />} />
         <Route path="/admin" element={<RequireAdmin><AdminShell /></RequireAdmin>}>
           <Route index element={<AdminOverview />} />
           <Route path="catalog" element={<AdminCatalog />} />

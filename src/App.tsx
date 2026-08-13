@@ -16,6 +16,7 @@ import Features from "@/pages/Features";
 import Faq from "@/pages/Faq";
 import Careers from "@/pages/Careers";
 import AuthPage from "@/pages/Auth";
+import FreePanel from "@/pages/FreePanel";
 import RequireAdmin from "@/components/RequireAdmin";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminOverview from "@/pages/admin/Overview";

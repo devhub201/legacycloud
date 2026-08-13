@@ -15,7 +15,7 @@ export type Member = {
   socials: Social[];
 };
 
-const D = "https://discord.gg/YFNWrZ68Dv";
+const D = "https://discord.gg/vPE7XRqqHJ";
 
 export const LEADERS: Member[] = [
   {

@@ -82,4 +82,4 @@ export const LOCATIONS = [
   { city: "New York", country: "USA", flag: "🇺🇸", ping: "186 ms" },
 ];
 
-export const DISCORD = "https://discord.gg/YFNWrZ68Dv";
+export const DISCORD = "https://discord.gg/vPE7XRqqHJ";

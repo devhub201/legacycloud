@@ -1,9 +1,9 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Check, Cpu, HardDrive, MemoryStick, ShoppingCart, Network } from "lucide-react";
-import { iconByName } from "@/lib/icons";
 import type { DbPlan } from "@/lib/catalog";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
+import BlockIcon from "@/components/BlockIcon";
 
 export default function PlanCard({
   plan,
@@ -20,7 +20,6 @@ export default function PlanCard({
 }) {
   const { add } = useCart();
   const { format } = useCurrency();
-  const TierIcon = iconByName(plan.icon);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -37,47 +36,58 @@ export default function PlanCard({
   return (
     <div className="[perspective:1200px]">
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: 22 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.45, delay: index * 0.05 }}
+        transition={{ duration: 0.5, delay: index * 0.06 }}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
+        whileHover={{ y: -8 }}
         style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
-        className={`relative glass rounded-2xl p-6 flex flex-col card-3d hover-lift ${
+        className={`relative glass-pro rounded-2xl p-5 flex flex-col overflow-hidden ${
           plan.is_popular ? "ring-2 ring-primary/60 ring-glow-blossom" : ""
         }`}
       >
-        {art && <span aria-hidden className="card-art" style={{ backgroundImage: `url(${art})` }} />}
-        <span aria-hidden className="card-art-veil" />
-        <span aria-hidden className="card-sheen" />
+        <span aria-hidden className="glass-sweep absolute inset-0 pointer-events-none" />
+
         {plan.is_popular && (
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 grad-btn text-primary-foreground text-[11px] font-semibold px-3 py-1 rounded-full z-10">
-            Most Popular
+          <span className="absolute top-4 right-4 grad-btn text-primary-foreground text-[10px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full z-20">
+            Popular
           </span>
         )}
-        <div style={{ transform: "translateZ(38px)" }} className="relative flex flex-col flex-1">
-          <div className="flex items-center gap-3">
-            <span className={`icon-tile ${tone} w-10 h-10 shrink-0 icon-hover`}>
-              <TierIcon className="w-5 h-5" />
+
+        <div style={{ transform: "translateZ(40px)" }} className="relative flex flex-col flex-1">
+          {/* Block banner */}
+          <div
+            className="pixel-banner mb-4 flex items-center gap-4 px-4"
+            style={art ? { backgroundImage: `url(${art})` } : undefined}
+          >
+            <span className="relative z-10">
+              <BlockIcon name={plan.name} size={54} />
             </span>
-            <h3 className="font-display text-xl font-bold">{plan.name}</h3>
+            <span className="relative z-10">
+              <div className="text-[10px] uppercase tracking-[0.16em] text-muted-foreground">{group}</div>
+              <h3 className="font-display text-xl font-bold leading-tight">{plan.name}</h3>
+            </span>
           </div>
-          <div className="mt-3 mb-5">
+
+          <div className="mb-5">
             <span className="text-3xl font-bold text-gradient-blossom">{format(plan.price)}</span>
             <span className="text-sm text-muted-foreground">
               /{plan.billing_cycle === "yearly" ? "year" : "month"}
             </span>
           </div>
+
           <ul className="space-y-2.5 text-sm mb-6">
             {plan.ram && <li className="flex items-center gap-2"><MemoryStick className="w-4 h-4 text-primary shrink-0" /> {plan.ram} RAM</li>}
             {plan.cpu && <li className="flex items-center gap-2"><Cpu className="w-4 h-4 text-primary shrink-0" /> {plan.cpu}</li>}
             {plan.storage && <li className="flex items-center gap-2"><HardDrive className="w-4 h-4 text-primary shrink-0" /> {plan.storage}</li>}
             {plan.bandwidth && <li className="flex items-center gap-2"><Network className="w-4 h-4 text-primary shrink-0" /> {plan.bandwidth}</li>}
             {plan.features.map((e) => (
-              <li key={String(e)} className="flex items-center gap-2"><Check className="w-4 h-4 text-primary shrink-0" /> {String(e)}</li>
+              <li key={String(e)} className="flex items-center gap-2"><Check className="w-4 h-4 text-mint shrink-0" /> {String(e)}</li>
             ))}
           </ul>
+
           <motion.button
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
@@ -92,7 +102,7 @@ export default function PlanCard({
                 price: plan.price,
               })
             }
-            className="mt-auto text-sm font-medium py-2.5 rounded-xl grad-btn text-primary-foreground flex items-center justify-center gap-2 hover:brightness-110 transition"
+            className="mt-auto text-sm font-semibold py-3 rounded-xl grad-btn text-primary-foreground flex items-center justify-center gap-2 hover:brightness-110 transition"
           >
             <ShoppingCart className="w-4 h-4" /> Add to Cart
           </motion.button>

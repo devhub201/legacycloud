@@ -16,6 +16,7 @@ import Features from "@/pages/Features";
 import Faq from "@/pages/Faq";
 import Careers from "@/pages/Careers";
 import AuthPage from "@/pages/Auth";
+import FreePanel from "@/pages/FreePanel";
 import RequireAdmin from "@/components/RequireAdmin";
 import AdminShell from "@/components/admin/AdminShell";
 import AdminOverview from "@/pages/admin/Overview";
@@ -47,6 +48,7 @@ export default function App() {
         <Route path="/faq" element={<Faq />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/free-panel" element={<FreePanel />} />
         <Route path="/admin" element={<RequireAdmin><AdminShell /></RequireAdmin>}>
           <Route index element={<AdminOverview />} />
           <Route path="catalog" element={<AdminCatalog />} />

@@ -35,7 +35,7 @@ type Ctx = {
 
 const SiteContext = createContext<Ctx>({} as Ctx);
 
-export const DEFAULT_DISCORD = "https://discord.gg/YFNWrZ68Dv";
+export const DEFAULT_DISCORD = "https://discord.gg/vPE7XRqqHJ";
 
 export function SiteProvider({ children }: { children: ReactNode }) {
   const qc = useQueryClient();

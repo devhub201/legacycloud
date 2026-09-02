@@ -76,10 +76,10 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className="relative min-h-screen">
       <div
         aria-hidden
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-60"
-        style={{ backgroundImage: 'url("/background.png")' }}
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-90"
+        style={{ backgroundImage: 'url("/background-cosmos.jpg")' }}
       />
-      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/55 via-background/80 to-background" />
+      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/70 to-background" />
       <Petals />
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
@@ -109,7 +109,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             <div className="hidden sm:block"><CurrencyToggle /></div>
             <Link
               to="/pricing"
-              className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 hover:brightness-110 transition"
+              className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 whitespace-nowrap hover:brightness-110 transition"
             >
               <Rocket className="w-4 h-4" /> Get Started
             </Link>

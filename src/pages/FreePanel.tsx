@@ -11,7 +11,7 @@ import AuthInline from "@/components/AuthInline";
 import { useAuth } from "@/lib/auth";
 
 const SPECS = [
-  { icon: MemoryStick, tone: "", label: "4 GB RAM", desc: "DDR5 memory, no burst throttling" },
+  { icon: MemoryStick, tone: "", label: "8 GB RAM", desc: "DDR5 memory, no burst throttling" },
   { icon: HardDrive, tone: "tone-cyan", label: "8 GB NVMe", desc: "Enterprise SSD storage" },
   { icon: Cpu, tone: "tone-violet", label: "150% CPU", desc: "1.5 dedicated Ryzen threads" },
   { icon: Network, tone: "tone-mint", label: "Unmetered", desc: "1 Gbps port, DDoS filtered" },
@@ -48,7 +48,7 @@ const STEPS = [
 ];
 
 const PAID_COMPARE = [
-  { label: "RAM", free: "4 GB", paid: "Up to 64 GB" },
+  { label: "RAM", free: "8 GB", paid: "Up to 64 GB" },
   { label: "CPU", free: "150%", paid: "Up to 800% dedicated" },
   { label: "Storage", free: "8 GB NVMe", paid: "Unlimited NVMe" },
   { label: "Uptime SLA", free: "Best effort", paid: "99.9% guaranteed" },
@@ -72,7 +72,7 @@ export default function FreePanel() {
             A <span className="text-gradient-anim">free game panel</span> that beats most paid ones
           </h1>
           <p className="text-muted-foreground leading-relaxed mb-7 max-w-2xl">
-            4 GB RAM, 8 GB NVMe and 150% CPU on real Ryzen hardware — with a console, file manager, plugin
+            8 GB RAM, 8 GB NVMe and 150% CPU on real Ryzen hardware — with a console, file manager, plugin
             installer, backups, databases, subusers and live metrics. Everything a Pterodactyl panel gives you,
             plus the extras it never had.
           </p>

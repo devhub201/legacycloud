@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck, LogIn, LogOut, User, Sparkles, HelpCircle, ChevronDown } from "lucide-react";
+import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck, LogIn, LogOut, User, Sparkles, HelpCircle } from "lucide-react";
 import { DISCORD } from "@/data/plans";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";

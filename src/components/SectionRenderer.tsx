@@ -33,7 +33,7 @@ function Heading({ s }: { s: Section }) {
 
 function Hero({ s }: { s: Section }) {
   return (
-    <section className="relative max-w-6xl mx-auto px-6 pt-16 pb-12 md:pt-24 md:pb-20">
+    <section className="relative site-container pt-16 pb-12 md:pt-24 md:pb-16">
       <div aria-hidden className="absolute inset-0 grid-backdrop -z-10" />
       <div className="grid lg:grid-cols-[1.02fr_.98fr] gap-10 lg:gap-14 items-center">
         <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
@@ -42,7 +42,7 @@ function Hero({ s }: { s: Section }) {
               <Rocket className="w-3.5 h-3.5 text-primary" /> {s.eyebrow}
             </span>
           )}
-          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl font-bold leading-[1.02] tracking-tight mb-5 max-w-3xl">
+          <h1 className="font-display reference-title text-4xl sm:text-5xl md:text-[4.35rem] font-bold leading-[1.02] mb-5 max-w-3xl">
             {s.heading ?? "Cloud hosting built for what’s next"}
           </h1>
           {s.subheading && <p className="text-muted-foreground text-base md:text-lg max-w-xl leading-relaxed mb-8">{s.subheading}</p>}
@@ -51,7 +51,7 @@ function Hero({ s }: { s: Section }) {
               to={s.cta_href ?? "/pricing"}
               className="grad-btn text-primary-foreground px-6 py-3 rounded-xl text-sm font-semibold inline-flex items-center gap-2 hover:brightness-110 transition"
             >
-              {s.cta_label ?? "Get Started"} <ArrowRight className="w-4 h-4" />
+              {s.cta_label ?? "Get started"} <ArrowRight className="w-4 h-4" />
             </Link>
             <Link to="/features" className="glass px-6 py-3 rounded-xl text-sm font-semibold hover:bg-secondary transition inline-flex items-center gap-2">
               <Play className="w-4 h-4 text-primary" /> Explore platform
@@ -97,7 +97,7 @@ function Hero({ s }: { s: Section }) {
 
 function Stats({ s }: { s: Section }) {
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-16">
+    <section className="site-container pb-16">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {s.items.map((it: any, i: number) => (
           <motion.div
@@ -119,7 +119,7 @@ function Stats({ s }: { s: Section }) {
 
 function Features({ s }: { s: Section }) {
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-16">
+    <section className="site-container pb-16">
       <Heading s={s} />
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {s.items.map((it: any, i: number) => {
@@ -146,7 +146,7 @@ function Features({ s }: { s: Section }) {
 
 function TrustStrip() {
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-16">
+    <section className="site-container pb-16">
       <div className="trust-strip flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-xs text-muted-foreground">
         <span className="uppercase tracking-[.2em] text-[10px]">Powering the next wave of builders</span>
         <span className="inline-flex items-center gap-2"><CloudCog className="w-4 h-4 text-primary" /> Docker-ready infrastructure</span>
@@ -160,11 +160,13 @@ function TrustStrip() {
 function CategoriesGrid({ s, categories }: { s: Section; categories: Category[] }) {
   const visibleCategories = categories.length ? categories : FALLBACK_CATEGORIES as Category[];
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-16">
+    <section className="site-container pb-16">
       <Heading s={s} />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {visibleCategories.map((c, i) => {
           const Icon = iconByName(c.icon);
+          const label = c.name.match(/minecraft/i) ? "Game Hosting" : c.name.match(/vps/i) ? "VPS Hosting" : c.name.match(/saas|bot/i) ? "App & Bot Hosting" : c.name.match(/web/i) ? "Web Hosting" : c.name.match(/email/i) ? "Business Email" : c.name;
+          const tagline = c.name.match(/minecraft/i) ? "Managed servers for communities" : c.name.match(/vps/i) ? "Private compute with root access" : c.tagline ?? c.description;
           return (
             <motion.div
               key={c.id}
@@ -179,10 +181,10 @@ function CategoriesGrid({ s, categories }: { s: Section; categories: Category[] 
                 <div className="relative">
                    <span className={`icon-tile ${c.tone} w-11 h-11 mb-4 icon-hover`}><Icon className="w-5 h-5" /></span>
                   <div className="flex items-center justify-between gap-2">
-                    <h3 className="font-display font-bold">{c.name}</h3>
+                     <h3 className="font-display font-bold">{label}</h3>
                     {c.rate_label && <span className="text-xs text-gradient-blossom font-semibold">{c.rate_label}</span>}
                   </div>
-                  <p className="text-sm text-muted-foreground mt-1.5">{c.tagline ?? c.description}</p>
+                   <p className="text-sm text-muted-foreground mt-1.5">{tagline}</p>
                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary font-medium group-hover:gap-3 transition-all">
                     View plans <ArrowRight className="w-3.5 h-3.5" />
                   </span>
@@ -200,7 +202,7 @@ function PopularPlans({ s, categories, plans }: { s: Section; categories: Catego
   const popular = plans.filter((p) => p.is_popular).slice(0, 3);
   const list = popular.length ? popular : plans.slice(0, 3);
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-16">
+    <section className="site-container pb-16">
       <Heading s={s} />
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {list.map((p, i) => {
@@ -228,7 +230,7 @@ function RichText({ s }: { s: Section }) {
 
 function FreeOffer() {
   return (
-    <section className="max-w-6xl mx-auto px-6 pb-16">
+    <section className="site-container pb-16">
       <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="free-offer glass-pro rounded-3xl p-7 md:p-10 grid md:grid-cols-[1.2fr_.8fr] items-center gap-8 overflow-hidden">
         <div className="relative z-10">
           <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[.18em] text-primary mb-4"><GiftIcon /> Launch free</span>
@@ -253,11 +255,11 @@ function Benefits() {
     [Users, "Built around your team", "Invite collaborators, manage access and keep every project visible in one dashboard."],
     [HardDrive, "Scale when you are ready", "Move from a small experiment to serious workloads without changing your workflow."],
   ];
-  return <section className="max-w-6xl mx-auto px-6 pb-16"><div className="text-center mb-9"><span className="eyebrow-label">The Legacy Cloud difference</span><h2 className="font-display text-3xl md:text-4xl font-bold mt-3">Everything you need to ship</h2></div><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{items.map(([Icon, title, text], i) => { const I = Icon as typeof Server; return <motion.div key={String(title)} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} className="benefit-item"><span className="icon-tile tone-cyan w-10 h-10 mb-4"><I className="w-4 h-4" /></span><h3 className="font-display font-bold text-sm mb-2">{String(title)}</h3><p className="text-xs text-muted-foreground leading-relaxed">{String(text)}</p></motion.div> })}</div></section>;
+  return <section className="site-container pb-16"><div className="text-center mb-9"><span className="eyebrow-label">The Legacy Cloud difference</span><h2 className="font-display text-3xl md:text-4xl font-bold mt-3">Everything you need to ship</h2></div><div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">{items.map(([Icon, title, text], i) => { const I = Icon as typeof Server; return <motion.div key={String(title)} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} className="benefit-item"><span className="icon-tile tone-cyan w-10 h-10 mb-4"><I className="w-4 h-4" /></span><h3 className="font-display font-bold text-sm mb-2">{String(title)}</h3><p className="text-xs text-muted-foreground leading-relaxed">{String(text)}</p></motion.div> })}</div></section>;
 }
 
 function ReviewsPreview() {
-  return <section className="max-w-6xl mx-auto px-6 pb-16"><div className="text-center mb-9"><span className="eyebrow-label">Trusted by builders</span><h2 className="font-display text-3xl md:text-4xl font-bold mt-3">A better home for your workloads</h2></div><div className="grid md:grid-cols-3 gap-4">{[{q:'“The VPS went live in under a minute. The dashboard is simple enough for our whole team.”',n:'Rohan K.',r:'SaaS founder'},{q:'“We moved our bots and APIs to one place. Support replies like they actually care.”',n:'Aditi M.',r:'Indie developer'},{q:'“Transparent pricing, fast nodes and no mystery limits. Exactly what a growing project needs.”',n:'Kabir S.',r:'Product builder'}].map((review, i) => <motion.div key={review.n} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} className="glass rounded-2xl p-5"><div className="flex gap-1 mb-4">{[1,2,3,4,5].map((s) => <span key={s} className="text-primary text-sm">★</span>)}</div><p className="text-sm leading-relaxed text-foreground/90 mb-5">{review.q}</p><div className="flex items-center gap-3"><div className="avatar-mark">{review.n[0]}</div><div><div className="text-sm font-medium">{review.n}</div><div className="text-xs text-muted-foreground">{review.r}</div></div></div></motion.div>)}</div></section>;
+  return <section className="site-container pb-16"><div className="text-center mb-9"><span className="eyebrow-label">Trusted by builders</span><h2 className="font-display text-3xl md:text-4xl font-bold mt-3">A better home for your workloads</h2></div><div className="grid md:grid-cols-3 gap-4">{[{q:'“The VPS went live in under a minute. The dashboard is simple enough for our whole team.”',n:'Rohan K.',r:'SaaS founder'},{q:'“We moved our bots and APIs to one place. Support replies like they actually care.”',n:'Aditi M.',r:'Indie developer'},{q:'“Transparent pricing, fast nodes and no mystery limits. Exactly what a growing project needs.”',n:'Kabir S.',r:'Product builder'}].map((review, i) => <motion.div key={review.n} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * .06 }} className="glass rounded-2xl p-5"><div className="flex gap-1 mb-4">{[1,2,3,4,5].map((s) => <span key={s} className="text-primary text-sm">★</span>)}</div><p className="text-sm leading-relaxed text-foreground/90 mb-5">{review.q}</p><div className="flex items-center gap-3"><div className="avatar-mark">{review.n[0]}</div><div><div className="text-sm font-medium">{review.n}</div><div className="text-xs text-muted-foreground">{review.r}</div></div></div></motion.div>)}</div></section>;
 }
 
 function Cta({ s }: { s: Section }) {

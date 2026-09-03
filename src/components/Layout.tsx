@@ -2,7 +2,6 @@ import { ReactNode, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Boxes, MessageCircle, Menu, X, ShoppingCart, LayoutDashboard, Receipt, Rocket, ShieldCheck, LogIn, LogOut, User, Sparkles, HelpCircle } from "lucide-react";
-import logoAsset from "@/assets/legacy-cloud-logo.png.asset.json";
 import { DISCORD } from "@/data/plans";
 import { useCart } from "@/lib/cart";
 import { useCurrency } from "@/lib/currency";
@@ -10,13 +9,11 @@ import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { to: "/", label: "Home" },
-  { to: "/pricing", label: "Pricing" },
+  { to: "/pricing", label: "Hosting" },
   { to: "/features", label: "Features" },
-  { to: "/dashboard", label: "Dashboard" },
   { to: "/status", label: "Status" },
   { to: "/support", label: "Support" },
   { to: "/about", label: "About" },
-  { to: "/faq", label: "FAQ" },
 ];
 
 const SIDEBAR_EXTRA = [
@@ -66,6 +63,14 @@ function CurrencyToggle() {
   );
 }
 
+function BrandMark({ compact = false }: { compact?: boolean }) {
+  return (
+    <span className={`brand-mark ${compact ? "brand-mark-sm" : ""}`} aria-hidden="true">
+      <span>LC</span>
+    </span>
+  );
+}
+
 export default function Layout({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const { count } = useCart();
@@ -79,13 +84,13 @@ export default function Layout({ children }: { children: ReactNode }) {
         className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat opacity-90"
         style={{ backgroundImage: 'url("/background-cosmos.jpg")' }}
       />
-      <div aria-hidden className="fixed inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/70 to-background" />
+      <div aria-hidden className="site-vignette fixed inset-0 -z-10" />
       <Petals />
 
       <header className="sticky top-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+        <div className="site-container py-3.5 flex items-center justify-between gap-4">
           <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src={logoAsset.url} alt="Legacy Cloud logo" className="w-9 h-9 rounded-lg object-cover ring-1 ring-primary/40" />
+            <BrandMark />
             <span className="font-display font-bold text-lg tracking-wide">
               Legacy <span className="text-gradient-blossom">Cloud</span>
             </span>
@@ -107,11 +112,11 @@ export default function Layout({ children }: { children: ReactNode }) {
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block"><CurrencyToggle /></div>
-            <Link
+              <Link
               to="/pricing"
-              className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 whitespace-nowrap hover:brightness-110 transition"
+              className="hidden md:flex grad-btn text-primary-foreground text-sm font-semibold px-4 py-2.5 rounded-xl items-center gap-2 whitespace-nowrap hover:brightness-110 transition shadow-primary"
             >
-              <Rocket className="w-4 h-4" /> Get Started
+              <Rocket className="w-4 h-4" /> Get started
             </Link>
             <Link
               to={user ? "/dashboard" : "/auth"}
@@ -244,23 +249,21 @@ export default function Layout({ children }: { children: ReactNode }) {
         {children}
       </motion.main>
 
-      <footer className="relative z-10 border-t border-border/60 mt-10">
-        <div className="max-w-6xl mx-auto px-6 py-12 grid gap-8 md:grid-cols-4 text-sm">
+      <footer className="relative z-10 border-t border-border/60 mt-10 site-footer">
+        <div className="site-container py-12 grid gap-8 md:grid-cols-4 text-sm">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-7 h-7 rounded-lg grad-btn flex items-center justify-center">
-                <Boxes className="w-4 h-4 text-primary-foreground" />
-              </div>
+              <BrandMark compact />
               <span className="font-display font-bold">Legacy Cloud</span>
             </div>
             <p className="text-muted-foreground leading-relaxed">
-              Cherry-blossom powered Minecraft and VPS hosting, made in India for players worldwide.
+              Reliable cloud infrastructure for teams, creators and businesses. Deploy more, manage less.
             </p>
           </div>
           <div>
             <h3 className="font-medium mb-3">Hosting</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><Link to="/pricing" className="hover:text-foreground transition">Minecraft Hosting</Link></li>
+              <li><Link to="/pricing" className="hover:text-foreground transition">Cloud hosting</Link></li>
               <li><Link to="/vps" className="hover:text-foreground transition">VPS Hosting</Link></li>
               <li><Link to="/status" className="hover:text-foreground transition">Network Status</Link></li>
               <li><Link to="/features" className="hover:text-foreground transition">Why Legacy Cloud</Link></li>
